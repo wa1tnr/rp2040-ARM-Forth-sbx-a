@@ -10,6 +10,10 @@ byte leds = 0;
 byte uleds = 0;
 byte pos = 15; // rightmost
 
+byte slew = 5;
+
+uint8_t ledval = 0;
+
 void setup() {
   Serial1.begin(115200);
   Serial1.println("Begin.");
@@ -29,7 +33,7 @@ void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
     // BS init of 'leds':
-    leds = 0xf; // NOT the program contents.
+    leds = 0x7 + 0; // NOT the program contents.
     uleds = leds;   // A-F 0-9 and a few other glyphs
 
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
@@ -37,11 +41,59 @@ void updateShiftRegister(void) {
     digitalWrite(latchPin, HIGH);
 }
 
+#define EXPOSE_DIGIT_PAINTING -1
+#define DURATION 2
+#define REPETITIONS 1
+
+void blankleds(void) {
+    leds = 0;
+    updateShiftRegister();
+}
+
+void setleds(void) {
+    leds = ledval;
+    updateShiftRegister();
+    if (!EXPOSE_DIGIT_PAINTING) {
+        delay(1); // CRITICAL - must be a finite, non-zero delay here
+    } else {
+        delay(400);
+    }
+}
+
+void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
+    if (EXPOSE_DIGIT_PAINTING) {
+        // delay(122);
+        delay(424); // to expose digit change
+    }
+    setleds();
+    blankleds(); // waste no time in doing so!
+}
+
+void in_column_zero(void) {
+    for (int i = REPETITIONS ; i>0; i--) {
+        pos = 15 ; flash_digit();
+    }
+}
+
+void encode_three(void) { // 3
+    ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
+}
+
+void msg_tttt(void) { // message: '3223'
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            //  columns 3 2 1 0  -- painted right to left!
+            encode_three();  in_column_zero();   // print '3' in column '0'
+        }
+    }
+    delay(1000);
+}
+
 int count = -1;
 char buffer[8];
 int line_reset;
 
-void loop() {
+void old_loop() {
   count++;
   char * buf_ptr = & buffer[0];
   snprintf(buf_ptr, sizeof(buffer), " %02X %s", count, " ");
@@ -56,6 +108,19 @@ void loop() {
   delay(444);
 }
 
+void loop(void) {
+    blankleds();
+    delay(40);
+    ledval = 0;
+    int i = 0;
+    delay(1000);
+
+    msg_tttt();
+
+    // hold display blank for a while:
+    i = 128; ledval = i; in_column_zero(); blankleds();
+    delay(2 * (111 + slew));
+}
 
 /**********   d o c u m e n t a t i o n   **********/
 

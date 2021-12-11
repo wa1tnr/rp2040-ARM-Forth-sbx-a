@@ -23,6 +23,40 @@ void loop() {
 }
 
 #if 0
+The system was permissive enough to just graft in
+a second instance - by changing only the $ (dollar
+sign) to a period, at the beginning of the first
+line:
+
+orig:
+$ 1 0.000005 10.634267539816555 50 5 50 5e-11
+
+new:
+. 1 0.000005 10.634267539816555 50 5 50 5e-11
+
+That's all it takes to shoe-horn in a copy of a
+circuit.
+
+It'll be drawn right on top of the other one
+(possibly not even visible) if nothing is done,
+most likely (don't know).
+
+Best then, to reposition the entire drawing (of
+a single instance of a group of related parts) quite
+a bit, so that there is no collision between the
+two instances (in terms of placement in the x-y
+coordinate system) on the 'canvas'.
+
+Draw it once; select everything, drag it to a corner.
+Save it in the dragged position as well as the
+original position.
+
+Eventually you get a drawing with two exact copies
+of the circuit, placed in different parts, so that
+it is easy to move them around as a unit.
+
+#endif
+#if 0
 
 // Circuit code follows
 

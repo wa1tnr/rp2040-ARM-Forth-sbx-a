@@ -1,4 +1,5 @@
-// Saturday, 11 Dec 2021  20:10:42z
+// Saturday, 11 Dec 2021  21:32:59z
+// Decent port of the POV demo stuff.  UNTESTED.
 // LED lights but not immediately - working? (as they say)
 // has much of shift register stuff already.
 

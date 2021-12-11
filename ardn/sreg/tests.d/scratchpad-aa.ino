@@ -1,14 +1,13 @@
-// Saturday, 11 Dec 2021  19:35:14
+// Saturday, 11 Dec 2021  19:45:08
+// has much of shift register stuff already.
 
 const int latchPin = 2;  /* STCP */
 const int clockPin = 3;  /* SHCP */
 const int dataPin  = 4;  /* DS */
 
+byte leds = 0;
 byte uleds = 0;
-
-#if 0
-  byte pos = 15; // rightmost
-#endif
+byte pos = 15; // rightmost
 
 void setup() {
   Serial1.begin(115200);
@@ -21,21 +20,26 @@ void setup() {
 #endif
 }
 
-/*
-#if 0
 void _digitSelect(void) {
     uleds = pos;
     shiftOut(dataPin, clockPin, MSBFIRST, uleds);
 }
-#endif
-*/
+
+void updateShiftRegister(void) {
+    digitalWrite(latchPin, LOW);
+    _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
+    // BS init of 'leds':
+    leds = 0; // NOT the program contents.
+    uleds = leds;   // A-F 0-9 and a few other glyphs
+
+    shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
+
+    digitalWrite(latchPin, HIGH);
+}
 
 int count = -1;
 char buffer[8];
 int line_reset;
-
-
-
 
 void loop() {
   count++;
@@ -45,6 +49,8 @@ void loop() {
   line_reset++;
   if (line_reset > 7) {
     line_reset = 0;
+    // total BS
+    // updateShiftRegister();
     Serial1.print('\n');
   }
   delay(444);

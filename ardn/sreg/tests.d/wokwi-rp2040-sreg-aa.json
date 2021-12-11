@@ -2,7 +2,6 @@
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
-  "note-aa": "LED to Q1 and to GND thru switched R330 19:09z",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 40, "left": 260, "rotate": 180, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 230, "left": -60, "attrs": {} },

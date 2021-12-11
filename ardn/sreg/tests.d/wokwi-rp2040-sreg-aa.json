@@ -1,23 +1,15 @@
 {
   "version": 1,
-  "author": "Anonymous maker",
+  "author": "wa1tnr",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "wokwi-pi-pico",
-      "id": "pico",
-      "top": 40,
-      "left": 260,
-      "rotate": 180,
-      "attrs": {}
-    },
-    { "type": "wokwi-74hc595", "id": "sr1", "top": 230.03, "left": -59.21, "attrs": {} }
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 40, "left": 260, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-74hc595", "id": "sr1", "top": 230, "left": -60, "attrs": {} }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "pico:3V3", "sr1:VCC", "green", [ "h0" ] ],
-    [ "sr1:GND", "pico:GND.8", "black", [ "v50", "h199",
-     "v0" ] ]
+    [ "sr1:GND", "pico:GND.8", "black", [ "v18", "h199", "v0" ] ],
+    [ "pico:3V3", "sr1:VCC", "green", [ "h-160", "v-150", "h-170" ] ]
   ]
 }

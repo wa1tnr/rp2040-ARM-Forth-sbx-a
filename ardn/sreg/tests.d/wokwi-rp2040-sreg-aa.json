@@ -1,4 +1,6 @@
 {
+  "comment": "this is a comment.",
+  "note-aa": "LatchPin connected 18:28z",
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
@@ -10,6 +12,7 @@
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
     [ "sr1:GND", "pico:GND.8", "black", [ "v18", "h199", "v0" ] ],
-    [ "pico:3V3", "sr1:VCC", "green", [ "h-160", "v-150", "h-170" ] ]
+    [ "pico:3V3", "sr1:VCC", "green", [ "h-160", "v-150", "h-170" ] ],
+    [ "sr1:STCP", "pico:GP2", "green", [ "v-98", "h98", "v200", "h340", "v1" ] ]
   ]
 }

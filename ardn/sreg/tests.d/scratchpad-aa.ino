@@ -1,25 +1,24 @@
-// Saturday, 11 Dec 2021  17:38:10
+// Saturday, 11 Dec 2021  19:35:14
 
-/*
-#if 0
-const int latchPin = 2;
-const int clockPin = 3;
-const int dataPin = 4;
+const int latchPin = 2;  /* STCP */
+const int clockPin = 3;  /* SHCP */
+const int dataPin  = 4;  /* DS */
+
 byte uleds = 0;
-byte pos = 15; // rightmost
+
+#if 0
+  byte pos = 15; // rightmost
 #endif
-*/
 
 void setup() {
   Serial1.begin(115200);
   Serial1.println("Begin.");
-/*
-#if 0
   pinMode(latchPin, OUTPUT);
+
+#if 0
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin,  OUTPUT);
 #endif
-*/
 }
 
 /*
@@ -34,6 +33,9 @@ void _digitSelect(void) {
 int count = -1;
 char buffer[8];
 int line_reset;
+
+
+
 
 void loop() {
   count++;

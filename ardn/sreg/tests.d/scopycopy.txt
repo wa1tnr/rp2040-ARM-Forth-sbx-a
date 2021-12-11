@@ -2,6 +2,11 @@
 
 // Sat 11 Dec 00:07:56 UTC 2021
 
+// designed for:
+
+//   https://www.falstad.com/circuit/avr8js/
+
+
 #define FET_ON_OFF 4
 
 void setup() {

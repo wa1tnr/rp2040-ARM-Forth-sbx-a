@@ -1,18 +1,37 @@
 {
-  "comment": "this is a comment.",
-  "note-aa": "LatchPin connected 18:28z",
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
+  "note-aa": "LED to Q1 and to GND thru switched R330 19:09z",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 40, "left": 260, "rotate": 180, "attrs": {} },
-    { "type": "wokwi-74hc595", "id": "sr1", "top": 230, "left": -60, "attrs": {} }
+    { "type": "wokwi-74hc595", "id": "sr1", "top": 230, "left": -60, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 333.85,
+      "left": -292.43,
+      "rotate": 270,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 408.75, "left": -116.31, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 469.94,
+      "left": -72.54,
+      "attrs": { "value": "330" }
+    }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
     [ "sr1:GND", "pico:GND.8", "black", [ "v18", "h199", "v0" ] ],
     [ "pico:3V3", "sr1:VCC", "green", [ "h-160", "v-150", "h-170" ] ],
-    [ "sr1:STCP", "pico:GP2", "green", [ "v-98", "h98", "v200", "h340", "v1" ] ]
+    [ "sr1:STCP", "pico:GP2", "green", [ "v-98", "h98", "v200", "h340", "v1" ] ],
+    [ "sw1:1", "led1:C", "green", [ "v38.08", "h-86.73", "v-118.47", "h-2.42" ] ],
+    [ "sw1:2", "r1:1", "green", [ "v0" ] ],
+    [ "sr1:GND", "r1:2", "black", [ "v22", "h15", "v176" ] ],
+    [ "led1:A", "sr1:Q1", "green", [ "h0" ] ]
   ]
 }

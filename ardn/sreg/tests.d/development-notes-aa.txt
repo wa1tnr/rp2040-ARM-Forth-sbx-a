@@ -1,3 +1,13 @@
+All three pins functioning (latch, clock, data).
+
+LED lights, sometime after program init.
+
+Most likely in the loop updateShiftRegister() call.
+
+Takes 0xff as input, guaranteeing all LEDs would light.
+
+Can test this in 'hardware' ;)
+
 const int latchPin = 2;  /* STCP */
 const int clockPin = 3;  /* SHCP */
 const int dataPin  = 4;  /* DS */

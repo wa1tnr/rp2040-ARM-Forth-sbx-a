@@ -15,14 +15,6 @@ byte slew = 5;
 
 uint8_t ledval = 0;
 
-void setup() {
-  Serial1.begin(115200);
-  Serial1.println("Begin.");
-  pinMode(latchPin, OUTPUT);
-  pinMode(clockPin, OUTPUT);
-  pinMode(dataPin,  OUTPUT);
-}
-
 void _digitSelect(void) {
     uleds = pos;
     shiftOut(dataPin, clockPin, MSBFIRST, uleds);
@@ -34,7 +26,7 @@ void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
     // BS init of 'leds':
-    leds = 0x7 + 0; // NOT the program contents.
+    // aha! leds = 0x7 + 0; // NOT the program contents.
     uleds = leds;   // A-F 0-9 and a few other glyphs
 
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
@@ -109,13 +101,21 @@ void old_loop() {
   delay(444);
 }
 
+void setup() {
+  Serial1.begin(115200);
+  Serial1.println("Begin.");
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin,  OUTPUT);
+}
+
 void loop(void) {
     blankleds();
     delay(40);
     ledval = 0;
     int i = 0;
-    delay(1000);
-
+    delay(10000);
+    Serial1.println("loop iteration above msg_tttt");
     msg_tttt();
 
     // hold display blank for a while:

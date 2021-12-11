@@ -1,52 +1,55 @@
 // comment
 
+/*
+#if 0
 const int latchPin = 2;
 const int clockPin = 3;
 const int dataPin = 4;
 byte uleds = 0;
 byte pos = 15; // rightmost
+#endif
+*/
 
 void setup() {
-  // put your setup code here, to run once:
   Serial1.begin(115200);
-  Serial1.println("Hello, Raspberry Pi Pico!");
+  Serial1.println("Begin.");
+/*
+#if 0
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin,  OUTPUT);
-  // Serial1.print('\n');
+#endif
+*/
 }
 
+/*
+#if 0
 void _digitSelect(void) {
     uleds = pos;
     shiftOut(dataPin, clockPin, MSBFIRST, uleds);
 }
+#endif
+*/
+
 int count = -1;
 char buffer[8];
-
 int line_reset;
 
 void loop() {
   count++;
-//  int line_reset = 0;
-
   char * buf_ptr = & buffer[0];
   snprintf(buf_ptr, sizeof(buffer), " %02X %s", count, " ");
   Serial1.print(buffer);
-
   line_reset++;
-
-#if 0
-  Serial1.print(" reset: ");
-  Serial1.print(line_reset);
-#endif
-
   if (line_reset > 7) {
     line_reset = 0;
     Serial1.print('\n');
   }
-
-  delay(1000); // this speeds up the simulation
+  delay(444);
 }
+
+
+/**********   d o c u m e n t a t i o n   **********/
 
 #if 0
 int snprintf ( char * s, size_t n, const char * format, ... );

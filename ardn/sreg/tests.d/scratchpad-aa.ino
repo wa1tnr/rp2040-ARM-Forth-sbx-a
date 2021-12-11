@@ -1,7 +1,5 @@
-// Saturday, 11 Dec 2021  21:32:59z
-// Decent port of the POV demo stuff.  UNTESTED.
-// LED lights but not immediately - working? (as they say)
-// has much of shift register stuff already.
+// Saturday, 11 Dec 2021  21:53:15z
+// Decent port of the POV demo stuff.
 
 const int latchPin = 2;  /* STCP */
 const int clockPin = 3;  /* SHCP */
@@ -25,9 +23,7 @@ void updateShiftRegister(void) {
     pos = 0; // or 3
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
-    // BS init of 'leds':
-    // aha! leds = 0x7 + 0; // NOT the program contents.
-    uleds = leds;   // A-F 0-9 and a few other glyphs
+     uleds = leds;   // A-F 0-9 and a few other glyphs
 
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
 
@@ -115,7 +111,7 @@ void loop(void) {
     ledval = 0;
     int i = 0;
     delay(10000);
-    Serial1.println("loop iteration above msg_tttt");
+    // Serial1.println("loop iteration above msg_tttt");
     msg_tttt();
 
     // hold display blank for a while:

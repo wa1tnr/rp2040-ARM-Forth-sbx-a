@@ -52,9 +52,6 @@ void loop() {
 /**********   d o c u m e n t a t i o n   **********/
 
 #if 0
-
- [ http://www.cplusplus.com/reference/cstdio/snprintf/]
-  
 int snprintf ( char * s, size_t n, const char * format, ... );
 
 Write formatted output to sized buffer

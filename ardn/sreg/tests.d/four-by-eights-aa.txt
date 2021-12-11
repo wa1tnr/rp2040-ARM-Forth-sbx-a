@@ -1,0 +1,232 @@
+// has four banks of 8x leds
+
+// Sat 11 Dec 01:29:58 UTC 2021
+
+// designed for:
+
+//   https://www.falstad.com/circuit/avr8js/
+
+
+#define FET_ON_OFF 4
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(FET_ON_OFF, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+}
+#define SDELAY 3
+void loop() {
+  Serial.println("looping");
+    digitalWrite(FET_ON_OFF, HIGH);
+    delay(SDELAY);
+    digitalWrite(5, HIGH);
+    delay(SDELAY);
+    digitalWrite(7, HIGH);
+    delay(SDELAY);
+    digitalWrite(6, HIGH);
+    delay(50);
+    digitalWrite(FET_ON_OFF, LOW);
+    delay(SDELAY);
+    digitalWrite(5, LOW);
+    delay(SDELAY);
+    digitalWrite(7, LOW);
+    delay(SDELAY);
+    digitalWrite(6, LOW);
+    delay(SDELAY);
+    delay(50);
+}
+
+#if 0
+The system was permissive enough to just graft in
+a second instance - by changing only the $ (dollar
+sign) to a period, at the beginning of the first
+line:
+
+orig:
+$ 1 0.000005 10.634267539816555 50 5 50 5e-11
+
+new:
+. 1 0.000005 10.634267539816555 50 5 50 5e-11
+
+That's all it takes to shoe-horn in a copy of a
+circuit.
+
+It'll be drawn right on top of the other one
+(possibly not even visible) if nothing is done,
+most likely (don't know).
+
+Best then, to reposition the entire drawing (of
+a single instance of a group of related parts) quite
+a bit, so that there is no collision between the
+two instances (in terms of placement in the x-y
+coordinate system) on the 'canvas'.
+
+Draw it once; select everything, drag it to a corner.
+Save it in the dragged position as well as the
+original position.
+
+Eventually you get a drawing with two exact copies
+of the circuit, placed in different parts, so that
+it is easy to move them around as a unit.
+
+#endif
+#if 0
+
+// Circuit code follows
+
+$ 1 0.000005 10.634267539816555 50 5 50 5e-11
+w 112 144 144 144 0
+r 144 224 144 336 0 1200
+w 144 368 144 384 0
+f 80 352 144 352 0 1.5 0.02
+R 112 144 64 144 0 0 40 5 0 0 0.5
+g 144 384 144 400 0 0
+418 80 352 32 352 0 1 40 5 0 0 0.5 pin\s7
+162 144 144 144 224 2 default-led 1 0 0 0.01
+162 176 144 176 224 2 default-led 1 0 0 0.01
+162 208 144 208 224 2 default-led 1 0 0 0.01
+162 240 144 240 224 2 default-led 1 0 0 0.01
+162 288 144 288 224 2 default-led 1 0 0 0.01
+162 320 144 320 224 2 default-led 1 0 0 0.01
+162 352 144 352 224 2 default-led 1 0 0 0.01
+162 384 144 384 224 2 default-led 1 0 0 0.01
+w 144 144 176 144 0
+w 176 144 208 144 0
+w 208 144 240 144 0
+w 240 144 288 144 0
+w 288 144 320 144 0
+w 320 144 352 144 0
+w 352 144 384 144 0
+r 176 224 176 336 0 1200
+r 208 224 208 336 0 1200
+r 240 224 240 336 0 1200
+r 288 224 288 336 0 1200
+r 320 224 320 336 0 1200
+r 352 224 352 336 0 1200
+r 384 224 384 336 0 1200
+w 384 336 352 336 0
+w 352 336 320 336 0
+w 320 336 288 336 0
+w 288 336 240 336 0
+w 240 336 208 336 0
+w 208 336 176 336 0
+w 144 336 176 336 0
+p 80 352 80 432 1 0 0
+p -400 352 -400 432 1 0 0
+w -336 336 -304 336 0
+w -272 336 -304 336 0
+w -240 336 -272 336 0
+w -192 336 -240 336 0
+w -160 336 -192 336 0
+w -128 336 -160 336 0
+w -96 336 -128 336 0
+r -96 224 -96 336 0 1200
+r -128 224 -128 336 0 1200
+r -160 224 -160 336 0 1200
+r -192 224 -192 336 0 1200
+r -240 224 -240 336 0 1200
+r -272 224 -272 336 0 1200
+r -304 224 -304 336 0 1200
+w -128 144 -96 144 0
+w -160 144 -128 144 0
+w -192 144 -160 144 0
+w -240 144 -192 144 0
+w -272 144 -240 144 0
+w -304 144 -272 144 0
+w -336 144 -304 144 0
+162 -96 144 -96 224 2 default-led 1 0 0 0.01
+162 -128 144 -128 224 2 default-led 1 0 0 0.01
+162 -160 144 -160 224 2 default-led 1 0 0 0.01
+162 -192 144 -192 224 2 default-led 1 0 0 0.01
+162 -240 144 -240 224 2 default-led 1 0 0 0.01
+162 -272 144 -272 224 2 default-led 1 0 0 0.01
+162 -304 144 -304 224 2 default-led 1 0 0 0.01
+162 -336 144 -336 224 2 default-led 1 0 0 0.01
+418 -400 352 -448 352 0 1 40 5 0 0 0.5 pin\s6
+g -336 384 -336 400 0 0
+R -368 144 -416 144 0 0 40 5 0 0 0.5
+f -400 352 -336 352 0 1.5 0.02
+w -336 368 -336 384 0
+r -336 224 -336 336 0 1200
+w -368 144 -336 144 0
+p -416 0 -416 80 1 0 0
+w -352 -16 -320 -16 0
+w -288 -16 -320 -16 0
+w -256 -16 -288 -16 0
+w -208 -16 -256 -16 0
+w -176 -16 -208 -16 0
+w -144 -16 -176 -16 0
+w -112 -16 -144 -16 0
+r -112 -128 -112 -16 0 1200
+r -144 -128 -144 -16 0 1200
+r -176 -128 -176 -16 0 1200
+r -208 -128 -208 -16 0 1200
+r -256 -128 -256 -16 0 1200
+r -288 -128 -288 -16 0 1200
+r -320 -128 -320 -16 0 1200
+w -144 -208 -112 -208 0
+w -176 -208 -144 -208 0
+w -208 -208 -176 -208 0
+w -256 -208 -208 -208 0
+w -288 -208 -256 -208 0
+w -320 -208 -288 -208 0
+w -352 -208 -320 -208 0
+162 -112 -208 -112 -128 2 default-led 1 0 0 0.01
+162 -144 -208 -144 -128 2 default-led 1 0 0 0.01
+162 -176 -208 -176 -128 2 default-led 1 0 0 0.01
+162 -208 -208 -208 -128 2 default-led 1 0 0 0.01
+162 -256 -208 -256 -128 2 default-led 1 0 0 0.01
+162 -288 -208 -288 -128 2 default-led 1 0 0 0.01
+162 -320 -208 -320 -128 2 default-led 1 0 0 0.01
+162 -352 -208 -352 -128 2 default-led 1 0 0 0.01
+418 -416 0 -464 0 0 1 40 5 0 0 0.5 pin\s4
+g -352 32 -352 48 0 0
+R -384 -208 -432 -208 0 0 40 5 0 0 0.5
+f -416 0 -352 0 0 1.5 0.02
+w -352 16 -352 32 0
+r -352 -128 -352 -16 0 1200
+w -384 -208 -352 -208 0
+p 80 0 80 80 1 0 0
+w 144 -16 176 -16 0
+w 208 -16 176 -16 0
+w 240 -16 208 -16 0
+w 288 -16 240 -16 0
+w 320 -16 288 -16 0
+w 352 -16 320 -16 0
+w 384 -16 352 -16 0
+r 384 -128 384 -16 0 1200
+r 352 -128 352 -16 0 1200
+r 320 -128 320 -16 0 1200
+r 288 -128 288 -16 0 1200
+r 240 -128 240 -16 0 1200
+r 208 -128 208 -16 0 1200
+r 176 -128 176 -16 0 1200
+w 352 -208 384 -208 0
+w 320 -208 352 -208 0
+w 288 -208 320 -208 0
+w 240 -208 288 -208 0
+w 208 -208 240 -208 0
+w 176 -208 208 -208 0
+w 144 -208 176 -208 0
+162 384 -208 384 -128 2 default-led 1 0 0 0.01
+162 352 -208 352 -128 2 default-led 1 0 0 0.01
+162 320 -208 320 -128 2 default-led 1 0 0 0.01
+162 288 -208 288 -128 2 default-led 1 0 0 0.01
+162 240 -208 240 -128 2 default-led 1 0 0 0.01
+162 208 -208 208 -128 2 default-led 1 0 0 0.01
+162 176 -208 176 -128 2 default-led 1 0 0 0.01
+162 144 -208 144 -128 2 default-led 1 0 0 0.01
+418 80 0 32 0 0 1 40 5 0 0 0.5 pin\s5
+g 144 32 144 48 0 0
+R 112 -208 64 -208 0 0 40 5 0 0 0.5
+f 80 0 144 0 0 1.5 0.02
+w 144 16 144 32 0
+r 144 -128 144 -16 0 1200
+w 112 -208 144 -208 0
+o 36 64 0 4098 5 0.1 0 1
+
+#endif
+// END.
+

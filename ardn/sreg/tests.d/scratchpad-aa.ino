@@ -1,4 +1,5 @@
-// Saturday, 11 Dec 2021  19:45:08
+// Saturday, 11 Dec 2021  20:10:42z
+// LED lights but not immediately - working? (as they say)
 // has much of shift register stuff already.
 
 const int latchPin = 2;  /* STCP */
@@ -13,11 +14,8 @@ void setup() {
   Serial1.begin(115200);
   Serial1.println("Begin.");
   pinMode(latchPin, OUTPUT);
-
-#if 0
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin,  OUTPUT);
-#endif
 }
 
 void _digitSelect(void) {
@@ -26,10 +24,12 @@ void _digitSelect(void) {
 }
 
 void updateShiftRegister(void) {
+    // BS init of 'pos':
+    pos = 0; // or 3
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
     // BS init of 'leds':
-    leds = 0; // NOT the program contents.
+    leds = 0xf; // NOT the program contents.
     uleds = leds;   // A-F 0-9 and a few other glyphs
 
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
@@ -49,8 +49,8 @@ void loop() {
   line_reset++;
   if (line_reset > 7) {
     line_reset = 0;
-    // total BS
-    // updateShiftRegister();
+    // total BS to call updateShiftRegister() here. 20:07z
+    updateShiftRegister();
     Serial1.print('\n');
   }
   delay(444);

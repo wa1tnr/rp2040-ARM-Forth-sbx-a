@@ -1,4 +1,5 @@
-// Saturday, 11 Dec 2021  21:53:15z
+// Saturday, 11 Dec 2021  22:06:19z
+// five LEDS  see hw_testing
 // Decent port of the POV demo stuff.
 
 const int latchPin = 2;  /* STCP */
@@ -64,6 +65,10 @@ void in_column_zero(void) {
     }
 }
 
+void encode_hw_testing(void) { // 3
+    ledval = 1 + 2 + 4 + 8 +  16 +  0 + 0 +   0;
+}
+
 void encode_three(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
 }
@@ -72,7 +77,8 @@ void msg_tttt(void) { // message: '3223'
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
             //  columns 3 2 1 0  -- painted right to left!
-            encode_three();  in_column_zero();   // print '3' in column '0'
+//          encode_three();  in_column_zero();   // print '3' in column '0'
+            encode_hw_testing(); in_column_zero();
         }
     }
     delay(1000);
@@ -83,18 +89,6 @@ char buffer[8];
 int line_reset;
 
 void old_loop() {
-  count++;
-  char * buf_ptr = & buffer[0];
-  snprintf(buf_ptr, sizeof(buffer), " %02X %s", count, " ");
-  Serial1.print(buffer);
-  line_reset++;
-  if (line_reset > 7) {
-    line_reset = 0;
-    // total BS to call updateShiftRegister() here. 20:07z
-    updateShiftRegister();
-    Serial1.print('\n');
-  }
-  delay(444);
 }
 
 void setup() {
@@ -110,12 +104,13 @@ void loop(void) {
     delay(40);
     ledval = 0;
     int i = 0;
-    delay(10000);
+    delay(100);
     // Serial1.println("loop iteration above msg_tttt");
     msg_tttt();
 
     // hold display blank for a while:
-    i = 128; ledval = i; in_column_zero(); blankleds();
+    i = 128; // was 128 and is for blanking not duration.
+    ledval = i; in_column_zero(); blankleds();
     delay(2 * (111 + slew));
 }
 

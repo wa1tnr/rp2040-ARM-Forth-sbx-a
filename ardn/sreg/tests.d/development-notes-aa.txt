@@ -1,0 +1,3 @@
+const int latchPin = 2;  /* STCP */
+const int clockPin = 3;  /* SHCP */
+const int dataPin  = 4;  /* DS */

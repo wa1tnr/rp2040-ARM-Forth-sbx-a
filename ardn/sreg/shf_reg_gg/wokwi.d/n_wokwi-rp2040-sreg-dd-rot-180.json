@@ -2,7 +2,7 @@
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
-  "comment": "Sun 12 Dec 19:16:06 UTC 2021",
+  "comment": "Sun 12 Dec 19:20:35 UTC 2021",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 170.94, "left": -1407.97, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 337.84, "left": -803.8, "rotate": 180, "attrs": {} },
@@ -18,19 +18,19 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "sr1:VCC", "pico:3V3", "red", [ "h91.01", "v364.94", "h508.95" ] ],
     [ "sr1:GND", "led8:C", "black", [ "v-106.33", "h-380.81", "v-14.78" ] ],
-    [ "sr1:Q7", "led8:A", "gray", [ "v-121.75", "h-376.81", "v-197.01", "h-1.64" ] ],
+    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v31.38", "h-663.76", "v-180.1" ] ],
+    [ "sr1:STCP", "pico:GP2", "blue", [ "v47.85", "h-686.54", "v-206.45" ] ],
+    [ "sr1:DS", "pico:GP4", "orange", [ "v65.42", "h-680.48", "v-199.86" ] ],
+    [ "led8:C", "pico:GND.8", "black", [ "v25.92", "h-12.43", "v184.1" ] ],
+    [ "led8:A", "sr1:Q7", "gray", [ "v-121.75", "h-376.81", "v-197.01", "h-1.64" ] ],
     [ "led7:A", "sr1:Q6", "violet", [ "v214.24", "h6.4" ] ],
     [ "led6:A", "sr1:Q5", "blue", [ "v202.75", "h7.44" ] ],
     [ "led5:A", "sr1:Q4", "green", [ "v189.61", "h16.69" ] ],
     [ "led4:A", "sr1:Q3", "yellow", [ "v173.19", "h5.05" ] ],
     [ "led3:A", "sr1:Q2", "orange", [ "v163.34", "h1.17" ] ],
     [ "led2:A", "sr1:Q1", "red", [ "v151.85", "h3.86" ] ],
-    [ "led1:A", "sr1:Q0", "brown", [ "v137.07", "h111.62", "v282.39", "h-42.69" ] ],
-    [ "pico:3V3", "sr1:VCC", "red", [ "h91.01", "v364.94", "h508.95" ] ],
-    [ "led8:C", "pico:GND.8", "black", [ "v25.92", "h-12.43", "v184.1" ] ],
-    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v31.38", "h-663.76", "v-180.1" ] ],
-    [ "sr1:DS", "pico:GP4", "orange", [ "v65.42", "h-680.48", "v-199.86" ] ],
-    [ "sr1:STCP", "pico:GP2", "blue", [ "v47.85", "h-686.54", "v-206.45" ] ]
+    [ "led1:A", "sr1:Q0", "brown", [ "v137.07", "h111.62", "v282.39", "h-42.69" ] ]
   ]
 }

@@ -1,4 +1,4 @@
-// Sunday, 12 Dec 2021  21:42:19z
+// Sunday, 12 Dec 2021  21:48:27z
 
 // eight LEDS
 
@@ -27,7 +27,7 @@ void _digitSelect(void) {
 
 void updateShiftRegister(void) {
     // BS init of 'pos':
-    pos = 0; // or 3
+    // pos = 0; // or 3
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
      uleds = leds;   // A-F 0-9 and a few other glyphs
@@ -69,6 +69,16 @@ void in_column_zero(void) {
     }
 }
 
+
+void in_column_two(void) {
+    for (int i = REPETITIONS ; i>0; i--) {
+        pos = 27 ; flash_digit();
+    }
+}
+
+
+
+
 void encode_hw_testing(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
 }
@@ -95,6 +105,8 @@ void msg_tttt(void) { // message: '3223'
             //  columns 3 2 1 0  -- painted right to left!
 //          encode_three();  in_column_zero();   // print '3' in column '0'
             encode_hw_testing(); in_column_zero();
+            encode_hw_testing(); in_column_two();
+            
             encode_three_nope(); in_column_zero();
             encode_four_nope();  in_column_zero();
             encode_bitpattern_aa(); in_column_zero();

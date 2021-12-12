@@ -1,6 +1,6 @@
-// Sunday, 12 Dec 2021  00:32:51z
+// Sunday, 12 Dec 2021  21:42:19z
 
-// five LEDS  see hw_testing
+// eight LEDS
 
 // Decent port of the POV demo stuff.
 
@@ -81,6 +81,14 @@ void encode_three_nope(void) { // 3
     ledval = 0 + 2 + 0 +  8 +  0 +  32 + 0 + 128;
 }
 
+void encode_bitpattern_aa(void) { // low nybble
+    ledval = 1 + 2 + 4 + 8;
+}
+
+void encode_bitpattern_bb(void) { // high nybble
+    ledval = 16 + 32 + 64 + 128;
+}
+
 void msg_tttt(void) { // message: '3223'
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
@@ -89,6 +97,8 @@ void msg_tttt(void) { // message: '3223'
             encode_hw_testing(); in_column_zero();
             encode_three_nope(); in_column_zero();
             encode_four_nope();  in_column_zero();
+            encode_bitpattern_aa(); in_column_zero();
+            encode_bitpattern_bb(); in_column_zero();
         }
     }
     delay(1000);

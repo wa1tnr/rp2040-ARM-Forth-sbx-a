@@ -1,88 +1,42 @@
 {
   "version": 1,
   "author": "wa1tnr",
-  "local_status": "works good 12 Dec 02:14z",
-  "ROTATE": "r-000-aa rotate 180 degrees - focus on wire separations.  UNTESTED. 12 Dec 2021  02:14:12",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-pi-pico", "id": "pico", "top": 160.38, "left": -1247.49, "attrs": {} },
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 170.94, "left": -1407.97, "attrs": {} },
     {
       "type": "wokwi-74hc595",
       "id": "sr1",
-      "top": 261.41,
-      "left": -771.87,
+      "top": 337.84,
+      "left": -803.8,
       "rotate": 180,
       "attrs": {}
     },
-    {
-      "type": "wokwi-led",
-      "id": "led1",
-      "top": -35.43,
-      "left": -815.31,
-      "attrs": { "color": "red" }
-    },
-    {
-      "type": "wokwi-led",
-      "id": "led2",
-      "top": -15.27,
-      "left": -867.05,
-      "attrs": { "color": "red" }
-    },
-    {
-      "type": "wokwi-led",
-      "id": "led3",
-      "top": 7.95,
-      "left": -915.78,
-      "attrs": { "color": "red" }
-    },
-    { "type": "wokwi-led", "id": "led4", "top": 26.39, "left": -960, "attrs": { "color": "red" } },
-    { "type": "wokwi-led", "id": "led5", "top": 48, "left": -1000, "attrs": { "color": "red" } },
-    { "type": "wokwi-led", "id": "led6", "top": 48, "left": -1040, "attrs": { "color": "red" } }
+    { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led4", "top": -50, "left": -960, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led5", "top": -50, "left": -1080, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led6", "top": -50, "left": -1120, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led7", "top": -50, "left": -1160, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led8", "top": -50, "left": -1200, "attrs": { "color": "red" } }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "sr1:GND", "pico:GND.8", "black", [ "v1", "h1", "v0" ] ],
-    [ "sr1:SHCP", "pico:GP3", "orange", [ "v-1", "h1", "v1", "h1", "v-1", "h1" ] ],
-    [ "sr1:DS", "pico:GP4", "violet", [ "v-1", "h1", "v1", "h1", "v-1", "h1" ] ],
-    [ "led3:A", "sr1:Q2", "green", [ "v-0.83", "h239.75", "v160.72", "h-57.44" ] ],
-    [ "sr1:Q3", "led4:A", "green", [ "v-62.05", "h54.49", "v-81.68", "h0.53", "v-59.02" ] ],
-    [ "sr1:Q4", "led5:A", "green", [ "v-71.54", "h54.08", "v-81.68", "h-2.11", "v-26.87" ] ],
-    [
-      "sr1:Q5",
-      "led6:A",
-      "green",
-      [ "v-79.97", "h51.56", "v-56.91", "h-4.22", "v-18.97", "h-324.6" ]
-    ],
-    [
-      "sr1:STCP",
-      "pico:GP2",
-      "yellow",
-      [ "v39.21", "h-363.68", "v38.99", "h-78.52", "v37.41", "h-119.62", "v-206.04" ]
-    ],
-    [ "led3:C", "led4:C", "green", [ "v1.28", "h-19.94", "v-49.53", "h-40.58", "v60.07" ] ],
-    [ "led5:C", "led4:C", "green", [ "v-0.83", "h-14.77", "v-57.96", "h34.78", "v32.67" ] ],
-    [ "led6:C", "led5:C", "green", [ "v-1.89", "h-17.98", "v-49.53", "h40.05", "v48.48" ] ],
-    [ "sr1:Q1", "led2:A", "green", [ "v-42.58", "h60.24", "v-188.74", "h-87.41", "v-2.23" ] ],
-    [
-      "led2:C",
-      "led3:C",
-      "green",
-      [ "v-1.21", "h-19.12", "v-42.31", "h-50.11", "v64.59", "h10.02" ]
-    ],
-    [
-      "pico:3V3",
-      "sr1:VCC",
-      "green",
-      [ "h35.85", "v29.71", "h224.29", "v135.64", "h211.47", "v-12.82" ]
-    ],
-    [
-      "sr1:Q0",
-      "led1:A",
-      "green",
-      [ "v38.71", "h37.25", "v-104.67", "h48.06", "v-151.66", "h-4.27", "v-61.95" ]
-    ],
-    [ "led1:C", "led2:C", "green", [ "v4.07", "h-19.32", "v-49.13", "h-44.86", "v53.4" ] ],
-    [ "pico:GND.8", "led6:C", "black", [ "h145.49", "v-16.2" ] ]
+    [ "sr1:GND", "led8:C", "black", [ "v-106.33", "h-380.81", "v-14.78" ] ],
+    [ "sr1:Q7", "led8:A", "gray", [ "v-121.75", "h-376.81", "v-197.01", "h-1.64" ] ],
+    [ "led7:A", "sr1:Q6", "violet", [ "v214.24", "h6.4" ] ],
+    [ "led6:A", "sr1:Q5", "blue", [ "v202.75", "h7.44" ] ],
+    [ "led5:A", "sr1:Q4", "green", [ "v189.61", "h16.69" ] ],
+    [ "led4:A", "sr1:Q3", "yellow", [ "v173.19", "h5.05" ] ],
+    [ "led3:A", "sr1:Q2", "orange", [ "v163.34", "h1.17" ] ],
+    [ "led2:A", "sr1:Q1", "red", [ "v151.85", "h3.86" ] ],
+    [ "led1:A", "sr1:Q0", "brown", [ "v137.07", "h111.62", "v282.39", "h-42.69" ] ],
+    [ "pico:3V3", "sr1:VCC", "red", [ "h91.01", "v364.94", "h508.95" ] ],
+    [ "led8:C", "pico:GND.8", "black", [ "v25.92", "h-12.43", "v184.1" ] ],
+    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v31.38", "h-663.76", "v-180.1" ] ],
+    [ "sr1:DS", "pico:GP4", "orange", [ "v65.42", "h-680.48", "v-199.86" ] ],
+    [ "sr1:STCP", "pico:GP2", "blue", [ "v47.85", "h-686.54", "v-206.45" ] ]
   ]
 }

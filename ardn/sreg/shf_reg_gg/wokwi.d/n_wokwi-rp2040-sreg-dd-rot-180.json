@@ -2,7 +2,7 @@
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
-  "comment": "Sun 12 Dec 20:24:18 UTC 2021",
+  "comment": "Sun 12 Dec 20:35:31 UTC 2021",  
   "parts": [
     {
       "type": "wokwi-pi-pico",
@@ -53,6 +53,11 @@
     [ "led1:A", "sr1:Q0", "brown", [ "v137.07", "h111.62", "v282.39", "h-42.69" ] ],
     [ "led7:C", "led6:C", "yellow", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
     [ "pico:GND.8", "sr1:GND", "black", [ "h-55", "v188", "h-560", "v-200", "h0" ] ],
-    [ "led8:C", "led7:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0"] ]
+    [ "led8:C", "led7:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
+    [ "led6:C", "led5:C", "green", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
+    [ "led5:C", "led4:C", "green", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
+    [ "led4:C", "led3:C", "green", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
+    [ "led3:C", "led2:C", "green", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
+    [ "led2:C", "led1:C", "green", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ]
   ]
 }

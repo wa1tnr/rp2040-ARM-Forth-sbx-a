@@ -31,15 +31,13 @@ void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
     _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
      uleds = leds;   // A-F 0-9 and a few other glyphs
-
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
-
     digitalWrite(latchPin, HIGH);
 }
 
 #define EXPOSE_DIGIT_PAINTING -1
-#define DURATION 2
-#define REPETITIONS 1
+#define DURATION 50 // was '2'
+#define REPETITIONS 4 // was '1'
 
 void blankleds(void) {
     leds = 0;
@@ -72,11 +70,15 @@ void in_column_zero(void) {
 }
 
 void encode_hw_testing(void) { // 3
-    ledval = 1 + 2 + 4 + 8 +  16 +  0 + 0 +   0;
+    ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
 }
 
-void encode_three(void) { // 3
-    ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
+void encode_four_nope(void) {
+    ledval = 1 + 0 + 4 + 0 + 16 + 0 + 64 +   0;
+}
+
+void encode_three_nope(void) { // 3
+    ledval = 0 + 2 + 0 +  8 +  0 +  32 + 0 + 128;
 }
 
 void msg_tttt(void) { // message: '3223'
@@ -85,6 +87,8 @@ void msg_tttt(void) { // message: '3223'
             //  columns 3 2 1 0  -- painted right to left!
 //          encode_three();  in_column_zero();   // print '3' in column '0'
             encode_hw_testing(); in_column_zero();
+            encode_three_nope(); in_column_zero();
+            encode_four_nope();  in_column_zero();
         }
     }
     delay(1000);

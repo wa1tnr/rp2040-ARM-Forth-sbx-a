@@ -5,14 +5,7 @@
   "comment": "Sun 12 Dec 19:16:06 UTC 2021",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 170.94, "left": -1407.97, "attrs": {} },
-    {
-      "type": "wokwi-74hc595",
-      "id": "sr1",
-      "top": 337.84,
-      "left": -803.8,
-      "rotate": 180,
-      "attrs": {}
-    },
+    { "type": "wokwi-74hc595", "id": "sr1", "top": 337.84, "left": -803.8, "rotate": 180, "attrs": {} },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },

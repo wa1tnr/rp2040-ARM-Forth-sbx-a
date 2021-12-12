@@ -1,6 +1,12 @@
-// Saturday, 11 Dec 2021  22:06:19z
+// Sunday, 12 Dec 2021  00:32:51z
+
 // five LEDS  see hw_testing
+
 // Decent port of the POV demo stuff.
+
+// use this site:
+
+//  [ https://wokwi.com/arduino/new?template=pi-pico ]
 
 const int latchPin = 2;  /* STCP */
 const int clockPin = 3;  /* SHCP */
@@ -141,4 +147,8 @@ This pin can be used to power external circuitry
 RP2040 load and VSYS voltage,
 it is recommended to keep the load on
 this pin less than 300mA).
+
+Sun 12 Dec 00:32:51 UTC 2021
+
 #endif
+// END.

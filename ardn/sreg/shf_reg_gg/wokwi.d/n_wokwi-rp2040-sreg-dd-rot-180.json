@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Sun 12 Dec 22:16:51 UTC 2021",
+  "comment": "Sun 12 Dec 22:40:12 UTC 2021 both sr and all LEDS working seemingly",
   "parts": [
     {
       "type": "wokwi-pi-pico",
@@ -133,6 +133,17 @@
     [ "sr2:Q4", "led13:A", "green", [ "v0" ] ],
     [ "sr2:Q5", "led14:A", "green", [ "v0" ] ],
     [ "sr2:Q6", "led15:A", "green", [ "v0" ] ],
-    [ "sr2:Q7", "led16:A", "green", [ "v0" ] ]
+    [ "sr2:Q7", "led16:A", "green", [ "v0" ] ],
+    [ "sr1:SHCP", "sr2:SHCP", "green", [ "v0" ] ],
+    [ "sr2:DS", "sr1:Q7S", "green", [ "v57.21", "h378.99" ] ],
+    [ "sr1:STCP", "sr2:STCP", "green", [ "v0" ] ],
+    [ "led8:C", "led9:C", "green", [ "v0" ] ],
+    [ "led9:C", "led10:C", "green", [ "v0" ] ],
+    [ "led10:C", "led11:C", "green", [ "v0" ] ],
+    [ "led11:C", "led12:C", "green", [ "v0" ] ],
+    [ "led12:C", "led13:C", "green", [ "v0" ] ],
+    [ "led13:C", "led14:C", "green", [ "v0" ] ],
+    [ "led14:C", "led15:C", "green", [ "v0" ] ],
+    [ "led15:C", "led16:C", "green", [ "v0" ] ]
   ]
 }

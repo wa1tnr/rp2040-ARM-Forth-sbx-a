@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": " https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Sun 12 Dec 21:33:46 UTC 2021",
+  "comment": "Sun 12 Dec 21:54:44 UTC 2021",
   "parts": [
     {
       "type": "wokwi-pi-pico",
@@ -39,21 +39,45 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "sr1:VCC", "pico:3V3", "red", [ "v80", "h420", "v-33" ] ],
+
+
+    [ "sr1:VCC", "pico:3V3", "red", [ "v40", "h420", "v-33" ] ],
+ 
+    [ "pico:GND.8", "sr1:GND", "black", [ "h-55", "v160", "h-560", "v-200", "h0" ] ],
+ 
+ 
+ 
     [ "led8:C", "sr1:GND", "black", [ "v5", "h-8", "v250", "h0" ] ],
-    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v140", "h740", "v-186", "h100" ] ],
-    [ "sr1:STCP", "pico:GP2", "blue", [ "v120", "h710", "v-157", "h100" ] ],
-    [ "sr1:DS", "pico:GP4", "orange", [ "v100", "h670", "v-1" ] ],
+ 
+ 
+ 
+ 
+ 
+ 
+    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v100", "h710", "v-186", "h100" ] ],
+    [ "sr1:STCP", "pico:GP2", "blue", [ "v80", "h680", "v-157", "h100" ] ],
+    [ "sr1:DS", "pico:GP4", "orange", [ "v60", "h640", "v-1" ] ],
+ 
+ 
+ 
     [ "led8:A", "sr1:Q7", "gray", [ "h10", "v230", "h376" ] ],
     [ "led7:A", "sr1:Q6", "violet", [ "v222", "h6.4" ] ],
     [ "led6:A", "sr1:Q5", "blue", [ "v202.75", "h7.44" ] ],
     [ "led5:A", "sr1:Q4", "green", [ "v189.61", "h16.69" ] ],
     [ "led4:A", "sr1:Q3", "yellow", [ "v173.19", "h5.05" ] ],
     [ "led3:A", "sr1:Q2", "orange", [ "v163", "h1" ] ],
+ 
+ 
+ 
     [ "led2:A", "sr1:Q1", "red", [ "v151.85", "h3.86" ] ],
-    [ "led1:A", "sr1:Q0", "brown", [ "v137.07", "h111.62", "v282.39", "h-42.69" ] ],
+    [ "led1:A", "sr1:Q0", "brown", [ "v110", "h111.62", "v282.39", "h-42.69" ] ],
     [ "led7:C", "led6:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
-    [ "pico:GND.8", "sr1:GND", "black", [ "h-55", "v188", "h-560", "v-200", "h0" ] ],
+ 
+ 
+ 
+ 
+ 
+ 
     [ "led8:C", "led7:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
     [ "led6:C", "led5:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
     [ "led5:C", "led4:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],

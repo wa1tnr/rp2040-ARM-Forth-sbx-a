@@ -1,11 +1,18 @@
 {
   "version": 1,
-  "ROTATE": "rotate 180 degrees TODO begin: 12 Dec 2021 01:23:45 UTC",
+  "ROTATE": "r-000-aa rotate 180 degrees  12 Dec 2021  01:27:19z",
   "author": "wa1tnr",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-pi-pico", "id": "pico", "top": 40, "left": 260, "rotate": 180, "attrs": {} },
-    { "type": "wokwi-74hc595", "id": "sr1", "top": 230, "left": -60, "attrs": {} },
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 160.38, "left": -1247.49, "attrs": {} },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr1",
+      "top": 261.41,
+      "left": -771.87,
+      "rotate": 180,
+      "attrs": {}
+    },
     {
       "type": "wokwi-led",
       "id": "led1",

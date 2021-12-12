@@ -2,7 +2,8 @@
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
-  "comment": "Sun 12 Dec 20:35:31 UTC 2021",  
+  "this uri": " https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
+  "comment": "Sun 12 Dec 21:24:06 UTC 2021",
   "parts": [
     {
       "type": "wokwi-pi-pico",

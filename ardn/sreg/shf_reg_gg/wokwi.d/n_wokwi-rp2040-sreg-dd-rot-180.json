@@ -3,20 +3,47 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Mon 13 Dec 00:55:08 UTC 2021  sr2 mostly parallel wiring",
+  "comment": "Mon 13 Dec 01:45:49 UTC 2021  more wire routing",
   "parts": [
-    { "type": "wokwi-pi-pico", "id": "pico", "top": 173.33, "left": -212.72, "rotate": 180, "attrs": {} },
-    { "type": "wokwi-74hc595", "id": "sr1", "top": 337.84, "left": -803.8, "rotate": 180, "attrs": {} },
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 173.33,
+      "left": -212.72,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr1",
+      "top": 337.84,
+      "left": -803.8,
+      "rotate": 180,
+      "attrs": {}
+    },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led4", "top": -50, "left": -960, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led5", "top": -50, "left": -1080, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led6", "top": -50, "left": -1120, "attrs": { "color": "red" } },
-    { "type": "wokwi-led", "id": "led7", "top": -50, "left": -1157.73, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led7",
+      "top": -50,
+      "left": -1157.73,
+      "attrs": { "color": "red" }
+    },
     { "type": "wokwi-led", "id": "led8", "top": -50, "left": -1200, "attrs": { "color": "red" } },
-    { "type": "wokwi-74hc595", "id": "sr2", "top": 338.51, "left": -1426.17, "rotate": 180, "attrs": {} },
-    { "type": "wokwi-led", "id": "led9",  "top": -50, "left": -1480, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr2",
+      "top": 338.51,
+      "left": -1426.17,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-led", "id": "led9", "top": -50, "left": -1480, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led10", "top": -50, "left": -1520, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led11", "top": -50, "left": -1560, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led12", "top": -50, "left": -1600, "attrs": { "color": "red" } },
@@ -59,16 +86,16 @@
     [ "sr2:Q5", "led14:A", "blue", [ "v-240", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
-    [ "sr2:SHCP", "sr1:SHCP", "green", [ "v0" ] ],
-    [ "sr2:DS", "sr1:Q7S", "green", [ "v57.21", "h378.99" ] ],
-    [ "led8:C", "led9:C", "green", [ "v0" ] ],
+    [ "sr2:SHCP", "sr1:SHCP", "yellow", [ "v45", "h0" ] ],
+    [ "sr2:DS", "sr1:Q7S", "orange", [ "v30", "h378.99" ] ],
+    [ "led9:C", "sr1:GND", "black", [ "v5", "h-19", "v52", "h140", "v198", "h0" ] ],
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
-    [ "led12:C", "led13:C", "black", [ "v5", "h-18", "v-116", "h-237", "v116", "h0" ] ],
+    [ "led12:C", "led13:C", "black", [ "v5", "h-18", "v-116", "h-120", "v116", "h0" ] ],
     [ "led13:C", "led14:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
-    [ "led16:C", "sr2:GND", "black", [ "v150", "h0" ] ]
+    [ "led16:C", "sr2:GND", "black", [ "v10", "h-14", "v150", "h0" ] ]
   ]
 }

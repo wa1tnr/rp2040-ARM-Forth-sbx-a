@@ -3,47 +3,20 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Mon 13 Dec 00:33:58 UTC 2021  sr2 mostly parallel wiring",
+  "comment": "Mon 13 Dec 00:55:08 UTC 2021  sr2 mostly parallel wiring",
   "parts": [
-    {
-      "type": "wokwi-pi-pico",
-      "id": "pico",
-      "top": 173.33,
-      "left": -212.72,
-      "rotate": 180,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-74hc595",
-      "id": "sr1",
-      "top": 337.84,
-      "left": -803.8,
-      "rotate": 180,
-      "attrs": {}
-    },
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 173.33, "left": -212.72, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-74hc595", "id": "sr1", "top": 337.84, "left": -803.8, "rotate": 180, "attrs": {} },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led4", "top": -50, "left": -960, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led5", "top": -50, "left": -1080, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led6", "top": -50, "left": -1120, "attrs": { "color": "red" } },
-    {
-      "type": "wokwi-led",
-      "id": "led7",
-      "top": -50,
-      "left": -1157.73,
-      "attrs": { "color": "red" }
-    },
+    { "type": "wokwi-led", "id": "led7", "top": -50, "left": -1157.73, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led8", "top": -50, "left": -1200, "attrs": { "color": "red" } },
-    {
-      "type": "wokwi-74hc595",
-      "id": "sr2",
-      "top": 338.51,
-      "left": -1426.17,
-      "rotate": 180,
-      "attrs": {}
-    },
-    { "type": "wokwi-led", "id": "led9", "top": -50, "left": -1480, "attrs": { "color": "red" } },
+    { "type": "wokwi-74hc595", "id": "sr2", "top": 338.51, "left": -1426.17, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-led", "id": "led9",  "top": -50, "left": -1480, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led10", "top": -50, "left": -1520, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led11", "top": -50, "left": -1560, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led12", "top": -50, "left": -1600, "attrs": { "color": "red" } },

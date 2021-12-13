@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Mon 13 Dec 01:45:49 UTC 2021  more wire routing",
+  "comment": "Mon 13 Dec 02:19:50 UTC 2021  sr lines yellow and blue cross less",
   "parts": [
     {
       "type": "wokwi-pi-pico",
@@ -58,9 +58,46 @@
     [ "sr1:VCC", "pico:3V3", "red", [ "v40", "h420", "v-33" ] ],
     [ "pico:GND.8", "sr1:GND", "black", [ "h-55", "v160", "h-560", "v-200", "h0" ] ],
     [ "led8:C", "sr1:GND", "black", [ "v5", "h-8", "v250", "h0" ] ],
-    [ "sr1:SHCP", "pico:GP3", "yellow", [ "v100", "h710", "v-186", "h100" ] ],
-    [ "sr1:STCP", "pico:GP2", "blue", [ "v80", "h680", "v-157", "h100" ] ],
-    [ "sr1:STCP", "sr2:STCP", "green", [ "v0" ] ],
+
+
+
+
+
+
+
+
+
+
+    [ "sr1:SHCP", "pico:GP3", "yellow", [
+      
+      
+      
+      "v123", "h710", "v-170", "h100" ] ],
+
+
+
+    [ "sr1:STCP", "pico:GP2", "blue", [
+      
+      
+      "v114", "h680", "v-152", "h100" 
+    
+    
+    ] ],
+
+
+
+
+    [ "sr2:STCP", "sr1:STCP",  "blue", [
+      
+      "v114", "h262", "v0", "h20"
+      
+      
+      ] ],
+
+
+
+
+
     [ "sr1:DS", "pico:GP4", "orange", [ "v60", "h640", "v-1" ] ],
     [ "led8:A", "sr1:Q7", "gray", [ "h10", "v230", "h376" ] ],
     [ "led7:A", "sr1:Q6", "violet", [ "v222", "h6.4" ] ],
@@ -86,7 +123,19 @@
     [ "sr2:Q5", "led14:A", "blue", [ "v-240", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
-    [ "sr2:SHCP", "sr1:SHCP", "yellow", [ "v45", "h0" ] ],
+
+
+
+
+
+    [ "sr2:SHCP",
+    "sr1:SHCP",
+    "yellow", [
+      "v122", "h0" ] ],
+
+
+
+
     [ "sr2:DS", "sr1:Q7S", "orange", [ "v30", "h378.99" ] ],
     [ "led9:C", "sr1:GND", "black", [ "v5", "h-19", "v52", "h140", "v198", "h0" ] ],
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],

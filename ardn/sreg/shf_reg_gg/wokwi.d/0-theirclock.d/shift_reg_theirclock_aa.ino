@@ -1,5 +1,13 @@
 // Refresh:
+
+
 // Fri 10 Dec 17:36:17 UTC 2021
+
+// DIGIT goes to Vcc
+// COMMON goes to Vcc
+// segments go to ground.
+
+
 // Sat Apr 27 22:25:53 UTC 2019
 
 // jeppifebbarkidia
@@ -105,7 +113,7 @@ void updateShiftRegister(void) {
 }
 
 void blankleds(void) {
-    leds = 0;
+    leds = 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128;  // zero
     updateShiftRegister();
 }
 
@@ -130,7 +138,7 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
 
 void in_column_zero(void) {
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 15 ; flash_digit();
+        pos = 0 ; flash_digit();
     }
 }
 
@@ -303,21 +311,46 @@ void msg_cafe(void) { // message: 'CAFE'
 }
 
 
+// 0xfe is horiz bar            // 1110
+// 0xfb is lower horiz bar      // 1011
+// 0xfd is lower right vert bar // 1101
+// 0xf7 is lower left vert bar  // 0111
+// ledval = 255 - 128 - 64 ; // upper right
+
 
 void loop(void) {
-    blankleds();
-    delay(40);
-    ledval = 0;
-    int i = 0;
-    delay(1000);
+    // blankleds();
+    // delay(40);
+    // ledval = 255 - 128 - 64 - 32 - 16 - 8 - 4 - 2 - 1 ;
 
-    msg_tttt();
-    msg_a_24();
-    msg_le(); msg_foca(); msg_cafe();
-    msg_bef0();
+
+
+    // six:   ledval = 255 - 128 -  0 - 32 - 16 - 8 - 4 - 2 - 1 ;
+    // five:  ledval = 255 - 128 -  0 - 32  - 16 - 0 - 4 - 2 - 1 ;
+    // four:  ledval = 255 - 128 -  64 - 32  - 0 - 0 - 0 - 2 - 1 ;
+    // three: ledval = 255 - 0 -  64 - 0  - 16 - 0 - 4 - 2 - 1 ;
+    // two:   ledval = 255 - 128 -  64  - 16  - 8  -4   - 1 ;
+    // one:   ledval = 255 - 128 -  64 - 2 ;
+    // zero   ledval =  255 - 128 - 64 - 32 - 16 - 8 - 4 - 2;
+    // seven: ledval = 255 - 128 - 64 - 2 - 16;
+    // eight: ledval = 0;
+    // blank: ledval = 255;
+
+    ledval = 0;
+
+
+    in_column_zero();
+    int i = 0;
+    // delay(1000);
+
+    // msg_tttt();
+    // msg_a_24();
+    // msg_le();
+    // msg_foca(); msg_cafe();
+    // msg_bef0();
 
     // hold display blank for a while:
-    i = 128; ledval = i; in_column_zero(); blankleds();
-    delay(2 * (111 + slew));
+    // i = 128; ledval = i; in_column_zero(); blankleds();
+    // delay(2 * (111 + slew));
 }
 // END.

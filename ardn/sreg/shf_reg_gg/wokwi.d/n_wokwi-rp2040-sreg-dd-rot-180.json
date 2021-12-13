@@ -2,8 +2,10 @@
   "version": 1,
   "author": "wa1tnr",
   "editor": "wokwi",
+
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Mon 13 Dec 02:55:20 UTC 2021 dress rail wiring",
+  "comment": "Mon 13 Dec 03:19:20 UTC 2021 more dress rail wiring",
+
   "parts": [
     {
       "type": "wokwi-pi-pico",
@@ -85,7 +87,10 @@
     [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
     [ "sr2:SHCP", "sr1:SHCP", "yellow", [ "v122", "h0" ] ],
-    [ "sr2:DS", "sr1:Q7S", "orange", [ "v30", "h378.99" ] ],
+
+    [ "sr2:DS", "sr1:Q7S", "orange", [ "v59", "h378.99" ] ],
+
+
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -94,7 +99,13 @@
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
     [ "led16:C", "sr2:GND", "black", [ "v10", "h-14", "v150", "h0" ] ],
-    [ "led9:C", "sr1:GND", "black", [ "v5", "h-18", "v-116", "h283", "v380", "h0" ] ],
-    [ "sr2:VCC", "sr1:VCC", "red", [ "v40", "h611" ] ]
+
+    [ "sr2:VCC", "sr1:VCC", "red", [ "v40", "h611" ] ],
+
+    [ "led9:C", "led8:C", "black", [ "v5", "h-18", "v-116", "h282", "v116", "h0" ] ],
+
+    [ "led8:C", "sr1:GND", "black", [ "v5", "h-16", "v252", "h400"
+      
+      ] ]
   ]
 }

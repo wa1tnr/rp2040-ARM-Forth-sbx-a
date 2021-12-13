@@ -323,8 +323,6 @@ void loop(void) {
     // delay(40);
     // ledval = 255 - 128 - 64 - 32 - 16 - 8 - 4 - 2 - 1 ;
 
-
-
     // six:   ledval = 255 - 128 -  0 - 32 - 16 - 8 - 4 - 2 - 1 ;
     // five:  ledval = 255 - 128 -  0 - 32  - 16 - 0 - 4 - 2 - 1 ;
     // four:  ledval = 255 - 128 -  64 - 32  - 0 - 0 - 0 - 2 - 1 ;
@@ -337,7 +335,6 @@ void loop(void) {
     // blank: ledval = 255;
 
     ledval = 0;
-
 
     in_column_zero();
     int i = 0;

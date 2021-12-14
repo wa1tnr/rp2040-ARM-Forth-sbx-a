@@ -42,8 +42,8 @@ void updateShiftRegister(void) {
 }
 
 #define EXPOSE_DIGIT_PAINTING -1
-#define DURATION 50 // was '2'
-#define REPETITIONS 4 // was '1'
+#define DURATION 2 // was '2'
+#define REPETITIONS 1 // was '1'
 
 void blankleds(void) {
     leds = 255;
@@ -56,14 +56,15 @@ void setleds(void) {
     if (!EXPOSE_DIGIT_PAINTING) {
         delay(1); // CRITICAL - must be a finite, non-zero delay here
     } else {
-        delay(4000); // bright duration wokwi 14 dec
+        delay(1); // bright duration wokwi 14 dec
     }
 }
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
+        delay(44);
         // delay(122);
-        delay(424); // to expose digit change
+        // delay(424); // to expose digit change
     }
     setleds();
     blankleds(); // waste no time in doing so!
@@ -89,6 +90,10 @@ void proc_encoding(void) {
 
 // pinout pins 1-6 L to R bottom  7 to 12 r to L
 // digit 1 on the left (in sim is default and lights with no connection)
+
+
+  // zero one two three  2 4 8 16
+
 
 void in_column_zero(void) {
 proc_encoding();  
@@ -176,13 +181,6 @@ int line_reset;
 void old_loop() {
 }
 
-void setup() {
-  Serial1.begin(115200);
-  Serial1.println("Begin.");
-  pinMode(latchPin, OUTPUT);
-  pinMode(clockPin, OUTPUT);
-  pinMode(dataPin,  OUTPUT);
-}
 
 void encode_one(void) {   // 1
     ledval = 0 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
@@ -275,10 +273,17 @@ void encode_ltr_blank(void) { // blank
 void msg_le(void) { // message:  'LE  '
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
-            encode_ltr_blank();  in_column_zero();
-            encode_ltr_blank();  in_column_one();
-            encode_ltr_e();      in_column_two();
-            encode_ltr_l();      in_column_three();
+
+
+            encode_ltr_blank();  in_column_three();
+            encode_ltr_blank();  in_column_two();
+            
+
+            encode_ltr_l();      in_column_zero();
+
+            encode_ltr_e();      in_column_one();
+
+
         }
     }
     delay(1000);
@@ -320,26 +325,6 @@ void msg_cafe(void) { // message: 'CAFE'
     delay(1000);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void xproc_encoding(void) {
   uint8_t ledcpy;
   ledcpy = ledval ^ 0xff; // this seems very good
@@ -366,10 +351,28 @@ void letter_test(void) {
 
 }
 
+void lfc_test(void) {
+    // msg_le();
+    msg_foca();
+}
+
+
+
+
+void setup() {
+  Serial1.begin(115200);
+  Serial1.println("Begin.");
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin,  OUTPUT);
+}
+
+
+
 void loop(void) {
     blankleds();
     delay(400);
-    letter_test();
+    lfc_test();
 
 }
 
@@ -384,7 +387,7 @@ int snprintf ( char * s, size_t n, const char * format, ... );
 Write formatted output to sized buffer
 Composes a string with the same text that
 would be printed if format was used on
-printf, but instead of being printed, the
+printf, but instead of be printed, the
 content is stored as a C string in the
 buffer pointed by s (taking n as the maximum
 buffer capacity to fill).

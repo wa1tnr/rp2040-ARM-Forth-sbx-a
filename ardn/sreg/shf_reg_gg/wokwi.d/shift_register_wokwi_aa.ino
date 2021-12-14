@@ -157,15 +157,96 @@ void encode_zero(void) {  // 0
 }
 
 
+void encode_three(void) { // 3
+    ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
+}
+
+// three has 1 2 4 8 and 64 set.  needs mid bar.
+// what bit has never been set so far? probably 64.
 
 
+
+void encode_four(void) {  // 4
+    ledval = 0 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
+}
+
+void encode_five(void) {  // 5
+    ledval = 1 + 0 + 4 + 8 +  0 + 32 + 64 +   0;
+}
+
+
+void encode_six(void) {   // 6
+    ledval = 1 + 0 + 4 + 8 + 16 + 32 + 64 +   0;
+}
+
+
+void encode_two(void) {   // 2
+    ledval = 1 + 2 + 0 + 8 + 16 +  0 + 64 +   0;
+}
+
+
+void encode_eight(void) { // 8
+    ledval = 1 + 2 + 4 + 8 + 16 + 32 + 64 +   0;
+}
+
+
+
+
+void encode_nine(void) {  // 9
+    ledval = 1 + 2 + 4 + 8 +  0 + 32 + 64 +   0;
+}
+
+
+
+
+
+void encode_ltr_a(void) { // A -- the letter, A
+    ledval = 1 + 2 + 4 + 16 + 32 + 64;
+}
+
+void encode_ltr_b(void) { // b
+    ledval = 4 + 8 + 16 + 32 + 64;
+}
+
+void encode_ltr_c(void) { // C
+    ledval = 1 + 8 + 16 + 32;
+}
+
+void encode_ltr_d(void) { // d
+    ledval = 2 + 4 + 8 + 16 + 64;
+}
+
+void encode_ltr_e(void) { // E
+    ledval = 1 + 8 + 16 + 32 + 64;
+}
+
+void encode_ltr_f(void) { // F
+    ledval = 1 + 0 + 16 + 32 + 64;
+}
+
+void encode_ltr_blank(void) { // blank
+    ledval = 0 ;
+}
+
+
+
+
+
+
+// 1 7 L 0 3 4 5 6 2 8 9
+// 1 2 3 4 5 6 7 8 9 0 L so far.
+
+
+// a b c d e f blank
 
 void proc_encoding(void) {
-      uint8_t ledcpy;
-
-  ledcpy = ledval ^ 0xff;
+  uint8_t ledcpy;
+  ledcpy = ledval ^ 0xff; // this seems very good
+  //  XOR with 0xff seems to flip bits no problem.
+  // this seems to be the only caveat when working
+  // with common-OPPOSITE display (anode, cathode)
+  
   ledval = ledcpy;
-
   in_column_zero(); delay(4);
   blankleds();
   delay(40);
@@ -173,39 +254,14 @@ void proc_encoding(void) {
 
 void loop(void) {
     blankleds();
-    delay(40);
-    ledval = 0;
-    int i = 0;
-    delay(100);
-    // Serial1.println("loop iteration above msg_tttt");
-    // msg_tttt();
-
-    ledval = 1 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
-
-    encode_seven();
-    proc_encoding();    
-
-/*
-    encode_seven();
-    proc_encoding();
-
-    encode_ltr_l();
-    proc_encoding();
-
-
-    encode_zero();
-    proc_encoding();
-
-*/
-    // top bar mistaken in another glyph - missing in zero.
-    // ledval 1 2 and 4 have a swapped one.
-    // ledval for glyph one may disambiguate.
-    // has zero 2 4 so the '1' is top bar of 7segdispl    
-
-    // hold display blank for a while:
-    // i = 128; // was 128 and is for blanking not duration.
-    // ledval = i; in_column_zero(); blankleds();
-    // delay(2 * (111 + slew));
+    delay(400);
+    encode_ltr_a(); proc_encoding();
+    encode_ltr_b(); proc_encoding();
+    encode_ltr_c(); proc_encoding();
+    encode_ltr_d(); proc_encoding();
+    encode_ltr_e(); proc_encoding();
+    encode_ltr_f(); proc_encoding();
+    encode_ltr_blank(); proc_encoding();    
 }
 
 /**********   d o c u m e n t a t i o n   **********/

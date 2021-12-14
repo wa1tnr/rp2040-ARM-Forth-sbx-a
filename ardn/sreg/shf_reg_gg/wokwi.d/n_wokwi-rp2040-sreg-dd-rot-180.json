@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Tue 14 Dec 05:12:18 UTC 2021",
+  "comment": "Tue 14 Dec 06:10:16 UTC 2021",      
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
@@ -101,6 +101,38 @@
       "left": -1380.63,
       "rotate": 90,
       "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r9",
+      "top": -209.31,
+      "left": -1564.78,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r10",
+      "top": -179.24,
+      "left": -1502.44,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r11",
+      "top": -201.95,
+      "left": -1625.15,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r12",
+      "top": -194.74,
+      "left": -1705.51,
+      "rotate": 90,
+      "attrs": {}
     }
   ],
   "connections": [
@@ -163,6 +195,14 @@
     [ "sevseg1:E", "r5:1", "green", [ "v60", "h0" ] ],
     [ "sevseg1:F", "r6:1", "green", [ "v-50", "h0" ] ],
     [ "sevseg1:A", "r1:1", "green", [ "v-70", "h0" ] ],
-    [ "sevseg1:G", "r7:1", "green", [ "v84", "h0" ] ]
+    [ "sevseg1:G", "r7:1", "green", [ "v84", "h0" ] ],
+    [ "led11:A", "r9:2", "green", [ "v0" ] ],
+    [ "r9:1", "sevseg1:DIG2", "orange", [ "h0" ] ],
+    [ "led10:A", "r10:2", "green", [ "v0" ] ],
+    [ "sevseg1:DIG1", "r10:1", "green", [ "v0" ] ],
+    [ "sevseg1:DIG3", "r11:1", "yellow", [ "v0" ] ],
+    [ "r11:2", "led12:A", "green", [ "h0" ] ],
+    [ "led13:A", "r12:2", "green", [ "v0" ] ],
+    [ "sevseg1:DIG4", "r12:1", "green", [ "v0" ] ]
   ]
 }

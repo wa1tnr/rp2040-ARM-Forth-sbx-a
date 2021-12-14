@@ -147,6 +147,14 @@ void encode_seven(void) { // 7
     ledval = 1 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
 }
 
+void encode_ltr_l(void) { // L
+    ledval = 0 + 0 + 0 + 8 + 16 + 32 +  0 +   0;
+}
+
+
+void encode_zero(void) {  // 0
+    ledval = 1 + 2 + 4 + 8 + 16 + 32 +  0 +   0;
+}
 
 
 
@@ -174,11 +182,25 @@ void loop(void) {
 
     ledval = 1 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
 
-    encode_one();
+    encode_seven();
     proc_encoding();    
 
+/*
     encode_seven();
     proc_encoding();
+
+    encode_ltr_l();
+    proc_encoding();
+
+
+    encode_zero();
+    proc_encoding();
+
+*/
+    // top bar mistaken in another glyph - missing in zero.
+    // ledval 1 2 and 4 have a swapped one.
+    // ledval for glyph one may disambiguate.
+    // has zero 2 4 so the '1' is top bar of 7segdispl    
 
     // hold display blank for a while:
     // i = 128; // was 128 and is for blanking not duration.

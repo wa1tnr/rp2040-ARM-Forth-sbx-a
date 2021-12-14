@@ -69,20 +69,43 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
     blankleds(); // waste no time in doing so!
 }
 
+
+
+void proc_encoding(void) {
+  uint8_t ledcpy;
+  ledcpy = ledval ^ 0xff; // this seems very good
+  //  XOR with 0xff seems to flip bits no problem.
+  // this seems to be the only caveat when working
+  // with common-OPPOSITE display (anode, cathode)  
+  ledval = ledcpy;
+//  in_column_zero(); delay(4);
+}
+
+
+
+
+
+
+
+// pinout pins 1-6 L to R bottom  7 to 12 r to L
+// digit 1 on the left (in sim is default and lights with no connection)
+
 void in_column_zero(void) {
+proc_encoding();  
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 240 ; // neg 240 pos 15
+        pos = 2 ; // neg 240 pos 15
         flash_digit();
         // 8 4 2 1 all low bits set
-        // 0000 1111
+        // 0000 1111 // 0x0f means 
         // 1111 0000
         // 2 base ! 11110000 dup 1010 base ! . 240  ok
     }
 }
 
-void in_column_one(void) {
+void in_column_one(void) { // DIGIT 2
+proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 233 ; // neg 233 pos 22
+        pos = 4 ; // neg 233 pos 22
         flash_digit();
         // 16 4 2 0001 0110
         //        1110 1001
@@ -90,16 +113,19 @@ void in_column_one(void) {
 }
 
 void in_column_two(void) {
+  proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 228 ; // neg 228 pos 27 flash_digit();
+        pos = 8 ; // neg 228 pos 27
+        flash_digit();
         // 0001 1011
         // 1110 0100 228
     }
 }
 
 void in_column_three(void) {
+  proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 226 ; // neg 226 pos 29
+       pos = 16 ; // neg 226 pos 29
        flash_digit();
        // 0001 1101 // 29
        // 1110 0010 // 226
@@ -239,7 +265,82 @@ void encode_ltr_blank(void) { // blank
 
 // a b c d e f blank
 
-void proc_encoding(void) {
+
+
+
+
+
+
+
+void msg_le(void) { // message:  'LE  '
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_ltr_blank();  in_column_zero();
+            encode_ltr_blank();  in_column_one();
+            encode_ltr_e();      in_column_two();
+            encode_ltr_l();      in_column_three();
+        }
+    }
+    delay(1000);
+}
+
+void msg_bef0(void) { // message: 'bEF0'
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_zero();   in_column_zero();
+            encode_ltr_f();  in_column_one();
+            encode_ltr_e();  in_column_two();
+            encode_ltr_b();  in_column_three();
+        }
+    }
+    delay(1000);
+}
+
+void msg_foca(void) { // message: 'F0CA'
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_ltr_a();  in_column_zero();
+            encode_ltr_c();  in_column_one(); 
+            encode_zero();   in_column_two();
+            encode_ltr_f();  in_column_three();
+        }
+    }
+    delay(1000);
+}
+
+void msg_cafe(void) { // message: 'CAFE'
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_ltr_e();  in_column_zero();
+            encode_ltr_f();  in_column_one();
+            encode_ltr_a();  in_column_two();
+            encode_ltr_c();  in_column_three();
+        }
+    }
+    delay(1000);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void xproc_encoding(void) {
   uint8_t ledcpy;
   ledcpy = ledval ^ 0xff; // this seems very good
   //  XOR with 0xff seems to flip bits no problem.
@@ -248,21 +349,28 @@ void proc_encoding(void) {
   
   ledval = ledcpy;
 //  in_column_zero(); delay(4);
-  in_column_one(); delay(4);
+  in_column_three(); delay(4);
   blankleds();
   delay(40);
+}
+
+
+void letter_test(void) {
+      encode_ltr_a(); in_column_zero();
+    encode_ltr_b(); in_column_zero();
+    encode_ltr_c(); in_column_zero();
+    encode_ltr_d(); in_column_zero();
+    encode_ltr_e(); in_column_zero();
+    encode_ltr_f(); in_column_zero();
+    encode_ltr_blank();    in_column_zero();
+
 }
 
 void loop(void) {
     blankleds();
     delay(400);
-    encode_ltr_a(); proc_encoding();
-    encode_ltr_b(); proc_encoding();
-    encode_ltr_c(); proc_encoding();
-    encode_ltr_d(); proc_encoding();
-    encode_ltr_e(); proc_encoding();
-    encode_ltr_f(); proc_encoding();
-    encode_ltr_blank(); proc_encoding();    
+    letter_test();
+
 }
 
 /**********   d o c u m e n t a t i o n   **********/

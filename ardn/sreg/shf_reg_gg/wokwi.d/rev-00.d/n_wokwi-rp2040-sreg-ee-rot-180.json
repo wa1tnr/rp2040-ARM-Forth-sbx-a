@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Tue 14 Dec 07:48:52 UTC 2021  nailed it - most wires in correct colors",      
+  "comment": "Tue 14 Dec 19:45:27 UTC 2021  NEW INSTANCE rev 00 sreg-ee of the rot180 json file.",      
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
@@ -125,6 +125,13 @@
       "left": -1730,
       "rotate": 90,
       "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg2",
+      "top": -555.63,
+      "left": -1286.53,
+      "attrs": { "digits": "4" }
     }
   ],
   "connections": [
@@ -171,7 +178,8 @@
     [ "led13:C", "led14:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
-    [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ],
+    [ "led16:C", "sr2:GND", "black", [
+      "v5", "h-15", "v150", "h1" ] ],
     [ "sevseg1:COM", "pico:3V3", "red", [ "v90", "h940", "v0" ] ],
     [ "r1:2", "led1:A", "brown", [ "h0" ] ],
     [ "r2:2", "led2:A", "red", [ "h0" ] ],
@@ -184,7 +192,7 @@
     [ "sevseg1:C", "r3:1", "orange", [ "v50", "h1" ] ],
     [ "sevseg1:D", "r4:1", "yellow", [ "v60", "h0" ] ],
     [ "sevseg1:E", "r5:1", "green", [ "v60", "h0" ] ],
-    [ "sevseg1:F", "r6:1", "blue", [ "v-150", "h-150", "v310", "h58", "v0" ] ],
+    [ "sevseg1:F", "r6:1", "blue", [ "v-50", "h-350", "v174", "h263", "v194", "h-5", "v0" ] ],
     [ "sevseg1:A", "r1:1", "brown", [ "v-70", "h0" ] ],
     [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
     [ "led11:A", "r9:2", "orange", [ "v0" ] ],

@@ -1,10 +1,11 @@
-// Sunday, 12 Dec 2021  21:48:27z
+// Tuesday, 14 Dec 2021  08:01:22z
 
-// eight LEDS
+// sixteen LEDs and a 4 digit 7 segment display.
+// two 74HC595 shift registers
+// Raspberry Pi Pico RP2040
 
 // Decent port of the POV demo stuff.
 
-// use this site:
 // common anode 7 seg display:
 
 // DIGIT goes to Vcc
@@ -368,7 +369,24 @@ void loop(void) {
 }
 
 /**********   d o c u m e n t a t i o n   **********/
+#if 0
 
+The program operates through persistence of vision.
+
+The display shows information quite briefly, then blanks,
+then shows something else.
+
+Due to the way people experience rapidly flashing information
+(digital signs) the effect is similar to as if the light source
+was on constantly.
+
+The program has adjustments built-in to expose the use of
+persistence of vision techniques.  The technique has power-
+savings features - there are never more than eight segments
+lit at any one instant in time, limiting the maximum
+current the hardware might draw.
+
+#endif
 #if 0
 
  [ http://www.cplusplus.com/reference/cstdio/snprintf/]

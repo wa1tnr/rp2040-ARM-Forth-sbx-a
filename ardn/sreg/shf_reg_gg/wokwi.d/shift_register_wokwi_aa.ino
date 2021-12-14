@@ -1,11 +1,10 @@
-// Tuesday, 14 Dec 2021  08:01:22z
+// Sunday, 12 Dec 2021  21:48:27z
 
-// sixteen LEDs and a 4 digit 7 segment display.
-// two 74HC595 shift registers
-// Raspberry Pi Pico RP2040
+// eight LEDS
 
 // Decent port of the POV demo stuff.
 
+// use this site:
 // common anode 7 seg display:
 
 // DIGIT goes to Vcc
@@ -43,7 +42,7 @@ void updateShiftRegister(void) {
 }
 
 #define EXPOSE_DIGIT_PAINTING -1
-#define DURATION 12 // was '2'
+#define DURATION 72 // was '2'
 #define REPETITIONS 2 // was '1'
 
 void blankleds(void) {
@@ -63,15 +62,13 @@ void setleds(void) {
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
-        delay(14);
+        delay(1);
         // delay(122);
         // delay(424); // to expose digit change
     }
     setleds();
     blankleds(); // waste no time in doing so!
 }
-
-
 
 void proc_encoding(void) {
   uint8_t ledcpy;
@@ -83,18 +80,11 @@ void proc_encoding(void) {
 //  in_column_zero(); delay(4);
 }
 
-
-
-
-
-
-
 // pinout pins 1-6 L to R bottom  7 to 12 r to L
 // digit 1 on the left (in sim is default and lights with no connection)
 
-
-  // zero one two three  2 4 8 16
-
+// drawing shows 1 thru 6 and 7 thru 12 but acknowledges more pins.
+// probably a physical registration matter, only.
 
 void in_column_zero(void) {
 proc_encoding();  
@@ -274,7 +264,7 @@ void msg_le(void) { // message:  'LE  '
             encode_ltr_l();      in_column_three();
         }
     }
-    delay(1000);
+    delay(1500);
 }
 
 
@@ -289,7 +279,7 @@ void msg_bef0(void) { // message: 'bEF0'
             encode_ltr_b();  in_column_three();
         }
     }
-    delay(1000);
+    delay(1500);
 }
 
 void msg_foca(void) { // message: 'F0CA'
@@ -301,7 +291,7 @@ void msg_foca(void) { // message: 'F0CA'
             encode_ltr_f();  in_column_three();
         }
     }
-    delay(1000);
+    delay(1500);
 }
 
 void msg_cafe(void) { // message: 'CAFE'
@@ -313,23 +303,8 @@ void msg_cafe(void) { // message: 'CAFE'
             encode_ltr_c();  in_column_three();
         }
     }
-    delay(1000);
+    delay(1500);
 }
-
-void xproc_encoding(void) {
-  uint8_t ledcpy;
-  ledcpy = ledval ^ 0xff; // this seems very good
-  //  XOR with 0xff seems to flip bits no problem.
-  // this seems to be the only caveat when working
-  // with common-OPPOSITE display (anode, cathode)
-  
-  ledval = ledcpy;
-//  in_column_zero(); delay(4);
-  in_column_three(); delay(4);
-  blankleds();
-  delay(40);
-}
-
 
 void letter_test(void) {
       encode_ltr_a(); in_column_zero();

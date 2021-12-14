@@ -42,8 +42,8 @@ void updateShiftRegister(void) {
 }
 
 #define EXPOSE_DIGIT_PAINTING -1
-#define DURATION 2 // was '2'
-#define REPETITIONS 1 // was '1'
+#define DURATION 12 // was '2'
+#define REPETITIONS 2 // was '1'
 
 void blankleds(void) {
     leds = 255;
@@ -62,7 +62,7 @@ void setleds(void) {
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
-        delay(44);
+        delay(14);
         // delay(122);
         // delay(424); // to expose digit change
     }
@@ -264,30 +264,20 @@ void encode_ltr_blank(void) { // blank
 // a b c d e f blank
 
 
-
-
-
-
-
-
 void msg_le(void) { // message:  'LE  '
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
-
-
-            encode_ltr_blank();  in_column_three();
-            encode_ltr_blank();  in_column_two();
-            
-
-            encode_ltr_l();      in_column_zero();
-
-            encode_ltr_e();      in_column_one();
-
-
+            encode_ltr_blank();  in_column_zero();
+            encode_ltr_blank();  in_column_one();
+            encode_ltr_e();      in_column_two();
+            encode_ltr_l();      in_column_three();
         }
     }
     delay(1000);
 }
+
+
+
 
 void msg_bef0(void) { // message: 'bEF0'
     for (int j = 2;  j>0; j--) {
@@ -352,8 +342,9 @@ void letter_test(void) {
 }
 
 void lfc_test(void) {
-    // msg_le();
+    msg_le();
     msg_foca();
+    msg_cafe();
 }
 
 

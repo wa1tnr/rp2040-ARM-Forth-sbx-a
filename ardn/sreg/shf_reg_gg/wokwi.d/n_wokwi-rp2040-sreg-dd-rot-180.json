@@ -3,11 +3,18 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
-  "comment": "Mon 13 Dec 08:02:54 UTC 2021 led8 was missing gray wire",
+  "comment": "Tue 14 Dec 02:50:39 UTC 2021",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
-    { "type": "wokwi-74hc595", "id": "sr2", "top": 340, "left": -1420, "rotate": 180, "attrs": {} },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr2",
+      "top": 341.91,
+      "left": -1420,
+      "rotate": 180,
+      "attrs": {}
+    },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
@@ -23,13 +30,84 @@
     { "type": "wokwi-led", "id": "led13", "top": -50, "left": -1720, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led14", "top": -50, "left": -1760, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led15", "top": -50, "left": -1800, "attrs": { "color": "red" } },
-    { "type": "wokwi-led", "id": "led16", "top": -50, "left": -1840, "attrs": { "color": "red" } }
+    { "type": "wokwi-led", "id": "led16", "top": -50, "left": -1840, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg1",
+      "top": -449.69,
+      "left": -1146.52,
+      "attrs": { "digits": "4" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -211.44,
+      "left": -628.52,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -226.29,
+      "left": -886.79,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -225.14,
+      "left": -918.89,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -226.83,
+      "left": -961.18,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": -217.85,
+      "left": -1194.9,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -212.81,
+      "left": -1261.2,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r7",
+      "top": -207.56,
+      "left": -1317.74,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r8",
+      "top": -212.47,
+      "left": -1380.63,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
     [ "pico:3V3", "sr1:VCC", "red", [ "h80", "v-73", "h-281", "v256", "h1" ] ],
-    [ "sr1:VCC", "sr2:VCC", "red",   [ "v47.82", "h-221.89" ] ],
+    [ "sr1:VCC", "sr2:VCC", "red", [ "v47.82", "h-221.89" ] ],
     [ "pico:GND.8", "sr1:GND", "black", [ "h45", "v272", "h-761", "v-176", "h0" ] ],
     [ "sr2:GND", "pico:GND.8", "black", [ "v-38", "h-39", "v176", "h1369", "v0" ] ],
     [ "pico:GP2", "sr1:STCP", "blue", [ "h-60", "v226", "h-498", "v1" ] ],
@@ -69,6 +147,17 @@
     [ "led13:C", "led14:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
-    [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ]
+    [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ],
+    [ "sevseg1:COM", "pico:3V3", "red", [ "v90", "h940", "v0" ] ],
+    [ "r1:2", "led1:A", "green", [ "h0" ] ],
+    [ "r2:2", "led2:A", "green", [ "h0" ] ],
+    [ "r3:2", "led3:A", "green", [ "h0" ] ],
+    [ "r4:2", "led4:A", "green", [ "h0" ] ],
+    [ "r5:2", "led5:A", "green", [ "h0" ] ],
+    [ "r6:2", "led6:A", "green", [ "h0" ] ],
+    [ "r7:2", "led7:A", "green", [ "h0" ] ],
+    [ "r8:2", "led8:A", "green", [ "h0" ] ],
+    [ "sevseg1:B", "r2:1", "green", [ "v-50", "h1" ] ],
+    [ "sevseg1:C", "r3:1", "green", [ "v50", "h1" ] ]
   ]
 }

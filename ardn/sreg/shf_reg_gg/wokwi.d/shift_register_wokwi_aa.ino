@@ -71,19 +71,40 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
 
 void in_column_zero(void) {
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 15 ; flash_digit();
+        pos = 240 ; // neg 240 pos 15
+        flash_digit();
+        // 8 4 2 1 all low bits set
+        // 0000 1111
+        // 1111 0000
+        // 2 base ! 11110000 dup 1010 base ! . 240  ok
     }
 }
 
+void in_column_one(void) {
+    for (int i = REPETITIONS ; i>0; i--) {
+        pos = 233 ; // neg 233 pos 22
+        flash_digit();
+        // 16 4 2 0001 0110
+        //        1110 1001
+    }
+}
 
 void in_column_two(void) {
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 27 ; flash_digit();
+        pos = 228 ; // neg 228 pos 27 flash_digit();
+        // 0001 1011
+        // 1110 0100 228
     }
 }
 
-
-
+void in_column_three(void) {
+    for (int i = REPETITIONS ; i>0; i--) {
+       pos = 226 ; // neg 226 pos 29
+       flash_digit();
+       // 0001 1101 // 29
+       // 1110 0010 // 226
+    }
+}
 
 void encode_hw_testing(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
@@ -137,8 +158,6 @@ void setup() {
   pinMode(dataPin,  OUTPUT);
 }
 
-
-
 void encode_one(void) {   // 1
     ledval = 0 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
 }
@@ -151,11 +170,9 @@ void encode_ltr_l(void) { // L
     ledval = 0 + 0 + 0 + 8 + 16 + 32 +  0 +   0;
 }
 
-
 void encode_zero(void) {  // 0
     ledval = 1 + 2 + 4 + 8 + 16 + 32 +  0 +   0;
 }
-
 
 void encode_three(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
@@ -163,8 +180,6 @@ void encode_three(void) { // 3
 
 // three has 1 2 4 8 and 64 set.  needs mid bar.
 // what bit has never been set so far? probably 64.
-
-
 
 void encode_four(void) {  // 4
     ledval = 0 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
@@ -174,31 +189,21 @@ void encode_five(void) {  // 5
     ledval = 1 + 0 + 4 + 8 +  0 + 32 + 64 +   0;
 }
 
-
 void encode_six(void) {   // 6
     ledval = 1 + 0 + 4 + 8 + 16 + 32 + 64 +   0;
 }
-
 
 void encode_two(void) {   // 2
     ledval = 1 + 2 + 0 + 8 + 16 +  0 + 64 +   0;
 }
 
-
 void encode_eight(void) { // 8
     ledval = 1 + 2 + 4 + 8 + 16 + 32 + 64 +   0;
 }
 
-
-
-
 void encode_nine(void) {  // 9
     ledval = 1 + 2 + 4 + 8 +  0 + 32 + 64 +   0;
 }
-
-
-
-
 
 void encode_ltr_a(void) { // A -- the letter, A
     ledval = 1 + 2 + 4 + 16 + 32 + 64;
@@ -228,11 +233,6 @@ void encode_ltr_blank(void) { // blank
     ledval = 0 ;
 }
 
-
-
-
-
-
 // 1 7 L 0 3 4 5 6 2 8 9
 // 1 2 3 4 5 6 7 8 9 0 L so far.
 
@@ -247,7 +247,8 @@ void proc_encoding(void) {
   // with common-OPPOSITE display (anode, cathode)
   
   ledval = ledcpy;
-  in_column_zero(); delay(4);
+//  in_column_zero(); delay(4);
+  in_column_one(); delay(4);
   blankleds();
   delay(40);
 }

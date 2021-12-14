@@ -5,6 +5,12 @@
 // Decent port of the POV demo stuff.
 
 // use this site:
+// common anode 7 seg display:
+
+// DIGIT goes to Vcc
+// COMMON goes to Vcc
+// segments go to ground.
+
 
 //  [ https://wokwi.com/arduino/new?template=pi-pico ]
 
@@ -40,7 +46,7 @@ void updateShiftRegister(void) {
 #define REPETITIONS 4 // was '1'
 
 void blankleds(void) {
-    leds = 0;
+    leds = 255;
     updateShiftRegister();
 }
 
@@ -50,7 +56,7 @@ void setleds(void) {
     if (!EXPOSE_DIGIT_PAINTING) {
         delay(1); // CRITICAL - must be a finite, non-zero delay here
     } else {
-        delay(400);
+        delay(4000); // bright duration wokwi 14 dec
     }
 }
 
@@ -131,6 +137,32 @@ void setup() {
   pinMode(dataPin,  OUTPUT);
 }
 
+
+
+void encode_one(void) {   // 1
+    ledval = 0 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
+}
+
+void encode_seven(void) { // 7
+    ledval = 1 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
+}
+
+
+
+
+
+
+void proc_encoding(void) {
+      uint8_t ledcpy;
+
+  ledcpy = ledval ^ 0xff;
+  ledval = ledcpy;
+
+  in_column_zero(); delay(4);
+  blankleds();
+  delay(40);
+}
+
 void loop(void) {
     blankleds();
     delay(40);
@@ -138,12 +170,20 @@ void loop(void) {
     int i = 0;
     delay(100);
     // Serial1.println("loop iteration above msg_tttt");
-    msg_tttt();
+    // msg_tttt();
+
+    ledval = 1 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
+
+    encode_one();
+    proc_encoding();    
+
+    encode_seven();
+    proc_encoding();
 
     // hold display blank for a while:
-    i = 128; // was 128 and is for blanking not duration.
-    ledval = i; in_column_zero(); blankleds();
-    delay(2 * (111 + slew));
+    // i = 128; // was 128 and is for blanking not duration.
+    // ledval = i; in_column_zero(); blankleds();
+    // delay(2 * (111 + slew));
 }
 
 /**********   d o c u m e n t a t i o n   **********/

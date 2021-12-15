@@ -29,7 +29,6 @@
     { "type": "wokwi-led", "id": "led15", "top": -50, "left": -1800, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led16", "top": -50, "left": -1840, "attrs": { "color": "red" } },
 
-
     { "type": "wokwi-resistor", "id": "r1",  "top": -210, "left":  -850, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r2",  "top": -210, "left":  -890, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r3",  "top": -210, "left":  -930, "rotate": 90, "attrs": { "value": "330" } },
@@ -53,20 +52,16 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "pico:3V3", "sr1:VCC", "red", [ "h80", "v-73", "h-281", "v256", "h1" ] ],
-    [ "sr1:VCC",  "sr2:VCC", "red", [ "v47", "h-221" ] ],
-
-    [ "pico:GND.8", "sr1:GND", "black", [ "h45", "v272", "h-761", "v-176", "h0" ] ],
-
-    [ "sr2:GND", "pico:GND.8", "black", [ "v-38", "h-39", "v176", "h1369", "v0" ] ],
-
     [ "pico:GP2", "sr1:STCP", "blue", [ "h-60", "v226", "h-498", "v1" ] ],
     [ "pico:GP3", "sr1:SHCP", "yellow", [ "h-40", "v234", "h1" ] ],
     [ "pico:GP4", "sr1:DS", "orange", [ "h-90", "v190", "h-512" ] ],
-
-    [ "sr2:SHCP", "sr1:SHCP", "yellow", [ "v88", "h1" ] ],
+    [ "pico:3V3", "sr1:VCC", "red", [ "h80", "v-73", "h-281", "v256", "h1" ] ],
+    [ "pico:GND.8", "sr1:GND", "black", [ "h45", "v272", "h-761", "v-176", "h0" ] ],
+    [ "sr1:VCC",  "sr2:VCC", "red", [ "v47", "h-221" ] ],
     [ "sr1:STCP", "sr2:STCP", "blue", [ "v82", "h1" ] ],
+    [ "sr2:GND", "pico:GND.8", "black", [ "v-38", "h-39", "v176", "h1369", "v0" ] ],
     [ "sr2:DS", "sr1:Q7S", "orange", [ "v54", "h0" ] ],
+    [ "sr2:SHCP", "sr1:SHCP", "yellow", [ "v88", "h1" ] ],
 
     [ "led8:A", "sr1:Q7", "gray", [ "v255", "h1" ] ],
     [ "led7:A", "sr1:Q6", "violet", [ "v222", "h6.4" ] ],
@@ -86,10 +81,6 @@
     [ "led3:C", "led2:C", "black", [ "v5", "h-14", "v-116", "h37", "v116", "h0" ] ],
     [ "led2:C", "led1:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
 
-
-
-
-
     [ "sr2:Q0", "led9:A", "brown", [ "v46", "h60", "v-367", "h0" ] ],
     [ "sr2:Q1", "led10:A", "red", [ "v-280", "h0" ] ],
     [ "sr2:Q2", "led11:A", "orange", [ "v-270", "h0" ] ],
@@ -99,8 +90,6 @@
     [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
 
-
-
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -109,7 +98,6 @@
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
     [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ],
-
 
     [ "sevseg1:DIG4", "r9:1", "brown", [ "v220", "h0" ] ],
     [ "sevseg1:DIG2", "r11:1", "yellow", [ "v-90", "h20" ] ],
@@ -137,7 +125,6 @@
     [ "sevseg1:DIG2", "sevseg2:DIG2", "yellow", [ "v-80", "h20" ] ],
     [ "sevseg1:DIG3", "sevseg2:DIG3", "green", [ "v-240", "h20" ] ],
     [ "sevseg1:DIG4", "sevseg2:DIG4", "brown", [ "v180", "h20", "comment does not crash it?" ] ],
-
 
     [  "r1:2",  "led1:A", "brown",  [ "h0" ] ],
     [  "r2:2",  "led2:A", "red",    [ "h0" ] ],

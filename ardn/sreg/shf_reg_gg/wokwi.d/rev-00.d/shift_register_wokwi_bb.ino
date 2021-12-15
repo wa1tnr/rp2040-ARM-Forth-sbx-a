@@ -1,6 +1,8 @@
-// Wednesday 15 Dec 2021  06:36:27z
+// Wednesday 15 Dec 2021  21:48:06z
 
 // PERSISTENCE OF VISION technology demonstration.
+
+//   saved in slow mode - exposes digits painting.
 
 //   Really good sim via Discord screen sharing.
 
@@ -45,8 +47,16 @@ void updateShiftRegister(void) {
     digitalWrite(latchPin, HIGH);
 }
 
+
+
 #define EXPOSE_DIGIT_PAINTING -1
-#define DURATION 72 // was '2'
+
+#define EXPOSE_DIGIT_PAINTING 0
+
+#undef EXPOSE_DIGIT_PAINTING
+#define EXPOSE_DIGIT_PAINTING -1
+
+#define DURATION 2 // was '2'
 #define REPETITIONS 2 // was '1'
 
 void blankleds(void) {
@@ -64,11 +74,22 @@ void setleds(void) {
     }
 }
 
+#define SLOW_POV
+
+#undef SLOW_POV
+
+#define SLOW_POV_DEMO 0
+#ifdef SLOW_POV
+#define SLOW_POV_DEMO -1
+#endif
+
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
-        delay(1);
-        delay(297);
-        // delay(4); // to expose digit change
+      delay(1);
+        if (SLOW_POV_DEMO) {
+          // Serial1.print("debug - slow pov");
+          delay(297);
+        }
     }
     setleds();
     if (EXPOSE_DIGIT_PAINTING) { delay (200);}
@@ -96,10 +117,6 @@ proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
         pos = 1 ; // neg 240 pos 15
         flash_digit();
-        // 8 4 2 1 all low bits set
-        // 0000 1111 // 0x0f means 
-        // 1111 0000
-        // 2 base ! 11110000 dup 1010 base ! . 240  ok
     }
 }
 
@@ -108,8 +125,6 @@ proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
         pos = 2 ; // neg 233 pos 22
         flash_digit();
-        // 16 4 2 0001 0110
-        //        1110 1001
     }
 }
 
@@ -118,8 +133,6 @@ void in_column_two(void) {
     for (int i = REPETITIONS ; i>0; i--) {
         pos = 4 ; // neg 228 pos 27
         flash_digit();
-        // 0001 1011
-        // 1110 0100 228
     }
 }
 
@@ -128,56 +141,37 @@ void in_column_three(void) {
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 8 ; // neg 226 pos 29
        flash_digit();
-       // 0001 1101 // 29
-       // 1110 0010 // 226
     }
 }
 
 void in_column_four(void) {
-
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 16 ; // neg 226 pos 29
        flash_digit();
-       // 0001 1101 // 29
-       // 1110 0010 // 226
     }
 }
 void in_column_five(void) {
-
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 32 ; // neg 226 pos 29
        flash_digit();
-       // 0001 1101 // 29
-       // 1110 0010 // 226
     }
 }
 void in_column_six(void) {
-
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 64 ; // neg 226 pos 29
        flash_digit();
-       // 0001 1101 // 29
-       // 1110 0010 // 226
     }
 }
 void in_column_seven(void) {
-
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 128 ; // neg 226 pos 29
        flash_digit();
-       // 0001 1101 // 29
-       // 1110 0010 // 226
     }
 }
-
-
-
-
-
 
 void encode_hw_testing(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
@@ -363,6 +357,7 @@ void lfc_test(void) {
     msg_cafe();
 }
 
+
 void msg_full_house(void) { // message: '01234567'
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
@@ -370,17 +365,16 @@ void msg_full_house(void) { // message: '01234567'
             encode_six();    in_column_one();
             encode_five();   in_column_two();
             encode_four();   in_column_three();
-            encode_three(); in_column_four();
-            blankleds(); // shifting not blanking
-            encode_two(); in_column_five();
-            blankleds();
-            encode_one(); in_column_six();
-            blankleds();
-            encode_zero(); in_column_seven();
+
+            encode_three();  in_column_four();
+            encode_two();    in_column_five();
+            encode_one();    in_column_six();
+            encode_zero();   in_column_seven();
         }
     }
     delay(1500);
 }
+
 
 void setup() {
     Serial1.begin(115200);
@@ -391,13 +385,13 @@ void setup() {
 }
 
 void loop(void) {
-/*
+
     blankleds();
     delay(400);
     lfc_test();
     delay(4000);
     letter_test();
-*/
+
     delay(400);
     msg_full_house();
 }

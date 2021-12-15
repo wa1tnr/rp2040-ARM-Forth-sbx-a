@@ -6,6 +6,7 @@
   "comment": "Wed 15 Dec 04:42:38 UTC 2021  double trouble - parallel displays",
   "commentbb": "corrected here and there. folded back - no scratchpaddage.",
   "commentcc": "mostly good wiring - no left display - one ghost in last column.",
+  "commentdd": "fixed them wirez",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
@@ -248,8 +249,8 @@
     [ "sevseg1:D", "sevseg2:D", "yellow", [ "v125", "h0" ] ],
     [ "sevseg1:E", "sevseg2:E", "green", [ "v135", "h0" ] ],
     [ "sevseg1:F", "sevseg2:F", "blue", [ "v-300", "h0" ] ],
-    [ "sevseg1:G", "sevseg2:G", "violet", [ "v198", "h0" ] ],
-    [ "sevseg1:DIG4", "sevseg2:DIG4", "brown", [ "v180", "h20", "comment does not crash it?" ] ],
+    [ "sevseg1:G", "sevseg2:G", "violet", [ "v198", "h0", "comment does not crash it?" ] ],
+
     [ "r1:2", "led1:A", "brown", [ "h0" ] ],
     [ "r2:2", "led2:A", "red", [ "h0" ] ],
     [ "r3:2", "led3:A", "orange", [ "h0" ] ],

@@ -3,9 +3,9 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Wed 15 Dec 04:30:06 UTC 2021  double trouble - parallel displays",
+  "comment": "Wed 15 Dec 04:42:38 UTC 2021  double trouble - parallel displays",
   "commentbb": "corrected here and there. folded back - no scratchpaddage.",
-  "commentcc": "hotwired second display.",
+  "commentcc": "mostly good wiring - no left display - one ghost in last column.",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
@@ -232,7 +232,7 @@
     [ "sevseg1:DIG4", "r9:1", "brown", [ "v220", "h0" ] ],
     [ "sevseg1:DIG3", "r10:1", "red", [ "v-350", "h-1" ] ],
     [ "sevseg1:DIG2", "r11:1", "orange", [ "v-370", "h20" ] ],
-    [ "sevseg1:DIG1", "r12:1", "yellow", [ "v-20", "h20" ] ],
+    [ "sevseg1:DIG1", "r12:1", "yellow", [ "v-385", "h20" ] ],
     [ "sevseg1:COM", "sevseg2:COM", "red", [ "v90", "h0" ] ],
     [ "sevseg1:COM", "pico:3V3", "red", [ "v90", "h940", "v0" ] ],
     [ "sevseg1:A", "r1:1", "brown", [ "v-280", "h0" ] ],
@@ -266,9 +266,10 @@
     [ "r14:2", "led14:A", "blue", [ "h0" ] ],
     [ "r15:2", "led15:A", "violet", [ "h0" ] ],
     [ "r16:2", "led16:A", "gray", [ "h0" ] ],
-    [ "r13:1", "sevseg2:DIG4", "green", [ "h0" ] ],
-    [ "r14:1", "sevseg2:DIG3", "blue", [ "h0" ] ],
-    [ "r15:1", "sevseg2:DIG2", "violet", [ "h0" ] ],
-    [ "r16:1", "sevseg2:DIG1", "green", [ "h0" ] ]
+
+    [ "r13:1", "sevseg2:DIG4", "green", [ "v-790", "h0" ] ],
+    [ "r14:1", "sevseg2:DIG3", "blue", [ "v-770", "h0" ] ],
+    [ "r15:1", "sevseg2:DIG2", "violet", [ "v-750", "h0" ] ],
+    [ "r16:1", "sevseg2:DIG1", "gray", [ "v-720", "h0" ] ]
   ]
 }

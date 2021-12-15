@@ -1,4 +1,4 @@
-// Tuesday 14 Dec 2021  20:05:28z
+// Wednesday 15 Dec 2021  03:12:04z
 
 // two seven seg displays
 
@@ -85,7 +85,7 @@ void proc_encoding(void) {
 void in_column_zero(void) {
 proc_encoding();  
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 2 ; // neg 240 pos 15
+        pos = 1 ; // neg 240 pos 15
         flash_digit();
         // 8 4 2 1 all low bits set
         // 0000 1111 // 0x0f means 
@@ -97,7 +97,7 @@ proc_encoding();
 void in_column_one(void) { // DIGIT 2
 proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 4 ; // neg 233 pos 22
+        pos = 2 ; // neg 233 pos 22
         flash_digit();
         // 16 4 2 0001 0110
         //        1110 1001
@@ -107,7 +107,7 @@ proc_encoding();
 void in_column_two(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 8 ; // neg 228 pos 27
+        pos = 4 ; // neg 228 pos 27
         flash_digit();
         // 0001 1011
         // 1110 0100 228
@@ -117,7 +117,7 @@ void in_column_two(void) {
 void in_column_three(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 16 ; // neg 226 pos 29
+       pos = 8 ; // neg 226 pos 29
        flash_digit();
        // 0001 1101 // 29
        // 1110 0010 // 226

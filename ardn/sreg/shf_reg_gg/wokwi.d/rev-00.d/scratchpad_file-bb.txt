@@ -1,8 +1,10 @@
 {
   "version": 1,
   "author": "wa1tnr",
-  "editor": "wokwi",
-  "comment": "alternate scratch pad file",
+   "editor": "wokwi",
+  "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-dd-rot-180.json ",
+  "comment": "Tue 14 Dec 19:58:30 UTC 2021  double trouble - parallel displays",
+  "commentbb": "alternate scratch pad file",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -210, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
@@ -93,27 +95,37 @@
       "rotate": 90,
       "attrs": { "value": "330" }
     },
+
+
+    {
+      "type": "wokwi-resistor",
+      "id": "r8",
+      "top": -210,
+      "left": -1210,
+      "rotate": 90,
+      "attrs": {}
+    },
     {
       "type": "wokwi-resistor",
       "id": "r9",
-      "top": -93.32,
-      "left": -1469.78,
+      "top": -210,
+      "left": -1490,
       "rotate": 90,
       "attrs": { "value": "330" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r10",
-      "top": -93.33,
-      "left": -1523.28,
+      "top": -210,
+      "left": -1530,
       "rotate": 90,
       "attrs": { "value": "330" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r11",
-      "top": -257.91,
-      "left": -1425.21,
+      "top": -210,
+      "left": -1570,
       "rotate": 90,
       "attrs": { "value": "330" }
     },
@@ -121,65 +133,74 @@
       "type": "wokwi-resistor",
       "id": "r12",
       "top": -210,
-      "left": -1730,
+      "left": -1610,
       "rotate": 90,
       "attrs": { "value": "330" }
     },
+
+
+    {
+      "type": "wokwi-resistor",
+      "id": "r13",
+      "top": -210,
+      "left": -1730,
+      "rotate": 90,
+      "attrs": {"value": "330"}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r14",
+      "top": -210,
+      "left": -1770,
+      "rotate": 90,
+      "attrs": {"value": "330"}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r15",
+      "top": -210,
+      "left": -1810,
+      "rotate": 90,
+      "attrs": {"value": "330"}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r16",
+      "top": -210,
+      "left": -1850,
+      "rotate": 90,
+      "attrs": {"value": "330"}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r17",
+      "top": -210,
+      "left": -1970,
+      "rotate": 90,
+      "attrs": {"value": "330"}
+    },
+
+
     {
       "type": "wokwi-7segment",
       "id": "sevseg2",
       "top": -555.63,
       "left": -1286.53,
       "attrs": { "digits": "4" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r8",
-      "top": -214.29,
-      "left": -1226.95,
-      "rotate": 90,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r13",
-      "top": -215.87,
-      "left": -1839.45,
-      "rotate": 90,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r14",
-      "top": -219.93,
-      "left": -1905.25,
-      "rotate": 90,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r15",
-      "top": -213.72,
-      "left": -1976.53,
-      "rotate": 90,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r16",
-      "top": -227.51,
-      "left": -2163.23,
-      "rotate": 90,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r17",
-      "top": -234.78,
-      "left": -2291.87,
-      "rotate": 90,
-      "attrs": {}
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
@@ -218,7 +239,6 @@
     [ "sr2:Q5", "led14:A", "blue", [ "v-240", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
-
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -227,9 +247,7 @@
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
     [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ],
-
     [ "sevseg1:COM", "pico:3V3", "red", [ "v90", "h940", "v0" ] ],
-
     [ "sevseg1:A", "r1:1", "brown", [ "v-70", "h0" ] ],
     [ "sevseg1:B", "r2:1", "red", [ "v-50", "h1" ] ],
     [ "sevseg1:C", "r3:1", "orange", [ "v50", "h1" ] ],
@@ -237,7 +255,6 @@
     [ "sevseg1:E", "r5:1", "green", [ "v60", "h0" ] ],
     [ "sevseg1:F", "r6:1", "blue", [ "v-50", "h-350", "v174", "h263", "v194", "h-5", "v0" ] ],
     [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
-
     [ "r1:2", "led1:A", "brown", [ "h0" ] ],
     [ "r2:2", "led2:A", "red", [ "h0" ] ],
     [ "r3:2", "led3:A", "orange", [ "h0" ] ],
@@ -250,32 +267,21 @@
     [ "r10:2", "led10:A", "green", [ "h0" ] ],
     [ "r11:2", "led11:A", "orange", [ "h0" ] ],
     [ "r12:2", "led12:A", "green", [ "h0" ] ],
-
-
     [ "r16:2", "led10:A", "green", [ "h0" ] ],
-
     [ "sevseg1:DIG4", "r9:1", "brown", [ "v220", "h0" ] ],
-
-
     [ "sevseg1:DIG2", "r11:1", "yellow", [ "v-90", "h20" ] ],
     [ "sevseg1:DIG1", "r12:1", "gray", [ "v-20", "h20" ] ],
-    [ "sevseg1:COM", "sevseg2:COM", "red", [ "v110", "h0" ] ],
-    [ "sevseg1:B", "sevseg2:B", "green", [ "v-130", "h0" ] ],
-    [ "sevseg1:F", "sevseg2:F", "green", [ "v-120", "h0" ] ],
-
-    [ "sevseg1:A", "sevseg2:A", "green", [ "v-110", "h0" ] ],
-
-    [ "sevseg1:G", "sevseg2:G", "green", [ "v110", "h0" ] ],
-    [ "sevseg1:C", "sevseg2:C", "green", [ "v120", "h0" ] ],
-    [ "sevseg1:D", "sevseg2:D", "green", [ "v130", "h0" ] ],
-    [ "sevseg1:E", "sevseg2:E", "green", [ "v140", "h0" ] ],
-
+    [ "sevseg1:COM", "sevseg2:COM", "red", [ "v40", "h0" ] ],
+    [ "sevseg1:A", "sevseg2:A", "brown", [ "v-152", "h0" ] ],
+    [ "sevseg1:B", "sevseg2:B", "red", [ "v-130", "h0" ] ],
+    [ "sevseg1:C", "sevseg2:C", "orange", [ "v115", "h0" ] ],
+    [ "sevseg1:D", "sevseg2:D", "yellow", [ "v125", "h0" ] ],
+    [ "sevseg1:E", "sevseg2:E", "green", [ "v135", "h0" ] ],
+    [ "sevseg1:F", "sevseg2:F", "blue", [ "v-120", "h0" ] ],
+    [ "sevseg1:G", "sevseg2:G", "violet", [ "v100", "h0" ] ],
+    [ "sevseg1:DIG1", "sevseg2:DIG1", "green", [ "v-220", "h20" ] ],
+    [ "sevseg1:DIG2", "sevseg2:DIG2", "yellow", [ "v-80", "h20" ] ],
     [ "sevseg1:DIG3", "sevseg2:DIG3", "green", [ "v-240", "h20" ] ],
-
-    [ "sevseg1:DIG2", "sevseg2:DIG2", "yellow", [ "v-480", "h20" ] ],
-
-    [ "sevseg1:DIG1", "sevseg2:DIG1", "green", [ "v-420", "h20" ] ],
-
-    [ "sevseg1:DIG4", "sevseg2:DIG4", "brown", [ "v160", "h20" ] ]
+    [ "sevseg1:DIG4", "sevseg2:DIG4", "brown", [ "v180", "h20", "comment does not crash it?" ] ]
   ]
 }

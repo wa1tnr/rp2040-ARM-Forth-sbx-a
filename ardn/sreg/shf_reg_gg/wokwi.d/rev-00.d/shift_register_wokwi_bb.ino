@@ -1,4 +1,4 @@
-// Wednesday 15 Dec 2021  04:18:27z
+// Wednesday 15 Dec 2021  05:01:53z
 
 // two seven seg displays
 
@@ -123,6 +123,48 @@ void in_column_three(void) {
        // 1110 0010 // 226
     }
 }
+
+void in_column_four(void) {
+  proc_encoding();
+    for (int i = REPETITIONS ; i>0; i--) {
+       pos = 16 ; // neg 226 pos 29
+       flash_digit();
+       // 0001 1101 // 29
+       // 1110 0010 // 226
+    }
+}
+void in_column_five(void) {
+  proc_encoding();
+    for (int i = REPETITIONS ; i>0; i--) {
+       pos = 32 ; // neg 226 pos 29
+       flash_digit();
+       // 0001 1101 // 29
+       // 1110 0010 // 226
+    }
+}
+void in_column_six(void) {
+  proc_encoding();
+    for (int i = REPETITIONS ; i>0; i--) {
+       pos = 64 ; // neg 226 pos 29
+       flash_digit();
+       // 0001 1101 // 29
+       // 1110 0010 // 226
+    }
+}
+void in_column_seven(void) {
+  proc_encoding();
+    for (int i = REPETITIONS ; i>0; i--) {
+       pos = 128 ; // neg 226 pos 29
+       flash_digit();
+       // 0001 1101 // 29
+       // 1110 0010 // 226
+    }
+}
+
+
+
+
+
 
 void encode_hw_testing(void) { // 3
     ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
@@ -344,7 +386,7 @@ int snprintf ( char * s, size_t n, const char * format, ... );
 Write formatted output to sized buffer Composes a string with
 the same text that would be printed if format was used on printf,
 but instead of be printed, the content is stored as a C string in
-the buffer pointed by s (taking n as the maximum buffer capacity
+the buffer pointed by s (taking n as the maxium buffer capacity
 to fill).
 
 #endif

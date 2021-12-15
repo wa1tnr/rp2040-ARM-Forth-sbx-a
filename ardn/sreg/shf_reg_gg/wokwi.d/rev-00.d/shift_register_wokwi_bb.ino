@@ -1,4 +1,6 @@
-// Wednesday 15 Dec 2021  05:01:53z
+// Wednesday 15 Dec 2021  05:50:22z
+
+// functioning program and wiring job.
 
 // two seven seg displays
 
@@ -31,7 +33,7 @@ void _digitSelect(void) {
 
 void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
-    _digitSelect(); // digit 0 1 2 or 3 using 'pos' as the index
+    _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
      uleds = leds;   // A-F 0-9 and a few other glyphs
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
     digitalWrite(latchPin, HIGH);
@@ -59,7 +61,7 @@ void setleds(void) {
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
         delay(1);
-        // delay(122);
+        delay(2);
         // delay(4); // to expose digit change
     }
     setleds();
@@ -331,22 +333,21 @@ void msg_cafe(void) { // message: 'CAFE'
 }
 
 void letter_test(void) {
-//      encode_ltr_a(); in_column_zero();
-   blankleds();
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_ltr_d(); in_column_four();
+            blankleds(); // shifting not blanking
 
-    encode_ltr_b(); in_column_four();
-      blankleds();
+            encode_ltr_c(); in_column_five();
+            blankleds();
 
-    encode_ltr_c(); in_column_five();
-      blankleds();
+            encode_ltr_b(); in_column_six();
+            blankleds();
 
-    encode_ltr_d(); in_column_six();
-      blankleds();
-
-    encode_ltr_e(); in_column_seven();
-  // encode_ltr_f(); in_column_zero();
-  //  encode_ltr_blank();    in_column_zero();
-
+            encode_ltr_a(); in_column_seven();
+        }
+    }
+    delay(1500);
 }
 
 void lfc_test(void) {
@@ -355,24 +356,47 @@ void lfc_test(void) {
     msg_cafe();
 }
 
+void msg_full_house(void) { // message: '01234567'
+    for (int j = 2;  j>0; j--) {
+        for (int k = DURATION; k>0; k--) {
+            encode_seven();  in_column_zero();
+            encode_six();    in_column_one();
+            encode_five();   in_column_two();
+            encode_four();   in_column_three();
+            encode_three(); in_column_four();
+            blankleds(); // shifting not blanking
+            encode_two(); in_column_five();
+            blankleds();
+            encode_one(); in_column_six();
+            blankleds();
+            encode_zero(); in_column_seven();
+        }
+    }
+    delay(1500);
+}
+
 void setup() {
-  Serial1.begin(115200);
-  Serial1.println("Begin.");
-  pinMode(latchPin, OUTPUT);
-  pinMode(clockPin, OUTPUT);
-  pinMode(dataPin,  OUTPUT);
+    Serial1.begin(115200);
+    Serial1.println("Begin.");
+    pinMode(latchPin, OUTPUT);
+    pinMode(clockPin, OUTPUT);
+    pinMode(dataPin,  OUTPUT);
 }
 
 void loop(void) {
     blankleds();
     delay(400);
-//    lfc_test();
+    lfc_test();
     delay(4000);
     letter_test();
+    delay(4000);
+    msg_full_house();
 }
 
 /**********   d o c u m e n t a t i o n   **********/
 #if 0
+
+Functional program and wiring.  (15 Dec 2021, 05:49z)
 
 The program operates through persistence of vision.
 
@@ -396,7 +420,7 @@ current the hardware might draw.
 
 int snprintf ( char * s, size_t n, const char * format, ... );
 
-Write formatted output to sized buffer Composes a string with
+Write formatted output to sized buffer composes a string with
 the same text that would be printed if format was used on printf,
 but instead of be printed, the content is stored as a C string in
 the buffer pointed by s (taking n as the maxium buffer capacity

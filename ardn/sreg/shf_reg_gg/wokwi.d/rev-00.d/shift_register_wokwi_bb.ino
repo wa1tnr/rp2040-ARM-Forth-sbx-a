@@ -1,18 +1,11 @@
-// Wednesday 15 Dec 2021  21:48:06z
+// Wednesday 15 Dec 2021  22:09:17z
+
+#define EXPOSED_DIGITS
+#undef EXPOSED_DIGITS
+#define EXPOSED_DIGITS
+#undef EXPOSED_DIGITS
 
 // PERSISTENCE OF VISION technology demonstration.
-
-//   saved in slow mode - exposes digits painting.
-
-//   Really good sim via Discord screen sharing.
-
-//   Definitive.
-
-
-
-// two seven seg displays
-
-// Decent port of the POV demo stuff.
 
 // common anode 7 seg display:
 
@@ -49,15 +42,22 @@ void updateShiftRegister(void) {
 
 
 
-#define EXPOSE_DIGIT_PAINTING -1
 
-#define EXPOSE_DIGIT_PAINTING 0
 
-#undef EXPOSE_DIGIT_PAINTING
-#define EXPOSE_DIGIT_PAINTING -1
 
+#ifdef EXPOSED_DIGITS
+#define SLOW_POV_DEMO -1
 #define DURATION 2 // was '2'
 #define REPETITIONS 2 // was '1'
+#define EXPOSE_DIGIT_PAINTING -1
+#endif
+
+#ifndef EXPOSED_DIGITS
+#define SLOW_POV_DEMO 0
+#define DURATION 72 // was '2' for exposed mode
+#define REPETITIONS 2 // was '1'
+#define EXPOSE_DIGIT_PAINTING 0
+#endif
 
 void blankleds(void) {
     leds = 255;
@@ -74,15 +74,6 @@ void setleds(void) {
     }
 }
 
-#define SLOW_POV
-
-#undef SLOW_POV
-
-#define SLOW_POV_DEMO 0
-#ifdef SLOW_POV
-#define SLOW_POV_DEMO -1
-#endif
-
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
       delay(1);
@@ -92,7 +83,9 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
         }
     }
     setleds();
+
     if (EXPOSE_DIGIT_PAINTING) { delay (200);}
+
     blankleds(); // waste no time in doing so!
 }
 
@@ -378,7 +371,7 @@ void msg_full_house(void) { // message: '01234567'
 
 void setup() {
     Serial1.begin(115200);
-    Serial1.println("Begin.");
+    // annoying // Serial1.println("Begin.");
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin,  OUTPUT);

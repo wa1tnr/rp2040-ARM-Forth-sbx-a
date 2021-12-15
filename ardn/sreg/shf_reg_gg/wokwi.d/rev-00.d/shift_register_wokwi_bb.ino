@@ -1,6 +1,12 @@
-// Wednesday 15 Dec 2021  05:50:22z
+// Wednesday 15 Dec 2021  06:36:27z
 
-// functioning program and wiring job.
+// PERSISTENCE OF VISION technology demonstration.
+
+//   Really good sim via Discord screen sharing.
+
+//   Definitive.
+
+
 
 // two seven seg displays
 
@@ -61,10 +67,11 @@ void setleds(void) {
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
         delay(1);
-        delay(2);
+        delay(297);
         // delay(4); // to expose digit change
     }
     setleds();
+    if (EXPOSE_DIGIT_PAINTING) { delay (200);}
     blankleds(); // waste no time in doing so!
 }
 
@@ -384,12 +391,14 @@ void setup() {
 }
 
 void loop(void) {
+/*
     blankleds();
     delay(400);
     lfc_test();
     delay(4000);
     letter_test();
-    delay(4000);
+*/
+    delay(400);
     msg_full_house();
 }
 

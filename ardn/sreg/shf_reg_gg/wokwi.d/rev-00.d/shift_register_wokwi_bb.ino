@@ -60,7 +60,7 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
     if (EXPOSE_DIGIT_PAINTING) {
         delay(1);
         // delay(122);
-        // delay(424); // to expose digit change
+        // delay(4); // to expose digit change
     }
     setleds();
     blankleds(); // waste no time in doing so!
@@ -125,6 +125,7 @@ void in_column_three(void) {
 }
 
 void in_column_four(void) {
+
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 16 ; // neg 226 pos 29
@@ -134,6 +135,7 @@ void in_column_four(void) {
     }
 }
 void in_column_five(void) {
+
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 32 ; // neg 226 pos 29
@@ -143,6 +145,7 @@ void in_column_five(void) {
     }
 }
 void in_column_six(void) {
+
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 64 ; // neg 226 pos 29
@@ -152,6 +155,7 @@ void in_column_six(void) {
     }
 }
 void in_column_seven(void) {
+
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
        pos = 128 ; // neg 226 pos 29
@@ -327,13 +331,21 @@ void msg_cafe(void) { // message: 'CAFE'
 }
 
 void letter_test(void) {
-      encode_ltr_a(); in_column_zero();
-    encode_ltr_b(); in_column_zero();
-    encode_ltr_c(); in_column_zero();
-    encode_ltr_d(); in_column_zero();
-    encode_ltr_e(); in_column_zero();
-    encode_ltr_f(); in_column_zero();
-    encode_ltr_blank();    in_column_zero();
+//      encode_ltr_a(); in_column_zero();
+   blankleds();
+
+    encode_ltr_b(); in_column_four();
+      blankleds();
+
+    encode_ltr_c(); in_column_five();
+      blankleds();
+
+    encode_ltr_d(); in_column_six();
+      blankleds();
+
+    encode_ltr_e(); in_column_seven();
+  // encode_ltr_f(); in_column_zero();
+  //  encode_ltr_blank();    in_column_zero();
 
 }
 
@@ -354,8 +366,9 @@ void setup() {
 void loop(void) {
     blankleds();
     delay(400);
-    lfc_test();
-
+//    lfc_test();
+    delay(4000);
+    letter_test();
 }
 
 /**********   d o c u m e n t a t i o n   **********/

@@ -1,0 +1,16 @@
+Copied files include:
+
+9c71d49633def84b0f1ac83de741133a8977c4f0  ../rev-00.d/n_wokwi-rp2040-sreg-ee-rot-180.json
+9c71d49633def84b0f1ac83de741133a8977c4f0  ../rev-01.d/n_wokwi-rp2040-sreg-ff.json
+
+3970e1b1e11913d3d39118f9a4892f5f9acde6d3  ../rev-00.d/shift_register_wokwi_bb.ino
+3970e1b1e11913d3d39118f9a4892f5f9acde6d3  ../rev-01.d/shift_register_wokwi_cc.ino
+
+50a4c812da9d6c63dc41ce6e8169be83d252ae95  ../rev-00.d/WHAT.THIS.IS.md
+50a4c812da9d6c63dc41ce6e8169be83d252ae95  ../rev-01.d/WHAT.THIS.IS.md
+
+sha1sum is used for these hashes.
+
+Thu 16 Dec 01:05:47 UTC 2021
+
+END.

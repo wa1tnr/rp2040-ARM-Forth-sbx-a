@@ -1,0 +1,24 @@
+This file created: Sat 11 Dec 23:37:12 UTC 2021
+
+wrt renaming/copying in git, preserving history
+
+Record file copy operation with Git
+Asked 12 years, 5 months ago
+
+[ https://stackoverflow.com/questions/1043388/record-file-copy-operation-with-git ]
+
+(The Lost World)
+
+git checkout -b dup # create and switch to branch
+
+git mv orig apple # make the duplicate
+git commit -m "duplicate orig to apple"
+
+git checkout HEAD~ orig # bring back the original
+git commit -m "restore orig"
+
+git checkout - # switch back to source branch
+git merge --no-ff dup # merge dup into source branch
+
+
+END.

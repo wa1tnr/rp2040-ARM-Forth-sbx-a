@@ -1,0 +1,3 @@
+https://www.electronics-tutorials.ws/transistor/tran_7.html
+
+Shows P-Channel MOSFET connections halfway down the page.

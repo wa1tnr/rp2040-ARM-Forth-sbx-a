@@ -1,19 +1,20 @@
-// Wednesday 15 Dec 2021  22:09:17z
+// Thursday 16 Dec 2021  06:44:26z
 
-#define EXPOSED_DIGITS
-#undef EXPOSED_DIGITS
-#define EXPOSED_DIGITS
-#undef EXPOSED_DIGITS
+// swapped nybbles for columns
 
 // PERSISTENCE OF VISION technology demonstration.
+
+//  [ https://wokwi.com/arduino/new?template=pi-pico ]
+
+// swap these two cpp directives as required:
+#define EXPOSED_DIGITS
+#undef  EXPOSED_DIGITS
 
 // common anode 7 seg display:
 
 // DIGIT goes to Vcc
 // COMMON goes to Vcc
 // segments go to ground.
-
-//  [ https://wokwi.com/arduino/new?template=pi-pico ]
 
 const int latchPin = 2;  /* STCP */
 const int clockPin = 3;  /* SHCP */
@@ -108,7 +109,7 @@ void proc_encoding(void) {
 void in_column_zero(void) {
 proc_encoding();  
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 1 ; // neg 240 pos 15
+        pos = 16 ; // neg 240 pos 15
         flash_digit();
     }
 }
@@ -116,7 +117,7 @@ proc_encoding();
 void in_column_one(void) { // DIGIT 2
 proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 2 ; // neg 233 pos 22
+        pos = 32 ; // neg 233 pos 22
         flash_digit();
     }
 }
@@ -124,7 +125,7 @@ proc_encoding();
 void in_column_two(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        pos = 4 ; // neg 228 pos 27
+        pos = 64 ; // neg 228 pos 27
         flash_digit();
     }
 }
@@ -132,7 +133,7 @@ void in_column_two(void) {
 void in_column_three(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 8 ; // neg 226 pos 29
+       pos = 128 ; // neg 226 pos 29
        flash_digit();
     }
 }
@@ -140,28 +141,28 @@ void in_column_three(void) {
 void in_column_four(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 16 ; // neg 226 pos 29
+       pos = 1 ; // neg 226 pos 29
        flash_digit();
     }
 }
 void in_column_five(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 32 ; // neg 226 pos 29
+       pos = 2 ; // neg 226 pos 29
        flash_digit();
     }
 }
 void in_column_six(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 64 ; // neg 226 pos 29
+       pos = 4 ; // neg 226 pos 29
        flash_digit();
     }
 }
 void in_column_seven(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       pos = 128 ; // neg 226 pos 29
+       pos = 8 ; // neg 226 pos 29
        flash_digit();
     }
 }

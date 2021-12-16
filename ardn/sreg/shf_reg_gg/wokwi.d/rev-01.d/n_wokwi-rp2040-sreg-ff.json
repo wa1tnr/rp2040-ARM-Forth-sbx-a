@@ -3,10 +3,10 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Thu 16 Dec 05:49:03 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Thu 16 Dec 06:18:02 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
-  "commentdd": "more routing above display mostly",
+  "commentdd": "more routes worked out",
   "parts": [
     { "type": "wokwi-pi-pico",
     "id": "pico",
@@ -275,15 +275,16 @@
     [ "r15:2", "led15:A", "violet", [ "h0" ] ],
     [ "r16:2", "led16:A", "gray", [ "h0" ] ],
 
-    [ "sevseg1:DIG4", "r9:1", "brown", [ "v20", "-h100", "v-134", "h7",
-    "v-38", "h-7", "v-242", "h-581", "v0" ] ],
-    [ "sevseg1:DIG3", "r10:1", "red", [ "v-350", "h-1" ] ],
-    [ "sevseg1:DIG2", "r11:1", "orange", [ "v-370", "h20" ] ],
-    [ "sevseg1:DIG1", "r12:1", "yellow", [ "v-385", "h20" ] ],
+    [ "sevseg1:DIG4", "r9:1", "brown", [ "v20", "-h100", "v-634", "h7",
+    "v-38", "h-7", "v-22", "h-581", "v0" ] ],
+    [ "sevseg1:DIG3", "r10:1", "red", [ "v-625", "h-1" ] ],
+    [ "sevseg1:DIG2", "r11:1", "orange", [ "v-640", "h20" ] ],
+    [ "sevseg1:DIG1", "r12:1", "yellow", [ "v-655", "h20" ] ],
 
-    [ "sevseg2:DIG4", "r13:1",  "green", [ "v97", "h7", "v18", "h-7", "v20", "h1" ] ],
-    [ "r14:1", "sevseg2:DIG3", "blue", [ "v-770", "h0" ] ],
-    [ "r15:1", "sevseg2:DIG2", "violet", [ "v-750", "h0" ] ],
-    [ "r16:1", "sevseg2:DIG1", "gray", [ "v-720", "h0" ] ]
+    [ "sevseg2:DIG4", "r13:1",  "green", [
+      "v-500", "h1", "v1", "h1"] ],
+    [ "r14:1", "sevseg2:DIG3", "blue", [ "v-780", "h0" ] ],
+    [ "r15:1", "sevseg2:DIG2", "violet", [ "v-790", "h0" ] ],
+    [ "r16:1", "sevseg2:DIG1", "gray", [ "v-800", "h614", "v222", "h1" ] ]
   ]
 }

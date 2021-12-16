@@ -3,18 +3,25 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Thu 16 Dec 07:43:25 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Thu 16 Dec 08:40:43 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
-  "commentdd": "factored several wire crossings or somesuch",
+  "commentdd": "factored wire crossings",
   "parts": [
-    { "type": "wokwi-pi-pico", "id": "pico", "top": 175, "left": -510, "attrs": {} },
-    { "type": "wokwi-74hc595", "id": "sr1", "top": 330, "left": -800, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
+    {
+      "type": "wokwi-74hc595",
+      "id": "sr1",
+      "top": 77,
+      "left": -1035,
+      "rotate": 180,
+      "attrs": {}
+    },
     {
       "type": "wokwi-74hc595",
       "id": "sr2",
-      "top": 341,
-      "left": -1420,
+      "top": 77,
+      "left": -1673,
       "rotate": 180,
       "attrs": {}
     },
@@ -180,24 +187,45 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "pico:3V3", "sr1:VCC", "red", [ "h80", "v-73", "h-281", "v256", "h1" ] ],
-    [ "pico:GP4", "sr1:DS", "orange", [ "h-90", "v190", "h-512" ] ],
-    [ "pico:GP3", "sr1:SHCP", "yellow", [ "h-40", "v234", "h1" ] ],
-    [ "pico:GP2", "sr1:STCP", "blue", [ "h-60", "v226", "h-498", "v1" ] ],
-    [ "pico:GND.8", "sr1:GND", "black", [ "h45", "v272", "h-761", "v-176", "h0" ] ],
-    [ "pico:GND.8", "sr2:GND", "black", [ "h1", "v1", "comment: v-38 h-39 v176 h1369 " ] ],
+    [ "pico:3V3", "sr1:VCC", "red", [
+      
+      
+      "h80", "v400", "h-500" ] ],
+    [ "pico:GP4", "sr1:DS", "orange", [ "h-30", "v414", "h2", "v1", "h0" ] ],
+    [ "pico:GP3", "sr1:SHCP", "yellow", [ "h-40", "v454", "h2", "v1", "h0" ] ],
+    [ "pico:GP2", "sr1:STCP", "blue", [
+      
+      "h-50", "v444", "h2", "v1", "h0" ] ],
+
+
+
+    [ "pico:GND.8", "sr1:GND", "black", [
+      
+      "h100", "v500", "h-600", "v-170", "h16" ] ],
+    
+    
+    [ "pico:GND.8", "sr2:GND", "black", [
+      
+      "h100", "v500", "h-1240", "v-170","h16"
+      
+      
+      ] ],
+
     [ "sr1:VCC", "sr2:VCC", "red", [ "v47", "h-221" ] ],
     [ "sr1:Q7S", "sr2:DS", "orange", [ "v64", "h0" ] ],
     [ "sr1:SHCP", "sr2:SHCP", "yellow", [ "v98", "h0" ] ],
     [ "sr1:STCP", "sr2:STCP", "blue", [ "v82", "h1" ] ],
-    [ "led1:A", "sr1:Q0", "brown", [ "v110", "h111.62", "v282.39", "h-42.69" ] ],
-    [ "led2:A", "sr1:Q1", "red", [ "v151.85", "h3.86" ] ],
-    [ "led3:A", "sr1:Q2", "orange", [ "v163", "h1" ] ],
-    [ "led4:A", "sr1:Q3", "yellow", [ "v173.19", "h5.05" ] ],
-    [ "led5:A", "sr1:Q4", "green", [ "v189.61", "h16.69" ] ],
-    [ "led6:A", "sr1:Q5", "blue", [ "v202.75", "h7.44" ] ],
-    [ "led7:A", "sr1:Q6", "violet", [ "v222", "h6.4" ] ],
-    [ "led8:A", "sr1:Q7", "gray", [ "v255", "h1" ] ],
+
+    [ "led1:A", "sr1:Q0", "brown", [ "v5", "h4", "v30", "h-130", "v101", "h-32", "v0" ] ],
+    [ "led2:A", "sr1:Q1", "red", [ "v5", "h4", "v24", "h0" ] ],
+    [ "led3:A", "sr1:Q2", "orange", [ "v5", "h4", "v18", "h0" ] ],
+    [ "led4:A", "sr1:Q3", "yellow", [ "v5", "h4", "v12", "h0" ] ],
+
+    [ "led5:A", "sr1:Q4", "green", [ "v5", "h4", "v22", "h0" ] ],
+    [ "led6:A", "sr1:Q5", "blue", [ "v5", "h4", "v28", "h0" ] ],
+    [ "led7:A", "sr1:Q6", "violet", [ "v5", "h4", "v34", "h0" ] ],
+    [ "led8:A", "sr1:Q7", "gray", [ "v5", "h4", "v40", "h0" ] ],
+
     [ "led2:C", "led1:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
     [ "led3:C", "led2:C", "black", [ "v5", "h-14", "v-116", "h37", "v116", "h0" ] ],
     [ "led4:C", "led3:C", "black", [ "v5", "h-14", "v-116", "h37", "v116", "h0" ] ],
@@ -206,14 +234,16 @@
     [ "led7:C", "led6:C", "black", [ "v5", "h-14", "v-116", "h35", "v116", "h0" ] ],
     [ "led8:C", "led7:C", "black", [ "v5", "h-14", "v-116", "h39", "v116", "h0" ] ],
     [ "led8:C", "led9:C", "black", [ "v5", "h-15", "v-116", "h-283", "v116", "h1" ] ],
-    [ "sr2:Q0", "led9:A", "brown", [ "v46", "h60", "v-367", "h0" ] ],
-    [ "sr2:Q1", "led10:A", "red", [ "v-280", "h0" ] ],
-    [ "sr2:Q2", "led11:A", "orange", [ "v-270", "h0" ] ],
-    [ "sr2:Q3", "led12:A", "yellow", [ "v-260", "h0" ] ],
-    [ "sr2:Q4", "led13:A", "green", [ "v-250", "h0" ] ],
-    [ "sr2:Q5", "led14:A", "blue", [ "v-240", "h0" ] ],
-    [ "sr2:Q6", "led15:A", "violet", [ "v-230", "h0" ] ],
-    [ "sr2:Q7", "led16:A", "gray", [ "v-220", "h0" ] ],
+
+    [ "sr2:Q0", "led9:A", "brown", [ "v12", "h0" ] ],
+    [ "sr2:Q1", "led10:A", "red", [ "v-12", "h0" ] ],
+    [ "sr2:Q2", "led11:A", "orange", [ "v-18", "h0" ] ],
+    [ "sr2:Q3", "led12:A", "yellow", [  "v-24","h0" ] ],
+    [ "sr2:Q4", "led13:A", "green", [ "v-53", "h0" ] ],
+    [ "sr2:Q5", "led14:A", "blue", [ "v-46", "h0" ] ],
+    [ "sr2:Q6", "led15:A", "violet", [ "v-40", "h0" ] ],
+    [ "sr2:Q7", "led16:A", "gray", [ "v-34", "h0" ] ],
+
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -221,10 +251,10 @@
     [ "led13:C", "led14:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
-    [ "led16:C", "sr2:GND", "black", [ "v5", "h-15", "v150", "h1" ] ],
+    [ "led16:C", "sr2:GND", "black", [ "v7", "h-15", "v55", "h169" ] ],
+  
     [ "sevseg1:COM", "sevseg2:COM", "red", [ "v45", "h0" ] ],
     [ "sevseg1:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
-
     [ "sevseg1:A", "r1:1", "brown", [ "v-40", "h0" ] ],
     [ "sevseg1:B", "r2:1", "red", [ "v-19", "h122", "v114", "h7", "v18", "h-7" ] ],
     [ "sevseg1:C", "r3:1", "orange", [ "v60", "h1" ] ],
@@ -232,7 +262,6 @@
     [ "sevseg1:E", "r5:1", "green", [ "v105", "h0" ] ],
     [ "sevseg2:F", "r6:1", "blue", [ "v-26", "h-130", "v220", "h263" ] ],
     [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
-
     [ "sevseg1:A", "sevseg2:A", "brown", [ "v-45", "h0" ] ],
     [ "sevseg1:B", "sevseg2:B", "red", [ "v-25", "h0" ] ],
     [ "sevseg1:C", "sevseg2:C", "orange", [ "v65", "h0" ] ],
@@ -256,16 +285,16 @@
     [ "r14:2", "led14:A", "blue", [ "h0" ] ],
     [ "r15:2", "led15:A", "violet", [ "h0" ] ],
     [ "r16:2", "led16:A", "gray", [ "h0" ] ],
- 
- 
-    [ "sevseg1:DIG4", "r13:1", "green", [
-      "v114", "h100", "v-98", "h12", "v-38", "h-12",
-      "v-161", "h-820", "v10" ] ],
+    [
+      "sevseg1:DIG4",
+      "r13:1",
+      "green",
+      [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ]
+    ],
     [ "sevseg1:DIG3", "r14:1", "blue", [ "v-128", "h-1" ] ],
     [ "sevseg1:DIG2", "r15:1", "violet", [ "v-138", "h20" ] ],
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
-    [ "sevseg2:DIG4", "r9:1", "brown", [
-      "v45", "h0" ] ],
+    [ "sevseg2:DIG4", "r9:1", "brown", [ "v45", "h0" ] ],
     [ "r10:1", "sevseg2:DIG3", "red", [ "v-390", "h0" ] ],
     [ "r11:1", "sevseg2:DIG2", "orange", [ "v-400", "h0" ] ],
     [ "r12:1", "sevseg2:DIG1", "yellow", [ "v-410", "h0" ] ]

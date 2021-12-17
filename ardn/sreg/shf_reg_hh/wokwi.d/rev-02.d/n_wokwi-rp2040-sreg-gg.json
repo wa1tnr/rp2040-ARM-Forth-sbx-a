@@ -10,6 +10,7 @@
   "commentee": "add two additional displays - DONE and aligned.",
   "commentff": "reformat code for singleton lines.",
   "commentgg": "move the displays up top",
+  "commenthh": "papa november papa papa MOSFETs left to right",
   "commenthh": "works great - mirror on second display.  Continue.",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },

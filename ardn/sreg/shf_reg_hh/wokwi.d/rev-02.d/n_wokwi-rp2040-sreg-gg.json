@@ -3,33 +3,20 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Fri 17 Dec 21:05:57 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Fri 17 Dec 21:26:59 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
   "commentdd": "New project mod - add third and fourth 7-segment x4 digit displays.",
+  "commentee": "add two additional displays - DONE and aligned.",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
-    {
-      "type": "wokwi-74hc595",
-      "id": "sr1",
-      "top": 77,
-      "left": -1035,
-      "rotate": 180,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-74hc595",
-      "id": "sr2",
-      "top": 77,
-      "left": -1673,
-      "rotate": 180,
-      "attrs": {}
-    },
+    { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-74hc595", "id": "sr2", "top": 77, "left": -1673, "rotate": 180, "attrs": {} },
     {
       "type": "wokwi-7segment",
       "id": "sevseg1",
-      "top": -555.06,
-      "left": -1091.42,
+      "top": -555,
+      "left": -1090,
       "attrs": { "digits": "4" }
     },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
@@ -179,53 +166,46 @@
     {
       "type": "wokwi-7segment",
       "id": "sevseg2",
-      "top": -555.63,
-      "left": -1286.53,
+      "top": -555,
+      "left": -1290,
+      "attrs": { "digits": "4" }
+    },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg3",
+      "top": -555,
+      "left": -2290,
+      "attrs": { "digits": "4" }
+    },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg4",
+      "top": -555,
+      "left": -2490,
       "attrs": { "digits": "4" }
     }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "pico:3V3", "sr1:VCC", "red", [
-      
-      
-      "h80", "v400", "h-500" ] ],
+    [ "pico:3V3", "sr1:VCC", "red", [ "h80", "v400", "h-500" ] ],
     [ "pico:GP4", "sr1:DS", "orange", [ "h-30", "v414", "h2", "v1", "h0" ] ],
     [ "pico:GP3", "sr1:SHCP", "yellow", [ "h-40", "v454", "h2", "v1", "h0" ] ],
-    [ "pico:GP2", "sr1:STCP", "blue", [
-      
-      "h-50", "v444", "h2", "v1", "h0" ] ],
-
-
-
-    [ "pico:GND.8", "sr1:GND", "black", [
-      
-      "h100", "v500", "h-600", "v-170", "h16" ] ],
-    
-    
-    [ "pico:GND.8", "sr2:GND", "black", [
-      
-      "h100", "v500", "h-1240", "v-170","h16"
-      
-      
-      ] ],
-
+    [ "pico:GP2", "sr1:STCP", "blue", [ "h-50", "v444", "h2", "v1", "h0" ] ],
+    [ "pico:GND.8", "sr1:GND", "black", [ "h100", "v500", "h-600", "v-170", "h16" ] ],
+    [ "pico:GND.8", "sr2:GND", "black", [ "h100", "v500", "h-1240", "v-170", "h16" ] ],
     [ "sr1:VCC", "sr2:VCC", "red", [ "v47", "h-221" ] ],
     [ "sr1:Q7S", "sr2:DS", "orange", [ "v64", "h0" ] ],
     [ "sr1:SHCP", "sr2:SHCP", "yellow", [ "v98", "h0" ] ],
     [ "sr1:STCP", "sr2:STCP", "blue", [ "v82", "h1" ] ],
-
     [ "led1:A", "sr1:Q0", "brown", [ "v5", "h4", "v30", "h-130", "v101", "h-32", "v0" ] ],
     [ "led2:A", "sr1:Q1", "red", [ "v5", "h4", "v24", "h0" ] ],
     [ "led3:A", "sr1:Q2", "orange", [ "v5", "h4", "v18", "h0" ] ],
     [ "led4:A", "sr1:Q3", "yellow", [ "v5", "h4", "v12", "h0" ] ],
-
     [ "led5:A", "sr1:Q4", "green", [ "v5", "h4", "v22", "h0" ] ],
     [ "led6:A", "sr1:Q5", "blue", [ "v5", "h4", "v28", "h0" ] ],
     [ "led7:A", "sr1:Q6", "violet", [ "v5", "h4", "v34", "h0" ] ],
     [ "led8:A", "sr1:Q7", "gray", [ "v5", "h4", "v40", "h0" ] ],
-
     [ "led2:C", "led1:C", "black", [ "v5", "h-14", "v-116", "h36", "v116", "h0" ] ],
     [ "led3:C", "led2:C", "black", [ "v5", "h-14", "v-116", "h37", "v116", "h0" ] ],
     [ "led4:C", "led3:C", "black", [ "v5", "h-14", "v-116", "h37", "v116", "h0" ] ],
@@ -234,16 +214,14 @@
     [ "led7:C", "led6:C", "black", [ "v5", "h-14", "v-116", "h35", "v116", "h0" ] ],
     [ "led8:C", "led7:C", "black", [ "v5", "h-14", "v-116", "h39", "v116", "h0" ] ],
     [ "led8:C", "led9:C", "black", [ "v5", "h-15", "v-116", "h-283", "v116", "h1" ] ],
-
     [ "sr2:Q0", "led9:A", "brown", [ "v12", "h0" ] ],
     [ "sr2:Q1", "led10:A", "red", [ "v-12", "h0" ] ],
     [ "sr2:Q2", "led11:A", "orange", [ "v-18", "h0" ] ],
-    [ "sr2:Q3", "led12:A", "yellow", [  "v-24","h0" ] ],
+    [ "sr2:Q3", "led12:A", "yellow", [ "v-24", "h0" ] ],
     [ "sr2:Q4", "led13:A", "green", [ "v-53", "h0" ] ],
     [ "sr2:Q5", "led14:A", "blue", [ "v-46", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-40", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-34", "h0" ] ],
-
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -252,7 +230,6 @@
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
     [ "led16:C", "sr2:GND", "black", [ "v7", "h-15", "v55", "h169" ] ],
-  
     [ "sevseg1:COM", "sevseg2:COM", "red", [ "v45", "h0" ] ],
     [ "sevseg1:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
     [ "sevseg1:A", "r1:1", "brown", [ "v-40", "h0" ] ],

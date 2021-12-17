@@ -95,10 +95,18 @@
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
     [ "led16:C", "sr2:GND", "black", [ "v7", "h-15", "v55", "h169" ] ],
+
     [ "sevseg1:COM", "sevseg2:COM", "red", [ "v45", "h0" ] ],
+    [ "sevseg2:COM", "sevseg3:COM", "red", [ "v45", "h0" ] ],
+    [ "sevseg3:COM", "sevseg4:COM", "red", [ "v45", "h0" ] ],
+
     [ "sevseg1:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
+    [ "sevseg3:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
+    [ "sevseg4:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
+
     [ "sevseg1:A", "r1:1", "brown", [ "v-40", "h0" ] ],
     [ "sevseg3:A", "r1:1", "brown", [ "v-40", "h0" ] ],
+
     [ "sevseg1:B", "r2:1", "red", [ "v-19", "h122", "v114", "h7", "v18", "h-7" ] ],
     [ "sevseg3:B", "r2:1", "red", [ "v-19", "h122", "v114", "h7", "v18", "h-7" ] ],
     [ "sevseg1:C", "r3:1", "orange", [ "v60", "h1" ] ],

@@ -1,0 +1,14 @@
+
+ four mosfets arranged as an a-b switch.
+
+ Three P-Channel MOSFETS and one N-Channel MOSFET
+ were used.
+ 
+ Meant to supply a common-anode LED array, by
+ denying the source voltage (or by supplying it)
+ per array.
+
+ In this way, extra banks of LED arrays can be
+ utilized using fewer GPIO pins.
+
+ 17 December 2021

@@ -12,13 +12,7 @@
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr2", "top": 77, "left": -1673, "rotate": 180, "attrs": {} },
-    {
-      "type": "wokwi-7segment",
-      "id": "sevseg1",
-      "top": -555,
-      "left": -1090,
-      "attrs": { "digits": "4" }
-    },
+    { "type": "wokwi-7segment", "id": "sevseg1", "top": -555, "left": -1090, "attrs": { "digits": "4" } },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
@@ -35,155 +29,25 @@
     { "type": "wokwi-led", "id": "led14", "top": -50, "left": -1760, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led15", "top": -50, "left": -1800, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led16", "top": -50, "left": -1840, "attrs": { "color": "red" } },
-    {
-      "type": "wokwi-resistor",
-      "id": "r1",
-      "top": -210,
-      "left": -850,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r2",
-      "top": -210,
-      "left": -890,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r3",
-      "top": -210,
-      "left": -930,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r4",
-      "top": -210,
-      "left": -970,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r5",
-      "top": -210,
-      "left": -1090,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r6",
-      "top": -210,
-      "left": -1130,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r7",
-      "top": -210,
-      "left": -1170,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r8",
-      "top": -210,
-      "left": -1210,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r9",
-      "top": -210,
-      "left": -1490,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r10",
-      "top": -210,
-      "left": -1530,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r11",
-      "top": -210,
-      "left": -1570,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r12",
-      "top": -210,
-      "left": -1610,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r13",
-      "top": -210,
-      "left": -1730,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r14",
-      "top": -210,
-      "left": -1770,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r15",
-      "top": -210,
-      "left": -1810,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r16",
-      "top": -210,
-      "left": -1850,
-      "rotate": 90,
-      "attrs": { "value": "330" }
-    },
-    {
-      "type": "wokwi-7segment",
-      "id": "sevseg2",
-      "top": -555,
-      "left": -1290,
-      "attrs": { "digits": "4" }
-    },
-    {
-      "type": "wokwi-7segment",
-      "id": "sevseg3",
-      "top": -555,
-      "left": -2290,
-      "attrs": { "digits": "4" }
-    },
-    {
-      "type": "wokwi-7segment",
-      "id": "sevseg4",
-      "top": -555,
-      "left": -2490,
-      "attrs": { "digits": "4" }
-    }
+    { "type": "wokwi-resistor", "id": "r1", "top": -210, "left": -850, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": -210, "left": -890, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": -210, "left": -930, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r4", "top": -210, "left": -970, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r5", "top": -210, "left": -1090, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r6", "top": -210, "left": -1130, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r7", "top": -210, "left": -1170, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r8", "top": -210, "left": -1210, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r9", "top": -210, "left": -1490, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r10", "top": -210, "left": -1530, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r11", "top": -210, "left": -1570, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r12", "top": -210, "left": -1610, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r13", "top": -210, "left": -1730, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r14", "top": -210, "left": -1770, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r15", "top": -210, "left": -1810, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-resistor", "id": "r16", "top": -210, "left": -1850, "rotate": 90, "attrs": { "value": "330" } },
+    { "type": "wokwi-7segment", "id": "sevseg2", "top": -555, "left": -1290, "attrs": { "digits": "4" } },
+    { "type": "wokwi-7segment", "id": "sevseg3", "top": -555, "left": -2290, "attrs": { "digits": "4" } },
+    { "type": "wokwi-7segment", "id": "sevseg4", "top": -555, "left": -2490, "attrs": { "digits": "4" } }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
@@ -265,12 +129,7 @@
     [ "r14:2", "led14:A", "blue", [ "h0" ] ],
     [ "r15:2", "led15:A", "violet", [ "h0" ] ],
     [ "r16:2", "led16:A", "gray", [ "h0" ] ],
-    [
-      "sevseg1:DIG4",
-      "r13:1",
-      "green",
-      [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ]
-    ],
+    [ "sevseg1:DIG4", "r13:1", "green", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
     [ "sevseg1:DIG3", "r14:1", "blue", [ "v-128", "h-1" ] ],
     [ "sevseg1:DIG2", "r15:1", "violet", [ "v-138", "h20" ] ],
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],

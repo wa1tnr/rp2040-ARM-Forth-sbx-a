@@ -87,10 +87,12 @@
     [ "sr2:Q5", "led14:A", "blue", [ "v-46", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-40", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-34", "h0" ] ],
+
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led12:C", "led13:C", "black", [ "v5", "h-18", "v-116", "h-120", "v116", "h0" ] ],
+
     [ "led13:C", "led14:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led14:C", "led15:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led15:C", "led16:C", "black", [ "v5", "h-19", "v-116", "h-36", "v116", "h0" ] ],
@@ -105,23 +107,42 @@
     [ "sevseg4:COM", "pico:3V3", "red", [ "v40", "h617", "v0" ] ],
 
     [ "sevseg1:A", "r1:1", "brown", [ "v-40", "h0" ] ],
-    [ "sevseg3:A", "r1:1", "brown", [ "v-40", "h0" ] ],
 
     [ "sevseg1:B", "r2:1", "red", [ "v-19", "h122", "v114", "h7", "v18", "h-7" ] ],
-    [ "sevseg3:B", "r2:1", "red", [ "v-19", "h122", "v114", "h7", "v18", "h-7" ] ],
     [ "sevseg1:C", "r3:1", "orange", [ "v60", "h1" ] ],
-    [ "sevseg3:C", "r3:1", "orange", [ "v60", "h1" ] ],
     [ "sevseg1:D", "r4:1", "yellow", [ "v80", "h0" ] ],
     [ "sevseg1:E", "r5:1", "green", [ "v105", "h0" ] ],
     [ "sevseg2:F", "r6:1", "blue", [ "v-26", "h-130", "v220", "h263" ] ],
     [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
+
     [ "sevseg1:A", "sevseg2:A", "brown", [ "v-45", "h0" ] ],
+    [ "sevseg2:A", "sevseg3:A", "brown", [ "v-45", "h0" ] ],
+    [ "sevseg3:A", "sevseg4:A", "brown", [ "v-45", "h0" ] ],
+
     [ "sevseg1:B", "sevseg2:B", "red", [ "v-25", "h0" ] ],
+    [ "sevseg2:B", "sevseg3:B", "red", [ "v-25", "h0" ] ],
+    [ "sevseg3:B", "sevseg4:B", "red", [ "v-25", "h0" ] ],
+
     [ "sevseg1:C", "sevseg2:C", "orange", [ "v65", "h0" ] ],
+    [ "sevseg2:C", "sevseg3:C", "orange", [ "v65", "h0" ] ],
+    [ "sevseg3:C", "sevseg4:C", "orange", [ "v65", "h0" ] ],
+
     [ "sevseg1:D", "sevseg2:D", "yellow", [ "v85", "h0" ] ],
+    [ "sevseg2:D", "sevseg3:D", "yellow", [ "v85", "h0" ] ],
+    [ "sevseg3:D", "sevseg4:D", "yellow", [ "v85", "h0" ] ],
+
     [ "sevseg1:E", "sevseg2:E", "green", [ "v105", "h0" ] ],
+    [ "sevseg2:E", "sevseg3:E", "green", [ "v105", "h0" ] ],
+    [ "sevseg3:E", "sevseg4:E", "green", [ "v105", "h0" ] ],
+
     [ "sevseg1:F", "sevseg2:F", "blue", [ "v-32", "h0" ] ],
+    [ "sevseg2:F", "sevseg3:F", "blue", [ "v-32", "h0" ] ],
+    [ "sevseg3:F", "sevseg4:F", "blue", [ "v-32", "h0" ] ],
+
     [ "sevseg1:G", "sevseg2:G", "violet", [ "v198", "h0", "comment does not crash it?" ] ],
+    [ "sevseg2:G", "sevseg3:G", "violet", [ "v198", "h0", "comment does not crash it?" ] ],
+    [ "sevseg3:G", "sevseg4:G", "violet", [ "v198", "h0", "comment does not crash it?" ] ],
+
     [ "r1:2", "led1:A", "brown", [ "h0" ] ],
     [ "r2:2", "led2:A", "red", [ "h0" ] ],
     [ "r3:2", "led3:A", "orange", [ "h0" ] ],

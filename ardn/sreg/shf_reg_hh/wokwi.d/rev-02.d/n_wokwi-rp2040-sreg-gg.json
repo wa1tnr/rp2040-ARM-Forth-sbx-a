@@ -182,10 +182,9 @@
     [ "sevseg4:DIG2", "r11:1", "orange", [ "v-138", "h20" ] ],
 
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
-    [ "sevseg3:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
+    [ "pico:GP5", "sevseg3:DIG1", "white", [ "h1", "v1" ] ],
 
     [ "r12:1", "sevseg2:DIG1", "yellow", [ "v-410", "h0" ] ],
-    [ "pico:GP5", "sevseg3:1", "white", [ "h1", "v1" ] ],
     [ "sevseg4:DIG1", "r12:1", "yellow", [ "v-148", "h20" ] ]
 
   ]

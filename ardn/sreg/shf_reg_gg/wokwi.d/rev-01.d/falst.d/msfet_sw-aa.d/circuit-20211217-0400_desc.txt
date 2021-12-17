@@ -1,6 +1,9 @@
 
  four mosfets arranged as an a-b switch.
 
+ Three P-Channel MOSFETS and one N-Channel MOSFET
+ were used.
+ 
  Meant to supply a common-anode LED array, by
  denying the source voltage (or by supplying it)
  per array.

@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Fri 17 Dec 21:42:09 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Fri 17 Dec 21:59:48 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
   "commentdd": "New project mod - add third and fourth 7-segment x4 digit displays.",
@@ -14,6 +14,9 @@
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr2", "top": 77, "left": -1673, "rotate": 180, "attrs": {} },
     { "type": "wokwi-7segment", "id": "sevseg1", "top": -555, "left": -1090, "attrs": { "digits": "4" } },
+    { "type": "wokwi-7segment", "id": "sevseg2", "top": -555, "left": -1290, "attrs": { "digits": "4" } },
+    { "type": "wokwi-7segment", "id": "sevseg3", "top": -555, "left": -2290, "attrs": { "digits": "4" } },
+    { "type": "wokwi-7segment", "id": "sevseg4", "top": -555, "left": -2490, "attrs": { "digits": "4" } },
     { "type": "wokwi-led", "id": "led1", "top": -50, "left": -840, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led2", "top": -50, "left": -880, "attrs": { "color": "red" } },
     { "type": "wokwi-led", "id": "led3", "top": -50, "left": -920, "attrs": { "color": "red" } },
@@ -45,10 +48,7 @@
     { "type": "wokwi-resistor", "id": "r13", "top": -210, "left": -1730, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r14", "top": -210, "left": -1770, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r15", "top": -210, "left": -1810, "rotate": 90, "attrs": { "value": "330" } },
-    { "type": "wokwi-resistor", "id": "r16", "top": -210, "left": -1850, "rotate": 90, "attrs": { "value": "330" } },
-    { "type": "wokwi-7segment", "id": "sevseg2", "top": -555, "left": -1290, "attrs": { "digits": "4" } },
-    { "type": "wokwi-7segment", "id": "sevseg3", "top": -555, "left": -2290, "attrs": { "digits": "4" } },
-    { "type": "wokwi-7segment", "id": "sevseg4", "top": -555, "left": -2490, "attrs": { "digits": "4" } }
+    { "type": "wokwi-resistor", "id": "r16", "top": -210, "left": -1850, "rotate": 90, "attrs": { "value": "330" } }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],

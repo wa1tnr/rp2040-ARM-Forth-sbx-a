@@ -3,7 +3,7 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Sat 18 Dec 07:21:02 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Sat 18 Dec 07:27:35 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
   "commentdd": "adds wires from sr3 74hc595 to new LED adds",
@@ -110,6 +110,7 @@
     [ "led22:C", "led21:C", "black", [ "v5", "h-19", "v-116", "h45", "v116", "h0" ] ],
     [ "led23:C", "led22:C", "black", [ "v5", "h-14", "v-116", "h35", "v116", "h0" ] ],
     [ "led24:C", "led23:C", "black", [ "v5", "h-14", "v-116", "h39", "v116", "h0" ] ],
+
     [ "sr3:Q0", "led17:A", "brown", [ "v12", "h0" ] ],
     [ "sr3:Q1", "led18:A", "red", [ "v-12", "h0" ] ],
     [ "sr3:Q2", "led19:A", "orange", [ "v-18", "h0" ] ],
@@ -118,6 +119,7 @@
     [ "sr3:Q5", "led22:A", "blue", [ "v-46", "h0" ] ],
     [ "sr3:Q6", "led23:A", "violet", [ "v-40", "h0" ] ],
     [ "sr3:Q7", "led24:A", "gray", [ "v-34", "h0" ] ],
+
     [ "sr2:Q0", "led9:A", "brown", [ "v12", "h0" ] ],
     [ "sr2:Q1", "led10:A", "red", [ "v-12", "h0" ] ],
     [ "sr2:Q2", "led11:A", "orange", [ "v-18", "h0" ] ],
@@ -126,6 +128,7 @@
     [ "sr2:Q5", "led14:A", "blue", [ "v-46", "h0" ] ],
     [ "sr2:Q6", "led15:A", "violet", [ "v-40", "h0" ] ],
     [ "sr2:Q7", "led16:A", "gray", [ "v-34", "h0" ] ],
+
     [ "led9:C", "led10:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led10:C", "led11:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
     [ "led11:C", "led12:C", "black", [ "v5", "h-19", "v-116", "h-39", "v116", "h0" ] ],
@@ -176,6 +179,7 @@
     [ "r6:2", "led6:A", "blue", [ "h0" ] ],
     [ "r7:2", "led7:A", "violet", [ "h0" ] ],
     [ "r8:2", "led8:A", "gray", [ "h0" ] ],
+
     [ "r9:2", "led9:A", "brown", [ "h0" ] ],
     [ "r10:2", "led10:A", "red", [ "h0" ] ],
     [ "r11:2", "led11:A", "orange", [ "h0" ] ],
@@ -184,6 +188,16 @@
     [ "r14:2", "led14:A", "blue", [ "h0" ] ],
     [ "r15:2", "led15:A", "violet", [ "h0" ] ],
     [ "r16:2", "led16:A", "gray", [ "h0" ] ],
+
+    [ "r17:2", "led17:A", "brown", [ "h0" ] ],
+    [ "r18:2", "led18:A", "red", [ "h0" ] ],
+    [ "r19:2", "led19:A", "orange", [ "h0" ] ],
+    [ "r20:2", "led20:A", "yellow", [ "v0", "h0" ] ],
+    [ "r21:2", "led21:A", "green", [ "h0" ] ],
+    [ "r22:2", "led22:A", "blue", [ "h0" ] ],
+    [ "r23:2", "led23:A", "violet", [ "h0" ] ],
+    [ "r24:2", "led24:A", "gray", [ "h0" ] ],
+
     [ "sevseg1:DIG4", "r13:1", "green", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
     [ "sevseg3:DIG4", "r13:1", "green", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
     [ "sevseg2:DIG4", "r9:1", "brown", [ "v45", "h0" ] ],

@@ -47,7 +47,15 @@
     { "type": "wokwi-resistor", "id": "r13", "top": -210, "left": -1730, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r14", "top": -210, "left": -1770, "rotate": 90, "attrs": { "value": "330" } },
     { "type": "wokwi-resistor", "id": "r15", "top": -210, "left": -1810, "rotate": 90, "attrs": { "value": "330" } },
-    { "type": "wokwi-resistor", "id": "r16", "top": -210, "left": -1850, "rotate": 90, "attrs": { "value": "330" } }
+    { "type": "wokwi-resistor", "id": "r16", "top": -210, "left": -1850, "rotate": 90, "attrs": { "value": "330" } },    
+    { "type": "wokwi-led", "id": "led17", "top": -50, "left": -2540, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led18", "top": -50, "left": -2590, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led19", "top": -50, "left": -2630, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led20", "top": -50, "left": -2670, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led21", "top": -50, "left": -2790, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led22", "top": -50, "left": -2830, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led23", "top": -50, "left": -2870, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led24", "top": -50, "left": -2910, "attrs": { "color": "red" } }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],

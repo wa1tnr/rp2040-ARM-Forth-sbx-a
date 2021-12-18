@@ -1,17 +1,15 @@
-// Saturday 18 Dec 2021  21:31:39z
+// Sat 18 Dec 21:40:17 UTC 2021
 
-// working program?
+// for:
+//  [ https://wokwi.com/arduino/new?template=pi-pico ]
 
-// added bank selection code - seems okay for now.
+// added bank selection code
 
 // PERSISTENCE OF VISION technology demonstration.
-
-//  [ https://wokwi.com/arduino/new?template=pi-pico ]
 
 // swap these two cpp directives as required:
 #define EXPOSED_DIGITS
 #undef  EXPOSED_DIGITS
-#define EXPOSED_DIGITS
 
 // common anode 7 seg display:
 
@@ -19,9 +17,11 @@
 // COMMON goes to Vcc
 // segments go to ground.
 
-const int latchPin = 2;  /* STCP */
-const int clockPin = 3;  /* SHCP */
-const int dataPin  = 4;  /* DS */
+// common cathode is also available in this simulator.
+
+const int latchPin = 2; /* STCP */
+const int clockPin = 3; /* SHCP */
+const int dataPin = 4; /* DS */
 
 byte leds = 0;
 byte uleds = 0;
@@ -34,15 +34,15 @@ uint8_t ledval = 0;
 
 void _bankSelect(void) {
     if (bank == 1) {
-      uleds = 255;
-      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
-      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
-      return;
+        uleds = 255;
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+        return;
     }
     if (bank == 0) {
-      uleds = 0;
-      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
-      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+        uleds = 0;
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
     }
 }
 
@@ -61,19 +61,14 @@ void updateShiftRegister(void) {
     _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
 
     if (bank == 1) {
-      uleds = 0;
-      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+        uleds = 0;
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
     }
 
-
-
-     uleds = leds;   // A-F 0-9 and a few other glyphs
+    uleds = leds; // A-F 0-9 and a few other glyphs
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
     digitalWrite(latchPin, HIGH);
 }
-
-
-
 
 #ifdef EXPOSED_DIGITS
 #define SLOW_POV_DEMO -1
@@ -99,33 +94,36 @@ void setleds(void) {
     updateShiftRegister();
     if (!EXPOSE_DIGIT_PAINTING) {
         delay(1); // CRITICAL - must be a finite, non-zero delay here
-    } else {
+    }
+    else {
         delay(1); // bright duration wokwi 14 dec
     }
 }
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
-      delay(1);
+        delay(1);
         if (SLOW_POV_DEMO) {
-          // Serial1.print("debug - slow pov");
-          delay(297);
+            // Serial1.print("debug - slow pov");
+            delay(297);
         }
     }
     setleds();
 
-    if (EXPOSE_DIGIT_PAINTING) { delay (200);}
+    if (EXPOSE_DIGIT_PAINTING) {
+        delay(200);
+    }
 
     blankleds(); // waste no time in doing so!
 }
 
 void proc_encoding(void) {
-  uint8_t ledcpy;
-  ledcpy = ledval ^ 0xff; // this seems very good
-  //  XOR with 0xff seems to flip bits no problem.
-  // this seems to be the only caveat when working
-  // with common-OPPOSITE display (anode, cathode)  
-  ledval = ledcpy;
+    uint8_t ledcpy;
+    ledcpy = ledval ^ 0xff; // this seems very good
+    //  XOR with 0xff seems to flip bits no problem.
+    // this seems to be the only caveat when working
+    // with common-OPPOSITE display (anode, cathode)  
+    ledval = ledcpy;
 //  in_column_zero(); delay(4);
 }
 
@@ -136,68 +134,68 @@ void proc_encoding(void) {
 // probably a physical registration matter, only.
 
 void in_column_zero(void) {
-proc_encoding();  
-    for (int i = REPETITIONS ; i>0; i--) {
-        pos = 16 ; // neg 240 pos 15
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 16; // neg 240 pos 15
         flash_digit();
     }
 }
 
 void in_column_one(void) { // DIGIT 2
-proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-        pos = 32 ; // neg 233 pos 22
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 32; // neg 233 pos 22
         flash_digit();
     }
 }
 
 void in_column_two(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-        pos = 64 ; // neg 228 pos 27
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 64; // neg 228 pos 27
         flash_digit();
     }
 }
 
 void in_column_three(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-       pos = 128 ; // neg 226 pos 29
-       flash_digit();
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 128; // neg 226 pos 29
+        flash_digit();
     }
 }
 
 void in_column_four(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-       pos = 1 ; // neg 226 pos 29
-       flash_digit();
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 1; // neg 226 pos 29
+        flash_digit();
     }
 }
 void in_column_five(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-       pos = 2 ; // neg 226 pos 29
-       flash_digit();
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 2; // neg 226 pos 29
+        flash_digit();
     }
 }
 void in_column_six(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-       pos = 4 ; // neg 226 pos 29
-       flash_digit();
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 4; // neg 226 pos 29
+        flash_digit();
     }
 }
 void in_column_seven(void) {
-  proc_encoding();
-    for (int i = REPETITIONS ; i>0; i--) {
-       pos = 8 ; // neg 226 pos 29
-       flash_digit();
+    proc_encoding();
+    for (int i = REPETITIONS; i > 0; i--) {
+        pos = 8; // neg 226 pos 29
+        flash_digit();
     }
 }
 
 void encode_hw_testing(void) { // 3
-    ledval = 1 + 2 + 4 + 8 +  16 +  32 + 64 + 128;
+    ledval = 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128;
 }
 
 void encode_bitpattern_aa(void) { // low nybble
@@ -209,14 +207,18 @@ void encode_bitpattern_bb(void) { // high nybble
 }
 
 void msg_tttt(void) { // message: '3223'
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
             //  columns 3 2 1 0  -- painted right to left!
 //          encode_three();  in_column_zero();   // print '3' in column '0'
-            encode_hw_testing(); in_column_zero();
-            encode_hw_testing(); in_column_two();
-            encode_bitpattern_aa(); in_column_zero();
-            encode_bitpattern_bb(); in_column_zero();
+            encode_hw_testing();
+            in_column_zero();
+            encode_hw_testing();
+            in_column_two();
+            encode_bitpattern_aa();
+            in_column_zero();
+            encode_bitpattern_bb();
+            in_column_zero();
         }
     }
     delay(1000);
@@ -226,51 +228,51 @@ int count = -1;
 char buffer[8];
 int line_reset;
 
-void encode_one(void) {   // 1
-    ledval = 0 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
+void encode_one(void) { // 1
+    ledval = 0 + 2 + 4 + 0 + 0 + 0 + 0 + 0;
 }
 
 void encode_seven(void) { // 7
-    ledval = 1 + 2 + 4 + 0 +  0 +  0 +  0 +   0;
+    ledval = 1 + 2 + 4 + 0 + 0 + 0 + 0 + 0;
 }
 
 void encode_ltr_l(void) { // L
-    ledval = 0 + 0 + 0 + 8 + 16 + 32 +  0 +   0;
+    ledval = 0 + 0 + 0 + 8 + 16 + 32 + 0 + 0;
 }
 
-void encode_zero(void) {  // 0
-    ledval = 1 + 2 + 4 + 8 + 16 + 32 +  0 +   0;
+void encode_zero(void) { // 0
+    ledval = 1 + 2 + 4 + 8 + 16 + 32 + 0 + 0;
 }
 
 void encode_three(void) { // 3
-    ledval = 1 + 2 + 4 + 8 +  0 +  0 + 64 +   0;
+    ledval = 1 + 2 + 4 + 8 + 0 + 0 + 64 + 0;
 }
 
 // three has 1 2 4 8 and 64 set.  needs mid bar.
 // what bit has never been set so far? probably 64.
 
-void encode_four(void) {  // 4
-    ledval = 0 + 2 + 4 + 0 +  0 + 32 + 64 +   0;
+void encode_four(void) { // 4
+    ledval = 0 + 2 + 4 + 0 + 0 + 32 + 64 + 0;
 }
 
-void encode_five(void) {  // 5
-    ledval = 1 + 0 + 4 + 8 +  0 + 32 + 64 +   0;
+void encode_five(void) { // 5
+    ledval = 1 + 0 + 4 + 8 + 0 + 32 + 64 + 0;
 }
 
-void encode_six(void) {   // 6
-    ledval = 1 + 0 + 4 + 8 + 16 + 32 + 64 +   0;
+void encode_six(void) { // 6
+    ledval = 1 + 0 + 4 + 8 + 16 + 32 + 64 + 0;
 }
 
-void encode_two(void) {   // 2
-    ledval = 1 + 2 + 0 + 8 + 16 +  0 + 64 +   0;
+void encode_two(void) { // 2
+    ledval = 1 + 2 + 0 + 8 + 16 + 0 + 64 + 0;
 }
 
 void encode_eight(void) { // 8
-    ledval = 1 + 2 + 4 + 8 + 16 + 32 + 64 +   0;
+    ledval = 1 + 2 + 4 + 8 + 16 + 32 + 64 + 0;
 }
 
-void encode_nine(void) {  // 9
-    ledval = 1 + 2 + 4 + 8 +  0 + 32 + 64 +   0;
+void encode_nine(void) { // 9
+    ledval = 1 + 2 + 4 + 8 + 0 + 32 + 64 + 0;
 }
 
 void encode_ltr_a(void) { // A -- the letter, A
@@ -298,77 +300,95 @@ void encode_ltr_f(void) { // F
 }
 
 void encode_ltr_blank(void) { // blank
-    ledval = 0 ;
+    ledval = 0;
 }
 
 // 1 7 L 0 3 4 5 6 2 8 9
 // 1 2 3 4 5 6 7 8 9 0 L so far.
 
-
 // a b c d e f blank
 
-
 void msg_le(void) { // message:  'LE  '
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_ltr_blank();  in_column_zero();
-            encode_ltr_blank();  in_column_one();
-            encode_ltr_e();      in_column_two();
-            encode_ltr_l();      in_column_three();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_ltr_blank();
+            in_column_zero();
+            encode_ltr_blank();
+            in_column_one();
+            encode_ltr_e();
+            in_column_two();
+            encode_ltr_l();
+            in_column_three();
         }
     }
     delay(1500);
 }
 
 void msg_bef0(void) { // message: 'bEF0'
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_zero();   in_column_zero();
-            encode_ltr_f();  in_column_one();
-            encode_ltr_e();  in_column_two();
-            encode_ltr_b();  in_column_three();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_zero();
+            in_column_zero();
+            encode_ltr_f();
+            in_column_one();
+            encode_ltr_e();
+            in_column_two();
+            encode_ltr_b();
+            in_column_three();
         }
     }
     delay(1500);
 }
 
 void msg_foca(void) { // message: 'F0CA'
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_ltr_a();  in_column_zero();
-            encode_ltr_c();  in_column_one(); 
-            encode_zero();   in_column_two();
-            encode_ltr_f();  in_column_three();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_ltr_a();
+            in_column_zero();
+            encode_ltr_c();
+            in_column_one();
+            encode_zero();
+            in_column_two();
+            encode_ltr_f();
+            in_column_three();
         }
     }
     delay(1500);
 }
 
 void msg_cafe(void) { // message: 'CAFE'
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_ltr_e();  in_column_zero();
-            encode_ltr_f();  in_column_one();
-            encode_ltr_a();  in_column_two();
-            encode_ltr_c();  in_column_three();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_ltr_e();
+            in_column_zero();
+            encode_ltr_f();
+            in_column_one();
+            encode_ltr_a();
+            in_column_two();
+            encode_ltr_c();
+            in_column_three();
         }
     }
     delay(1500);
 }
 
 void letter_test(void) {
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_ltr_d(); in_column_four();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_ltr_d();
+            in_column_four();
             blankleds(); // shifting not blanking
 
-            encode_ltr_c(); in_column_five();
+            encode_ltr_c();
+            in_column_five();
             blankleds();
 
-            encode_ltr_b(); in_column_six();
+            encode_ltr_b();
+            in_column_six();
             blankleds();
 
-            encode_ltr_a(); in_column_seven();
+            encode_ltr_a();
+            in_column_seven();
         }
     }
     delay(1500);
@@ -380,31 +400,37 @@ void lfc_test(void) {
     msg_cafe();
 }
 
-
 void msg_full_house(void) { // message: '01234567'
-    for (int j = 2;  j>0; j--) {
-        for (int k = DURATION; k>0; k--) {
-            encode_seven();  in_column_zero();
-            encode_six();    in_column_one();
-            encode_five();   in_column_two();
-            encode_four();   in_column_three();
+    for (int j = 2; j > 0; j--) {
+        for (int k = DURATION; k > 0; k--) {
+            encode_seven();
+            in_column_zero();
+            encode_six();
+            in_column_one();
+            encode_five();
+            in_column_two();
+            encode_four();
+            in_column_three();
 
-            encode_three();  in_column_four();
-            encode_two();    in_column_five();
-            encode_one();    in_column_six();
-            encode_zero();   in_column_seven();
+            encode_three();
+            in_column_four();
+            encode_two();
+            in_column_five();
+            encode_one();
+            in_column_six();
+            encode_zero();
+            in_column_seven();
         }
     }
     delay(1500);
 }
-
 
 void setup() {
     Serial1.begin(115200);
     // annoying // Serial1.println("Begin.");
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
-    pinMode(dataPin,  OUTPUT);
+    pinMode(dataPin, OUTPUT);
 }
 
 void loop(void) {
@@ -430,29 +456,45 @@ void loop(void) {
 
     for (int count = REPS; count > 0; count--) {
         bank = 0;
-        encode_seven();  in_column_zero();
-        encode_six();    in_column_one();
-        encode_five();   in_column_two();
-        encode_four();   in_column_three();
+        encode_seven();
+        in_column_zero();
+        encode_six();
+        in_column_one();
+        encode_five();
+        in_column_two();
+        encode_four();
+        in_column_three();
 
-        encode_three();  in_column_four();
-        encode_two();    in_column_five();
-        encode_one();    in_column_six();
-        encode_zero();   in_column_seven();
+        encode_three();
+        in_column_four();
+        encode_two();
+        in_column_five();
+        encode_one();
+        in_column_six();
+        encode_zero();
+        in_column_seven();
     }
 
     for (int count = REPS; count > 0; count--) {
 
         bank = 1;
-        encode_ltr_blank();  in_column_zero();
-        encode_ltr_e();      in_column_one();
-        encode_ltr_e();      in_column_two();
-        encode_ltr_f();      in_column_three();
+        encode_ltr_blank();
+        in_column_zero();
+        encode_ltr_e();
+        in_column_one();
+        encode_ltr_e();
+        in_column_two();
+        encode_ltr_f();
+        in_column_three();
 
-        encode_ltr_f();      in_column_four();
-        encode_zero();       in_column_five();
-        encode_ltr_c();      in_column_six();
-        encode_ltr_blank();  in_column_seven();
+        encode_ltr_f();
+        in_column_four();
+        encode_zero();
+        in_column_five();
+        encode_ltr_c();
+        in_column_six();
+        encode_ltr_blank();
+        in_column_seven();
     }
 
 /*
@@ -475,47 +517,29 @@ void loop(void) {
 /**********   d o c u m e n t a t i o n   **********/
 #if 0
 
-Functional program and wiring.  (15 Dec 2021, 05:49z)
-
-The program operates through persistence of vision.
-
-The display shows information quite briefly, then blanks,
-then shows something else.
-
-Due to the way people experience rapidly flashing information
-(digital signs) the effect is similar to as if the light source
-was on constantly.
-
-The program has adjustments built-in to expose the use of
-persistence of vision techniques.  The technique has power-
-savings features - there are never more than eight segments
-lit at any one instant in time, limiting the maximum
-current the hardware might draw.
-
+Functional program and wiring.(15 Dec 2021, 05:49 z)
+     The program operates through persistence of vision.The display shows
+         information quite briefly, then blanks, then shows something
+         _else.Due to the way people experience rapidly flashing information
+         (digital signs)
+     the effect is similar to as if the light source
+         was on constantly.The program has adjustments built -
+         in to expose the use of persistence of vision techniques.The
+         technique has power - savings features -
+         there are never more than eight segments lit at any one instant in
+         time, limiting the maximum current the hardware might draw.
 #endif
 #if 0
-
- [ http://www.cplusplus.com/reference/cstdio/snprintf/]
-
-int snprintf ( char * s, size_t n, const char * format, ... );
-
-Write formatted output to sized buffer composes a string with
-the same text that would be printed if format was used on printf,
-but instead of be printed, the content is stored as a C string in
-the buffer pointed by s (taking n as the maxium buffer capacity
-to fill).
-
+         [http: //www.cplusplus.com/reference/cstdio/snprintf/]
+          int snprintf(char *s, size_t n, const char *format, ...);
+          Write formatted output to sized buffer composes a string with
+          the same text that would be printed if format was used on printf,
+          but instead of be printed, the content is stored as a C string in
+          the buffer pointed by s(taking n as the maxium buffer capacity
+                                  to fill).
 #endif
-
 #if 0
-3V3 is the main 3.3V supply to RP2040 and its I/O, generated by
-the on-board SMPS.
-
-This pin can be used to power external circuitry (maximum
-output current will depend on RP2040 load and VSYS voltage,
-it is recommended to keep the load on this pin less than 300mA).
-
-Tue 14 Dec 20:09:25 UTC 2021
-
+   3 V3 is the main 3.3 V supply to RP2040 and its I / O, generated by the on - board SMPS.This pin can be used to power external circuitry(maximum output current will depend on RP2040 load and VSYS voltage, it is recommended to keep the load on this pin less than 300 mA).Tue 14 Dec 20: 09:25 UTC
+          2021
 #endif
 // END.

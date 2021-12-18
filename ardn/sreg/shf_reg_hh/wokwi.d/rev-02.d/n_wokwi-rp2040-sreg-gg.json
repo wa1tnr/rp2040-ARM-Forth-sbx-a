@@ -17,6 +17,7 @@
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr2", "top": 77, "left": -1673, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-74hc595", "id": "sr3", "top": 77, "left": -2311, "rotate": 180, "attrs": {} },
     { "type": "wokwi-7segment", "id": "sevseg1", "top": -555, "left": -1090, "attrs": { "digits": "4" } },
     { "type": "wokwi-7segment", "id": "sevseg2", "top": -555, "left": -1290, "attrs": { "digits": "4" } },
     { "type": "wokwi-7segment", "id": "sevseg3", "top": -555, "left": -2290, "attrs": { "digits": "4" } },

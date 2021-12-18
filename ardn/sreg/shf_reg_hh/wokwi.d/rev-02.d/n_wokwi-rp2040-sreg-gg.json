@@ -143,9 +143,11 @@
     [ "sevseg1:E", "r5:1", "green", [ "v105", "h0" ] ],
     [ "sevseg2:F", "r6:1", "blue", [ "v-26", "h-130", "v220", "h263" ] ],
     [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
-    [ "sevseg1:A", "sevseg2:A", "brown", [ "v-45", "h0" ] ],
-    [ "sevseg2:A", "sevseg4:A", "brown", [ "v-45", "h0" ] ],
-    [ "sevseg3:A", "sevseg4:A", "brown", [ "v-45", "h0" ] ],
+
+    [ "sevseg1:A", "sevseg2:A", "brown", [ "h0", "comment here 2231z" ] ],
+    [ "sevseg2:A", "sevseg3:A", "brown", [ "h0" ] ],
+    [ "sevseg3:A", "sevseg4:A", "brown", [ "h0" ] ],
+
     [ "sevseg1:B", "sevseg2:B", "red", [ "v-25", "h0" ] ],
     [ "sevseg2:B", "sevseg4:B", "red", [ "v-25", "h0" ] ],
     [ "sevseg3:B", "sevseg4:B", "red", [ "v-25", "h0" ] ],
@@ -174,7 +176,7 @@
     [ "r7:2", "led7:A", "violet", [ "h0" ] ],
     [ "r8:2", "led8:A", "gray", [ "h0" ] ],
 
-    [ "r9:2", "led9:A", "brown", [ "h0" ] ],
+    [ "r9:2",  "led9:A",  "brown", [ "h0" ] ],
     [ "r10:2", "led10:A", "red", [ "h0" ] ],
     [ "r11:2", "led11:A", "orange", [ "h0" ] ],
     [ "r12:2", "led12:A", "yellow", [ "v0", "h0" ] ],
@@ -192,25 +194,24 @@
     [ "r23:2", "led23:A", "violet", [ "h0" ] ],
     [ "r24:2", "led24:A", "gray", [ "h0" ] ],
 
-    [ "sevseg2:DIG4", "r9:1", "brown", [ "v45", "h-270", "v1" ] ],
-    [ "sevseg2:DIG3", "r10:1", "red", [ "v0", "h0" ] ],
-    [ "sevseg2:DIG2", "r11:1", "orange", [ "v0", "h0" ] ],
-    [ "sevseg2:DIG1", "r12:1", "yellow", [ "v-0", "h0" ] ],
+    [ "sevseg2:DIG4", "r9:1",  "brown", [ "v45", "h0" ] ],
+    [ "sevseg2:DIG3", "r10:1", "red", [ "v-75", "h0" ] ],
+    [ "sevseg2:DIG2", "r11:1", "orange", [ "v-85", "h0" ] ],
+    [ "sevseg2:DIG1", "r12:1", "yellow", [ "v-95", "h0" ] ],
+
     [ "sevseg1:DIG4", "r13:1", "green", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
     [ "sevseg1:DIG3", "r14:1", "blue", [ "v-128", "h-1" ] ],
     [ "sevseg1:DIG2", "r15:1", "violet", [ "v-138", "h20" ] ],
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
 
-    [ "sevseg3:DIG1", "r24:1", "gray", [ "v-148", "h20" ] ],
+    [ "sevseg4:DIG4", "r17:1", "brown", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
+    [ "sevseg4:DIG3", "r18:1", "red", [ "v-128", "h-1" ] ],
+    [ "sevseg4:DIG2", "r19:1", "orange", [ "v-138", "h20" ] ],
     [ "sevseg4:DIG1", "r20:1", "yellow", [ "v-148", "h20" ] ],
 
-    [ "sevseg3:DIG2", "r23:1", "violet", [ "v-138", "h20" ] ],
-    [ "sevseg4:DIG2", "r19:1", "orange", [ "v-138", "h20" ] ],
-
-    [ "sevseg3:DIG3", "r22:1", "blue", [ "v-128", "h-1" ] ],
-    [ "sevseg4:DIG3", "r18:1", "red", [ "v-128", "h-1" ] ],
-
     [ "sevseg3:DIG4", "r21:1", "green", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ],
-    [ "sevseg4:DIG4", "r17:1", "brown", [ "v114", "h100", "v-98", "h12", "v-38", "h-12", "v-161", "h-820", "v10" ] ]
+    [ "sevseg3:DIG3", "r22:1", "blue", [ "v-128", "h-1" ] ],
+    [ "sevseg3:DIG2", "r23:1", "violet", [ "v-138", "h20" ] ],
+    [ "sevseg3:DIG1", "r24:1", "gray", [ "v-148", "h20" ] ]
   ]
 }

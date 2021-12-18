@@ -1,4 +1,4 @@
-// Saturday 18 Dec 2021  09:24:22z
+// Saturday 18 Dec 2021  21:31:39z
 
 // working program?
 
@@ -11,7 +11,7 @@
 // swap these two cpp directives as required:
 #define EXPOSED_DIGITS
 #undef  EXPOSED_DIGITS
-// #define EXPOSED_DIGITS
+#define EXPOSED_DIGITS
 
 // common anode 7 seg display:
 
@@ -420,7 +420,13 @@ void loop(void) {
   
   */
 
+#ifdef EXPOSED_DIGITS
+#define REPS 2
+#endif
+
+#ifndef EXPOSED_DIGITS
 #define REPS 123
+#endif
 
 for (int count = REPS; count > 0; count--)
 {

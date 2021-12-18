@@ -1,4 +1,6 @@
-// Saturday 18 Dec 2021  07:15:16z
+// Saturday 18 Dec 2021  09:24:22z
+
+// working program?
 
 // added bank selection code - seems okay for now.
 
@@ -31,8 +33,17 @@ byte slew = 5;
 uint8_t ledval = 0;
 
 void _bankSelect(void) {
-    uleds = bank;
-    shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+    if (bank == 1) {
+      uleds = 255;
+      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+      return;
+    }
+    if (bank == 0) {
+      uleds = 0;
+      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+    }
 }
 
 void _digitSelect(void) {
@@ -42,8 +53,20 @@ void _digitSelect(void) {
 
 void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
-    _bankSelect(); // highest shift register bits 0 and 1 (Q0, Q1)
+//    _bankSelect(); // highest shift register bits 0 and 1 (Q0, Q1)
+    if (bank == 0) {
+        uleds = 0;
+        shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+    }
     _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
+
+    if (bank == 1) {
+      uleds = 0;
+      shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+    }
+
+
+
      uleds = leds;   // A-F 0-9 and a few other glyphs
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
     digitalWrite(latchPin, HIGH);
@@ -115,7 +138,6 @@ void proc_encoding(void) {
 void in_column_zero(void) {
 proc_encoding();  
     for (int i = REPETITIONS ; i>0; i--) {
-        bank = 0; // use zero, or one
         pos = 16 ; // neg 240 pos 15
         flash_digit();
     }
@@ -124,7 +146,6 @@ proc_encoding();
 void in_column_one(void) { // DIGIT 2
 proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        bank = 1;
         pos = 32 ; // neg 233 pos 22
         flash_digit();
     }
@@ -133,7 +154,6 @@ proc_encoding();
 void in_column_two(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-        bank = 0;
         pos = 64 ; // neg 228 pos 27
         flash_digit();
     }
@@ -142,7 +162,6 @@ void in_column_two(void) {
 void in_column_three(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       bank = 1;
        pos = 128 ; // neg 226 pos 29
        flash_digit();
     }
@@ -151,7 +170,6 @@ void in_column_three(void) {
 void in_column_four(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       bank = 0;
        pos = 1 ; // neg 226 pos 29
        flash_digit();
     }
@@ -159,7 +177,6 @@ void in_column_four(void) {
 void in_column_five(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       bank = 1;
        pos = 2 ; // neg 226 pos 29
        flash_digit();
     }
@@ -167,7 +184,6 @@ void in_column_five(void) {
 void in_column_six(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       bank = 0;
        pos = 4 ; // neg 226 pos 29
        flash_digit();
     }
@@ -175,7 +191,6 @@ void in_column_six(void) {
 void in_column_seven(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
-       bank = 1;
        pos = 8 ; // neg 226 pos 29
        flash_digit();
     }
@@ -396,12 +411,26 @@ void loop(void) {
 
     blankleds();
     delay(400);
+/*
     lfc_test();
     delay(4000);
     letter_test();
 
     delay(400);
+  
+  */
+    bank = 0;
     msg_full_house();
+    delay(2000);
+    blankleds();
+    delay(2000);
+
+    bank = 1;
+    msg_full_house();
+    delay(2000);
+    blankleds();
+    delay(2000);
+
 }
 
 /**********   d o c u m e n t a t i o n   **********/

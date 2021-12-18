@@ -3,16 +3,16 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Fri 17 Dec 23:51:02 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Fri 17 Dec 22:59:41 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
   "commentcc": "online edit dvlp-aa",
   "commentdd": "New project mod - add third and fourth 7-segment x4 digit displays.",
   "commentee": "add two additional displays - DONE and aligned.",
   "commentff": "reformat code for singleton lines.",
   "commentgg": "move the displays up top",
-  "commenthh": "papa november papa papa MOSFETs left to right - local now.",
-  "commentii": "works great - mirror on second display.  Continue.",
-  "commentjj": "calling it good - pico GP5 to sevseg3 DIG1 in white",
+  "commenthh": "works great - mirror on second display.  Continue.",
+  "commentii": "git reset hard 8c2b7b4115 this one file only",
+  "commentjj": "HEAD is now at 8c2b7b4 possibly fixed borkage",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
@@ -183,7 +183,7 @@
     [ "sevseg4:DIG2", "r11:1", "orange", [ "v-138", "h20" ] ],
 
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
-    [ "pico:GP5", "sevseg3:DIG1", "white", [ "h1", "v1" ] ],
+    [ "sevseg3:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
 
     [ "r12:1", "sevseg2:DIG1", "yellow", [ "v-410", "h0" ] ],
     [ "sevseg4:DIG1", "r12:1", "yellow", [ "v-148", "h20" ] ]

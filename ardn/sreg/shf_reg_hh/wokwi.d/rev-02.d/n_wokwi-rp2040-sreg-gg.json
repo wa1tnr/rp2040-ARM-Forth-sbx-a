@@ -195,10 +195,10 @@
     [ "sevseg2:DIG4", "r9:1", "brown", [ "v45", "h0" ] ],
 
     [ "sevseg1:DIG3", "r14:1", "blue", [ "v-128", "h-1" ] ],
-    [ "r10:1", "sevseg2:DIG3", "red", [ "v-390", "h0" ] ],
+    [ "sevseg2:DIG3", "r10:1", "red", [ "v0", "h0" ] ],
 
     [ "sevseg1:DIG2", "r15:1", "violet", [ "v-138", "h20" ] ],
-    [ "r11:1", "sevseg2:DIG2", "orange", [ "v-400", "h0" ] ],
+    [ "sevseg2:DIG2", "r11:1", "orange", [ "v0", "h0" ] ],
 
     [ "sevseg1:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
     [ "r12:1", "sevseg2:DIG1", "yellow", [ "v-410", "h0" ] ],

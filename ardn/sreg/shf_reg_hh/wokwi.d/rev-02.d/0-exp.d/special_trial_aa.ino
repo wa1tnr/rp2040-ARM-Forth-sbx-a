@@ -428,18 +428,17 @@ void loop(void) {
 #define REPS 123
 #endif
 
-for (int count = REPS; count > 0; count--)
-{
-bank = 0;
-            encode_seven();  in_column_zero();
-            encode_six();    in_column_one();
-            encode_five();   in_column_two();
-            encode_four();   in_column_three();
+    for (int count = REPS; count > 0; count--) {
+        bank = 0;
+        encode_seven();  in_column_zero();
+        encode_six();    in_column_one();
+        encode_five();   in_column_two();
+        encode_four();   in_column_three();
 
-            encode_three();  in_column_four();
-            encode_two();    in_column_five();
-            encode_one();    in_column_six();
-            encode_zero();   in_column_seven();
+        encode_three();  in_column_four();
+        encode_two();    in_column_five();
+        encode_one();    in_column_six();
+        encode_zero();   in_column_seven();
 }
 
 for (int count = REPS; count > 0; count--)

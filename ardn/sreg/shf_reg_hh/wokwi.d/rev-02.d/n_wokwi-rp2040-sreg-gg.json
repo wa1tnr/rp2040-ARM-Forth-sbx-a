@@ -205,7 +205,7 @@
     [ "r12:1", "sevseg2:DIG1", "yellow", [ "v-410", "h0" ] ],
 
     [ "sevseg3:DIG1", "r16:1", "gray", [ "v-148", "h20" ] ],
-    [ "sevseg4:DIG1", "r20:1", "yellow", [ "v-148", "h20" ] ]
+    [ "sevseg4:DIG1", "r20:1", "yellow", [ "v-148", "h20" ] ],
 
     [ "sevseg3:DIG2", "r15:1", "violet", [ "v-138", "h20" ] ],
     [ "sevseg4:DIG2", "r19:1", "orange", [ "v-138", "h20" ] ],

@@ -439,23 +439,21 @@ void loop(void) {
         encode_two();    in_column_five();
         encode_one();    in_column_six();
         encode_zero();   in_column_seven();
-}
+    }
 
-for (int count = REPS; count > 0; count--)
-{
+    for (int count = REPS; count > 0; count--) {
 
-bank = 1;
-            encode_ltr_blank();  in_column_zero();
-            encode_ltr_e();    in_column_one();
-            encode_ltr_e();   in_column_two();
-            encode_ltr_f();   in_column_three();
+        bank = 1;
+        encode_ltr_blank();  in_column_zero();
+        encode_ltr_e();      in_column_one();
+        encode_ltr_e();      in_column_two();
+        encode_ltr_f();      in_column_three();
 
-            encode_ltr_f();  in_column_four();
-            encode_zero();    in_column_five();
-            encode_ltr_c();    in_column_six();
-            encode_ltr_blank();   in_column_seven();
-
-}
+        encode_ltr_f();      in_column_four();
+        encode_zero();       in_column_five();
+        encode_ltr_c();      in_column_six();
+        encode_ltr_blank();  in_column_seven();
+    }
 
 /*
 

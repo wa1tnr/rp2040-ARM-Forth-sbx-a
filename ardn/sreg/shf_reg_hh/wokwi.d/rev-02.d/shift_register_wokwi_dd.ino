@@ -1,6 +1,6 @@
-// Thursday 16 Dec 2021  06:44:26z
+// Saturday 18 Dec 2021  07:15:16z
 
-// swapped nybbles for columns
+// added bank selection code - seems okay for now.
 
 // PERSISTENCE OF VISION technology demonstration.
 
@@ -9,6 +9,7 @@
 // swap these two cpp directives as required:
 #define EXPOSED_DIGITS
 #undef  EXPOSED_DIGITS
+#define EXPOSED_DIGITS
 
 // common anode 7 seg display:
 
@@ -23,10 +24,16 @@ const int dataPin  = 4;  /* DS */
 byte leds = 0;
 byte uleds = 0;
 byte pos = 15; // rightmost wrong value tho
+byte bank = 0;
 
 byte slew = 5;
 
 uint8_t ledval = 0;
+
+void _bankSelect(void) {
+    uleds = bank;
+    shiftOut(dataPin, clockPin, MSBFIRST, uleds);
+}
 
 void _digitSelect(void) {
     uleds = pos;
@@ -35,13 +42,12 @@ void _digitSelect(void) {
 
 void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
+    _bankSelect(); // highest shift register bits 0 and 1 (Q0, Q1)
     _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
      uleds = leds;   // A-F 0-9 and a few other glyphs
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
     digitalWrite(latchPin, HIGH);
 }
-
-
 
 
 
@@ -109,6 +115,7 @@ void proc_encoding(void) {
 void in_column_zero(void) {
 proc_encoding();  
     for (int i = REPETITIONS ; i>0; i--) {
+        bank = 0; // use zero, or one
         pos = 16 ; // neg 240 pos 15
         flash_digit();
     }
@@ -117,6 +124,7 @@ proc_encoding();
 void in_column_one(void) { // DIGIT 2
 proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+        bank = 1;
         pos = 32 ; // neg 233 pos 22
         flash_digit();
     }
@@ -125,6 +133,7 @@ proc_encoding();
 void in_column_two(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+        bank = 0;
         pos = 64 ; // neg 228 pos 27
         flash_digit();
     }
@@ -133,6 +142,7 @@ void in_column_two(void) {
 void in_column_three(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+       bank = 1;
        pos = 128 ; // neg 226 pos 29
        flash_digit();
     }
@@ -141,6 +151,7 @@ void in_column_three(void) {
 void in_column_four(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+       bank = 0;
        pos = 1 ; // neg 226 pos 29
        flash_digit();
     }
@@ -148,6 +159,7 @@ void in_column_four(void) {
 void in_column_five(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+       bank = 1;
        pos = 2 ; // neg 226 pos 29
        flash_digit();
     }
@@ -155,6 +167,7 @@ void in_column_five(void) {
 void in_column_six(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+       bank = 0;
        pos = 4 ; // neg 226 pos 29
        flash_digit();
     }
@@ -162,6 +175,7 @@ void in_column_six(void) {
 void in_column_seven(void) {
   proc_encoding();
     for (int i = REPETITIONS ; i>0; i--) {
+       bank = 1;
        pos = 8 ; // neg 226 pos 29
        flash_digit();
     }

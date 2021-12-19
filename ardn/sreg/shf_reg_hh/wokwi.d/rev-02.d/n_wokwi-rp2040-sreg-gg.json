@@ -216,7 +216,8 @@
     [ "r23:2", "led23:A", "violet", [ "h0" ] ],
     [ "r24:2", "led24:A", "gray", [ "h0" ] ],
 
-    [ "sevseg2:DIG4", "r9:1",  "brown", [ "v45", "h0" ] ],
+    [ "sevseg2:DIG4", "r9:1", "brown", [ "v35", "h320", "v-112", "h12", "v-50", "*", "v-381", "h1", "v1"] ],
+
     [ "sevseg2:DIG3", "r10:1", "red", [ "v-75", "h0" ] ],
     [ "sevseg2:DIG2", "r11:1", "orange", [ "v-85", "h0" ] ],
     [ "sevseg2:DIG1", "r12:1", "yellow", [ "v-95", "h0" ] ],

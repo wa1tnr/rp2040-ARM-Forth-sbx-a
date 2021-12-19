@@ -3,9 +3,9 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Sun 19 Dec 02:10:11 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Sun 19 Dec 07:58:12 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
-  "commentcc": "local edit session 02:10z",
+  "commentcc": "indeed is a local edit session at 07:58z",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },

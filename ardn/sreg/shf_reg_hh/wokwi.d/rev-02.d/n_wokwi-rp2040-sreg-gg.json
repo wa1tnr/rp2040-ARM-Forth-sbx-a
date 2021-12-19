@@ -3,9 +3,9 @@
   "author": "wa1tnr",
   "editor": "wokwi",
   "this uri": "https://github.com/wa1tnr/tkm0_7seg-b/blob/dvlp-aa/ardn/sreg/shf_reg_gg/wokwi.d/n_wokwi-rp2040-sreg-ee-rot-180.json ",
-  "comment": "Sun 19 Dec 08:38:15 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
+  "comment": "Sun 19 Dec 089:14:01 UTC 2021  COMPANION FILE to the .ino of similar timestamp. ;)",
   "commentbb": "Persistence of Vision Demo - hardware sim file.",
-  "commentcc": "local edit session at 08:38z",
+  "commentcc": "ONLINE edit session at 09:14z",
   "parts": [
     { "type": "wokwi-pi-pico", "id": "pico", "top": -295.17, "left": -625.11, "attrs": {} },
     { "type": "wokwi-74hc595", "id": "sr1", "top": 77, "left": -1035, "rotate": 180, "attrs": {} },
@@ -151,12 +151,12 @@
 
     [ "sevseg1:A", "r1:1", "brown", [ "v-40", "h0" ] ],
     [ "sevseg1:B", "r2:1", "red", [ "v-19", "h0" ] ],
-    [ "sevseg1:C", "r3:1", "orange", [ "v60", "h1" ] ],
+    [ "sevseg1:C", "r3:1", "orange", [ "v45", "h1" ] ],
     [ "sevseg1:D", "r4:1", "yellow", [ "v80", "h0" ] ],
 
-    [ "sevseg1:E", "r5:1", "green", [ "v105", "h0" ] ],
-    [ "sevseg2:F", "r6:1", "blue", [ "v-32", "h-130", "v210", "h0" ] ],
-    [ "sevseg1:G", "r7:1", "violet", [ "v198", "h0" ] ],
+    [ "sevseg1:E", "r5:1", "green", [ "v55", "h0" ] ],
+    [ "sevseg2:F", "r6:1", "blue", [ "v-32", "h-110", "v180", "h0" ] ],
+    [ "sevseg1:G", "r7:1", "violet", [ "v65", "h0" ] ],
 
     [ "sevseg1:A", "sevseg2:A", "brown", ["v-40",  "h0" ] ],
     [ "sevseg2:A", "sevseg3:A", "brown", [ "v-40",  "h0" ] ],
@@ -166,25 +166,25 @@
     [ "sevseg2:B", "sevseg3:B", "red", [ "v-25", "h0" ] ],
     [ "sevseg3:B", "sevseg4:B", "red", [ "v-25", "h0" ] ],
 
-    [ "sevseg1:C", "sevseg2:C", "orange", [ "v65", "h0" ] ],
-    [ "sevseg2:C", "sevseg3:C", "orange", [ "v65", "h0" ] ],
-    [ "sevseg3:C", "sevseg4:C", "orange", [ "v65", "h0" ] ],
+    [ "sevseg1:C", "sevseg2:C", "orange", [ "v45", "h0" ] ],
+    [ "sevseg2:C", "sevseg3:C", "orange", [ "v45", "h0" ] ],
+    [ "sevseg3:C", "sevseg4:C", "orange", [ "v45", "h0" ] ],
 
-    [ "sevseg1:D", "sevseg2:D", "yellow", [ "v85", "h0" ] ],
-    [ "sevseg2:D", "sevseg3:D", "yellow", [ "v85", "h0" ] ],
-    [ "sevseg3:D", "sevseg4:D", "yellow", [ "v85", "h0" ] ],
+    [ "sevseg1:D", "sevseg2:D", "yellow", [ "v25", "h0" ] ],
+    [ "sevseg2:D", "sevseg3:D", "yellow", [ "v25", "h0" ] ],
+    [ "sevseg3:D", "sevseg4:D", "yellow", [ "v25", "h0" ] ],
 
-    [ "sevseg1:E", "sevseg2:E", "green", [ "v105", "h0" ] ],
-    [ "sevseg2:E", "sevseg3:E", "green", [ "v105", "h0" ] ],
-    [ "sevseg3:E", "sevseg4:E", "green", [ "v105", "h0" ] ],
+    [ "sevseg1:E", "sevseg2:E", "green", [ "v55", "h0" ] ],
+    [ "sevseg2:E", "sevseg3:E", "green", [ "v55", "h0" ] ],
+    [ "sevseg3:E", "sevseg4:E", "green", [ "v55", "h0" ] ],
 
     [ "sevseg1:F", "sevseg2:F", "blue", [ "v-32", "h0" ] ],
     [ "sevseg2:F", "sevseg3:F", "blue", [ "v-32", "h0" ] ],
     [ "sevseg3:F", "sevseg4:F", "blue", [ "v-32", "h0" ] ],
 
-    [ "sevseg1:G", "sevseg2:G", "violet", [ "v198", "h0" ] ],
-    [ "sevseg2:G", "sevseg3:G", "violet", [ "v198", "h0" ] ],
-    [ "sevseg3:G", "sevseg4:G", "violet", [ "v198", "h0" ] ],
+    [ "sevseg1:G", "sevseg2:G", "violet", [ "v65", "h0" ] ],
+    [ "sevseg2:G", "sevseg3:G", "violet", [ "v65", "h0" ] ],
+    [ "sevseg3:G", "sevseg4:G", "violet", [ "v65", "h0" ] ],
 
     [ "r1:2", "led1:A", "brown", [ "h0" ] ],
     [ "r2:2", "led2:A", "red", [ "h0" ] ],
@@ -216,8 +216,7 @@
     [ "r23:2", "led23:A", "violet", [ "h0" ] ],
     [ "r24:2", "led24:A", "gray", [ "h0" ] ],
 
-    [ "sevseg2:DIG4", "r9:1", "brown", [ "v35", "h320", "v-112", "h12", "v-50", "*", "v-381", "h1", "v1"] ],
-
+    [ "sevseg2:DIG4", "r9:1", "brown", [ "v35", "h380", "v-112", "h12", "v-50", "*", "v-381", "h1", "v1"] ],
     [ "sevseg2:DIG3", "r10:1", "red", [ "v-75", "h0" ] ],
     [ "sevseg2:DIG2", "r11:1", "orange", [ "v-85", "h0" ] ],
     [ "sevseg2:DIG1", "r12:1", "yellow", [ "v-95", "h0" ] ],

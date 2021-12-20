@@ -1,14 +1,9 @@
-// Mon 20 Dec 10:56:12 UTC 2021
-
-// good solid define structures 02z 19 Dec
-
-// Sun 19 Dec 02:19:51 UTC 2021  ONLINE edits
+// Mon 20 Dec 10:59:16 UTC 2021
 
 // for:
-//  [ https://wokwi.com/arduino/new?template=pi-pico ]
-
-// added bank selection code - works well 19 Dec 02z
-
+// falstad avrjs with both 7Seg LED arrays and shift registers
+// includes latch circuit - mosfet N-Channel to sink current.
+// reversed sense of latch to accomodate the MOSFET method.
 // PERSISTENCE OF VISION technology demonstration.
 
 // swap these two cpp directives as required:

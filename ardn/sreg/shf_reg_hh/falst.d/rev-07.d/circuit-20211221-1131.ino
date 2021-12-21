@@ -1,4 +1,4 @@
-// Tue 21 Dec 11:34:15 UTC 2021
+// Tue 21 Dec 11:38:19 UTC 2021
 
 const int sr_data = 2;
 const int sr_clock = 3;
@@ -18,15 +18,23 @@ void loop(void) {
   digitalWrite(sr_latch, HIGH) ;
 
   delay(12);
+
+
+  digitalWrite(sr_latch, LOW) ;
   for (int iter = 4; iter > -1; iter--) {
     shiftOut(sr_data, sr_clock, MSBFIRST, 0); // clearing
   }
+  digitalWrite(sr_latch, HIGH) ;
+
+
   delay(5);
+  digitalWrite(sr_latch, LOW) ;
   shiftOut(sr_data, sr_clock, MSBFIRST, some_data);
   digitalWrite(sr_latch, HIGH) ;
-//  delay(1);
+
 for (volatile int count = 800; count > 0; count--) { }
-  some_data = some_data * 2; // left shift
+  // some_data = some_data * 2; // left shift
+  some_data = some_data + 1;
   if (some_data == 128) { some_data = 1; }
   if (some_data > 127) {some_data = 1; }
   if (some_data < 1)  {some_data = 1; }

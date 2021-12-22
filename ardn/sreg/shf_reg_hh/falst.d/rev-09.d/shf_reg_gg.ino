@@ -1,4 +1,7 @@
+// works with this circuit sim in this one context ;)
+
 // Refresh:
+// Wed 22 Dec 13:54:36 UTC 2021
 // Fri 10 Dec 17:36:17 UTC 2021
 // Sat Apr 27 22:25:53 UTC 2019
 
@@ -10,8 +13,8 @@
 // finpaflik
 
 #define DATENOW     "Wed Nov 28 09:52:54 UTC 2018"
-#include "config.h"
-#include "src/periph/dotstar.h"
+// #include "config.h"
+// #include "src/periph/dotstar.h"
 
 /*
 Adafruit Arduino - Lesson 4. 8 LEDs and a Shift Register
@@ -19,9 +22,9 @@ Simon Monk mods: wa1tnr  27 November 2018
 */
 
 // Trinket M0
-int latchPin = 2;
+int latchPin = 4;
 int clockPin = 3;
-int dataPin  = 4;
+int dataPin  = 2;
 
 byte leds = 0;
 byte uleds = 0;
@@ -32,16 +35,16 @@ byte slew = 5;
 uint8_t ledval = 0;
 
 void setup(void) {
-    setup_dotstar();
+    // setup_dotstar();
 
     Serial.begin(9600);
 
     // while(!Serial) {
 
-    for (int i = 4 ; i > 0 ; i--) {
-        loop_dotstar(); // 4th iteration turns off dostar
-    }
-    Serial.print(DATENOW);
+    // for (int i = 4 ; i > 0 ; i--) {
+        // loop_dotstar(); // 4th iteration turns off dostar
+    // }
+    // Serial.print(DATENOW);
 
     pinMode(latchPin, OUTPUT);
     pinMode(dataPin,  OUTPUT);
@@ -69,6 +72,7 @@ void blankleds(void) {
     updateShiftRegister();
 }
 
+#define EXPOSE_DIGIT_PAINTING 0
 void setleds(void) {
     leds = ledval;
     updateShiftRegister();
@@ -88,6 +92,7 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
     blankleds(); // waste no time in doing so!
 }
 
+#define REPETITIONS 2
 void in_column_zero(void) {
     for (int i = REPETITIONS ; i>0; i--) {
         pos = 15 ; flash_digit();
@@ -189,6 +194,8 @@ void encode_ltr_blank(void) { // blank
 
 // detailed messages to show on the 7-segment, 4-digit LED display:
 
+#define DURATION 2
+
 void msg_a_24(void) { // message:  'A824'
     for (int j = 2;  j>0; j--) {
         for (int k = DURATION; k>0; k--) {
@@ -198,7 +205,7 @@ void msg_a_24(void) { // message:  'A824'
             encode_ltr_a();  in_column_three();
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 void msg_tttt(void) { // message: '3223'
@@ -211,7 +218,7 @@ void msg_tttt(void) { // message: '3223'
             encode_three();  in_column_three();  // print '3' in column '3'
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 void msg_le(void) { // message:  'LE  '
@@ -223,7 +230,7 @@ void msg_le(void) { // message:  'LE  '
             encode_ltr_l();      in_column_three();
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 void msg_bef0(void) { // message: 'bEF0'
@@ -235,7 +242,7 @@ void msg_bef0(void) { // message: 'bEF0'
             encode_ltr_b();  in_column_three();
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 void msg_foca(void) { // message: 'F0CA'
@@ -247,7 +254,7 @@ void msg_foca(void) { // message: 'F0CA'
             encode_ltr_f();  in_column_three();
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 void msg_cafe(void) { // message: 'CAFE'
@@ -259,26 +266,26 @@ void msg_cafe(void) { // message: 'CAFE'
             encode_ltr_c();  in_column_three();
         }
     }
-    delay(1000);
+    delay(10);
 }
 
 
 
 void loop(void) {
     blankleds();
-    delay(40);
+    delay(4);
     ledval = 0;
     int i = 0;
-    delay(1000);
+    delay(10);
 
-    msg_tttt();
-    msg_a_24();
+ //   msg_tttt();
+ //   msg_a_24();
     msg_le(); msg_foca(); msg_cafe();
     msg_bef0();
 
     // hold display blank for a while:
     i = 128; ledval = i; in_column_zero(); blankleds();
-    delay(2 * (111 + slew));
+    delay(2 * (11 + slew));
 }
 
 // END.

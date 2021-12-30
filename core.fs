@@ -218,7 +218,7 @@ cvariable base
 : hc. ( c - )  base c@ >r hex 0 #,
     <# # # #> type space r> base c! ;
 \ dump memory, program and ram, in hex
-: d ( a - a')  dup hw. p! space 7 #, for @p+ hw. next p ;
+: d ( a - a')  dup hw. p! space 7 #, for @p+ hw. next p ; \ maybe the dump sought?
 : r ( a - a')  dup hw. a! space 15 #, for c@+ hc. next a ;
 -: .word  pad a!
     p @p $ff #, and 2/ for @p+ w!+ next
@@ -262,6 +262,6 @@ here [ 4 + constant dict ]
     ." --> " depth dup a! begin swap >r 1- while repeat drop
     a begin r@ ?. r> swap 1- while repeat drop ;
 : interpret
-    begin .s cr query space find while
+    begin .s cr query space find while \ populate tib and dictionary lookup
         execute depth -if huh? then drop
     repeat tib count type huh?

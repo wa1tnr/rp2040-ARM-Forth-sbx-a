@@ -228,14 +228,14 @@ cvariable base
 here [ 4 + constant dict ]
 : dictionary  $a5 #, p! ;
 : words  cr dictionary begin p @p while drop .word cr repeat drop ;
-: tib! ( c)
+: tib! ( c) \ accrete tib char by char?
     tib dup c@ 1+ over c! dup c@ + c! ;
-: echo ( c - c)  dup emit ;
+: echo ( c - c)  dup emit ; \ does exactly what it looks like (non-destructive emit)
 : query
-    false tib ! false
+    false tib ! false \ strip tib of prior content?
     begin drop key BL max BL xor until BL xor echo tib!
-    begin key BL max BL xor while BL xor echo tib! repeat
-    drop BL tib dup c@ + 1+ c! ;
+    begin key BL max BL xor while BL xor echo tib! repeat \ assemble new tib?
+    drop BL tib dup c@ + 1+ c! ; \ store accretion back into tib?
 : match (  - 0|n)  \ P has been loaded
     tib a! false
     p @p $ff #, and 2/ for w@+ @p+ - or next

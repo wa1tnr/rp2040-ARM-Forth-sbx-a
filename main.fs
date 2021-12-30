@@ -39,6 +39,8 @@ turnkey
 : lit7f  dup $7f #, swap drop ;
 : lit256 dup $100 #, swap drop ;
 
-: id ." 27 Dec Monday 20:24z" cr ;
+: id ." 30 Dec Thursday 21:13z" cr ;
 
+\ : torst 43 #, echo ;
+: nxt jlit + echo ; \ show next char
 turnkey decimal interpret

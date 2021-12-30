@@ -87,7 +87,8 @@ warn
 
 \ create _crlf  2 c, 13 c, 10 c,
 create _crlf  1 c, 10 c,
-create _comma  3 c, 32 c, char , c, 32 c,
+create _comma  2 c, 32 c, char , c, \ 32 c,  \ modified
+\ create _commaf 3 c, 32 c, char , c, 32 c,  \ canonical
 : (.) ( n - a n)  0 <# #s #> ;
 0 value save-fid
 : spit ( a n)  save-fid write-file abort" write error" ;

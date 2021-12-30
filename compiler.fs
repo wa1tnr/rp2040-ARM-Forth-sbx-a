@@ -85,7 +85,8 @@ nowarn
    labels begin  @ dup while  dup show space  repeat  drop ;
 warn
 
-create _crlf  2 c, 13 c, 10 c,
+\ create _crlf  2 c, 13 c, 10 c,
+create _crlf  1 c, 10 c,
 create _comma  3 c, 32 c, char , c, 32 c,
 : (.) ( n - a n)  0 <# #s #> ;
 0 value save-fid

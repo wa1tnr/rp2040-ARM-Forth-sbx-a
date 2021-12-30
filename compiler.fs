@@ -85,26 +85,30 @@ nowarn
    labels begin  @ dup while  dup show space  repeat  drop ;
 warn
 
+create _space  1 c, 32 c,
 \ create _crlf  2 c, 13 c, 10 c,
 create _crlf  1 c, 10 c,
-create _comma  2 c, 32 c, char , c, \ 32 c,  \ modified
+create _comma  1 c, char , c, \ 32 c,  \ modified
 \ create _commaf 3 c, 32 c, char , c, 32 c,  \ canonical
 : (.) ( n - a n)  0 <# #s #> ;
 0 value save-fid
 : spit ( a n)  save-fid write-file abort" write error" ;
 : crlf  _crlf count spit ;
+: spaced _space count spit ;
 : save  (  - )
 	0 to save-fid   s" ./memory.h" delete-file drop
 	s" ./memory.h" r/w create-file abort" Error creating memory.h" to save-fid
     s" // memory.h" save-fid write-file abort" write error" crlf
     crlf
     s" const uint16_t memory[] = {" spit crlf
-    crlf
+    spaced spaced spaced
     target-image target-size 2/ 0 do
+        spaced
         dup w@ (.) spit _comma count spit 2 +
-        i 7 and 0= if crlf then
+        i 7 and 0= if crlf spaced spaced spaced then
     loop drop
-    s" };" spit crlf
+    crlf s" };" spit crlf crlf
+    s" // END." spit crlf
 	save-fid close-file abort" Error closing memory.h" ;
 
 \ ----- Headers on the target ----- /

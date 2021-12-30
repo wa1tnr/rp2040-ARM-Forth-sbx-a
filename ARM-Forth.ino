@@ -40,6 +40,30 @@ void setup(){
 
 // Forth code words
 
+#define BLINK_TIME 80
+#define DELTA_TIME 700
+
+void quickly(void) {
+    int elapsed=millis();
+    do {
+        for (volatile int slow = 3; slow > 0; slow--) { }
+    } while ((millis() - elapsed) < BLINK_TIME);
+}
+
+void slowly(void) {
+    int elapsed=millis();
+    do {
+        for (volatile int slow = 3; slow > 0; slow--) { }
+    } while ((millis() - elapsed) < (BLINK_TIME + DELTA_TIME));
+}
+
+void _blink_led(void) {
+    digitalWrite(LED_BUILTIN, 1);
+    quickly();
+    digitalWrite(LED_BUILTIN, 0);
+    slowly();
+}
+
 void _emit(){
     Serial.write(T);
     DROP;
@@ -435,6 +459,8 @@ void _fetchMCP23017(){
 
 // all the I/O pins needed for the steno keyboard
 void _initGPIO(){
+    pinMode(LED_BUILTIN, OUTPUT); // tnr 27 dec
+    digitalWrite(LED_BUILTIN, 0);
     pinMode(9, INPUT_PULLUP);
     pinMode(10, INPUT_PULLUP);
     pinMode(11, INPUT_PULLUP);
@@ -516,7 +542,8 @@ void (*function[])()={
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 66
     _Keyboard_begin , _Keyboard_press , // 68
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
-    _dropzbranch , // 72
+    _blink_led , // 72 simple integer count
+    _dropzbranch , // 73
 };
 
 void _execute(){

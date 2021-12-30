@@ -112,6 +112,7 @@ code blink 72 ,
 :m again ( a)  branch [ 2/ ] , m;
 \ 0branch and +branch don't drop the stack
 :m until ( a)  0branch [ 2/ ] , m;
+\ this macro creates the +branch instruction. 30 Dec 16:32z
 :m -until ( a)  +branch [ 2/ ] , m;
 :m /until ( a)  /branch [ 2/ ] , m;
 :m then ( a)  here [ 2/ swap ] !-t ;

@@ -1,0 +1,129 @@
+Thu 30 Dec 12:50:58 UTC 2021
+
+  git  clone https://github.com/CharleyShattuck/ARM-Forth.git
+
+  mv ARM-Forth ARM-Forth-sbx-a
+
+  cd   ARM-Forth-sbx-a # clean copy is also now final repo named this way
+  git show | sed 3q
+commit 9cefe08aea2fcf9c0c84a5933b6a7f9534faeb24
+Author: Charley Shattuck <cshattuck@surewest.net>
+Date:   Wed Dec 22 22:07:51 2021 -0800
+
+  cat >> ../hiscommit
+commit 9cefe08aea2fcf9c0c84a5933b6a7f9534faeb24
+
+  cd ..
+
+  git clone git@github.com:wa1tnr/ARM-Forth.git # clone the forked repository you modified
+
+  cd ARM-Forth
+
+  git branch # says 'main'
+
+  git checkout dvlp-tnr-aa # says "Switched to a new branch 'dvlp-tnr-aa'"
+
+  # now in the new work to be gathered into a patch to be patched against a pristine copy of the upstream work
+
+  git show | sed 3q
+commit 6a18cd8351269861b6a8c37aa5210e40e35ead0e
+Author: wa1tnr <wa1tnr@users.noreply.github.com>
+Date:   Mon Dec 27 20:26:19 2021 +0000
+
+  cat >> ../mine
+
+  6a18cd8351269861b
+
+  cd ..
+
+  cat >> 00-make-patch
+
+  git diff tag1..tag2 > mypatch.patch
+
+  cat   00-make-patch  hiscommit  mine
+
+  cd   ARM-Forth  # be SURE you are in the correct directory
+
+  git branch -avv # you should see YOUR WORK in the branch you're about to diff
+
+  git checkout dvlp-tnr-aa
+Already on 'dvlp-tnr-aa'
+Your branch is up to date with 'origin/dvlp-tnr-aa'.
+
+  # the latest work is reflected in the above and is the source of this entire patch
+
+  # now create a patch to your private copy of the upstream work:
+
+  git diff 9cefe08aea2fcf9c0c..6a18cd8351269861b > ../my.new.patch
+
+  cd ..
+
+  cd  ARM-Forth-sbx-a
+
+  git branch -avv  # verify this is the pristine upstream repository, possibly with only branch 'main'
+* main                9cefe08 [origin/main] USB-HID keyboard
+
+  cp -p ../my.new.patch . 
+  cat ./my.new.patch | sed 3q
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..5649459
+
+  git checkout -b dvlp-aa
+Switched to a new branch 'dvlp-aa'
+
+# two sanity checks
+
+  git branch -avv | egrep dvlp-aa
+
+  git show | sed 3q
+commit 9cefe08aea2fcf9c0c84a5933b6a7f9534faeb24
+Author: Charley Shattuck <cshattuck@surewest.net>
+Date:   Wed Dec 22 22:07:51 2021 -0800
+
+  git branch
+* dvlp-aa
+  main
+
+  pwd
+/some/path/to/patch.d/ARM-Forth-sbx-a
+
+  git apply my.new.patch
+my.new.patch:56: trailing whitespace.
+test 02EF 
+my.new.patch:57: trailing whitespace.
+interpret 02DA 
+my.new.patch:58: trailing whitespace.
+.s 0280 
+my.new.patch:59: trailing whitespace.
+= 026D 
+my.new.patch:60: trailing whitespace.
+0= 0264 
+warning: squelched 365 whitespace errors
+warning: 370 lines add whitespace errors.
+
+
+NOW TEST EVERYTHING to be sure this is a high-quality patch.
+
+Inspect any way you know how. ;)
+
+This will be the basis of a brand new repository, that
+has collected existing work you've done on a 'live fork'
+of the upstream, but (now) independent of it (there will
+be no direct linkage between new work you are about to
+perform, and the upstream author's work - they will not
+be exposed to it through any sharing mechanism).
+
+NOTE! Your work appears only as modified files - git does
+not know about this!  That means the last commit is still,
+at this point, the upstream author's last commit.
+
+Your work is only visible locally but isn't in any commit
+in the current context.
+
+Only the sources were patched (see 'git status' to notice
+which ones; you can also 'git diff' them all or individually
+to see what's been done to them during this process).
+
+NOTE ALSO!  Files that aren't tracked were created during
+the process.  That's because the upstream never saw them.

@@ -1,0 +1,9 @@
+\ 800f676
+\ 2021-11-22 07:08:41
+
+\ main.fs
+target
+turnkey
+    decimal
+: test  ." this is going to be good 27 Dec 2021 at 12:17:31 UTC" ;
+turnkey decimal interpret

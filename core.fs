@@ -105,7 +105,8 @@ code Keyboard.press  68 ,
 code Keyboard.release  69 ,
 code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
--code /branch  72 ,
+code blink 72 ,
+-code /branch  73 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;
@@ -129,6 +130,12 @@ code Keyboard.releaseAll  70 ,
 :m cvariable  code 14 , ramHERE , 1 ramALLOT m;
 :m wvariable  code 14 , ramHERE , 2 ramALLOT m;
 :m variable  code 14 , ramHERE , 4 ramALLOT m;
+
+\ // read 32 bits inline
+\ void _lit(){
+\     DUP;
+\     T=memory[I++]+(memory[I++]<<16);
+\ }
 
 \ think of #, as a literal instruction in an assembler
 :m #,  lit [ dup $ffff and ] , [ $10000 / $ffff and ] , m;
@@ -248,6 +255,7 @@ here [ 4 + constant dict ]
     drop true ;
 : =  ( n1 n2 - flag)  - 0= ;
 -: ?.  base c@ $10 #, - if drop . exit then drop u. ;
+\ : .s  depth 0= if drop ." --> empty" exit then drop
 : .s  depth 0= if drop ." --> empty " exit then drop
     depth 1 #, = if drop dup ." --> " ?. exit then drop
     ." --> " depth dup a! begin swap >r 1- while repeat drop
@@ -256,4 +264,3 @@ here [ 4 + constant dict ]
     begin .s cr query space find while
         execute depth -if huh? then drop
     repeat tib count type huh?
-

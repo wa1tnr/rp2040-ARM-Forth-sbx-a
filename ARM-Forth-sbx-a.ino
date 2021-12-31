@@ -1,5 +1,5 @@
-// ARM-Forth.ino
-// Thu 30 Dec 21:16:24 UTC 2021
+// ARM-Forth-sbx-a.ino
+// Fri 31 Dec 18:22:42 UTC 2021
 
 #include "memory.h"
 #include <Wire.h>
@@ -35,8 +35,9 @@ uint8_t ram[RAMSIZE];
 
 // arduino initialization
 void setup(){
+    delay(999);
     Serial.begin(9600);
-    delay(3000);
+    delay(2000);
 }
 
 // Forth code words

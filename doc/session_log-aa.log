@@ -1,0 +1,672 @@
+ $ egrep jlit main.fs
+: jlit dlit dlit swap - ; \ always exactly '1'
+: nxt jlit + echo ; \ show next char
+
+ $ egrep lit main.fs
+\ literals
+\ : olit a dup drop 1 #, swap drop ;
+\ : tlit a dup drop $0100000 #, swap drop ;
+\ : vlit a dup 1+ swap - ;
+: dlit dup 1+ ; \ simple and does what's wanted
+: jlit dlit dlit swap - ; \ always exactly '1'
+\ : lit0q dup 1+ dup 1+ swap - $00 #, swap drop ;
+: lit0 dup $0 #, swap drop ;
+: lit1 lit0 1+ ;
+: lit2 lit1 1+ ;
+: lit3 lit2 1+ ;
+: lit16  dup $10 #, swap drop ;
+: lit7f  dup $7f #, swap drop ;
+: lit256 dup $100 #, swap drop ;
+: nxt jlit + echo ; \ show next char
+
+ $ sh ./picot.sh /dev/ttyACM0
+
+NON-STANDARD escape char is the backslash, not the usual Control+A
+Control \, Control Q to quit
+Control \, Control S to send a file from the local directory
+picocom v3.1
+
+some settings suppressed here for brevity:
+
+port is        : /dev/ttyACM0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-|
+local echo is  : no
+send_cmd is    : ascii-xfr -sn -l 5 -c 1
+imap is        : lfcrlf,
+omap is        : crlf,delbs,
+emap is        : crcrlf,delbs,
+
+Type [C-|] [C-h] to see available commands
+Terminal ready
+
+words 
+nxt 03AE 
+id 037D 
+lit256 0375 
+lit7f 036D 
+lit16 0365 
+lit3 0361 
+lit2 035D 
+lit1 0359 
+lit0 0351 
+jlit 034B 
+dlit 0347 
+wiggle 0340 
+said 0331 
+togpin 032C 
+kurtz 0316 
+test 02DD 
+interpret 02C7 
+.s 0281 
+= 026E 
+0= 0265 
+? 0261 
+' 025D 
+h# 0245 
+find 0225 
+match 0209 
+query 01E2 
+echo 01DE 
+tib! 01D2 
+words 01C4 
+dictionary 01BE 
+r 0199 
+d 018A 
+hc. 0178 
+hw. 0164 
+h. 014C 
+max 013F 
+BL 013A 
+true 0135 
+false 0130 
+. 012B 
+0< 011E 
+d. 0112 
+dabs 010D 
+u. 0107 
+ud. 0100 
+#s 00F4 
+# 00DB 
+hex 00D4 
+decimal 00CD 
+base 00CB 
+#> 00C2 
+<# 00BD 
+sign 00B4 
+hold 00AB 
+holder 00A9 
+*/ 00A5 
+*/mod 009F 
+ud/mod 0092 
+mod 008A 
+/ 0081 
+* 007D 
+type 0074 
+space 006E 
+count 0068 
+rot 0062 
+pad 0060 
+tib 005E 
+ptype 0054 
+1- 004E 
+1+ 0048 
+blink 0046 
+Keyboard.releaseAll 0045 
+Keyboard.release 0044 
+Keyboard.press 0043 
+Keyboard.begin 0042 
+rshift 0041 
+lshift 0040 
+@GPIO 003F 
+initGPIO 003E 
+@MCP23017 003D 
+initMCP23017 003C 
+nip 003B 
+dnegate 0039 
+w! 0038 
+w@ 0037 
+um/mod 0036 
+um* 0035 
+w@+ 0034 
+c@+ 0033 
+huh? 0032 
+execute 0031 
+depth 0030 
+!+ 002F 
+c!+ 002E 
+! 002D 
+c! 002C 
+@p 002B 
+w!+ 002A 
+p! 0029 
+p 0028 
+a! 0027 
+a 0026 
+@p+ 0025 
+@+ 0024 
+@ 0023 
+c@ 0022 
+2/ 0021 
+2* 0020 
+abs 001F 
+negate 001E 
+invert 001D 
+xor 001C 
+or 001B 
+and 001A 
+cr 0019 
+ms 0018 
+- 0017 
++ 0016 
+over 0015 
+swap 0014 
+drop 0013 
+dup 0012 
+timer 0011 
+counter 0010 
+d# 000F 
+.sh 000E 
+r@ 000D 
+r> 000C 
+>r 000B 
+key 0005 
+emit 0004 
+quit 0003 
+abort 0002 
+exit 0001 
+--> empty 
+jlit --> 1 
+dup --> 1 1 
++ --> 2 
+dup --> 2 2 
++ --> 4 
+dup --> 4 4 
++ --> 8 
+dup --> 8 8 
++ --> 16 
+nxt ^Q--> 17 
+nxt ^R--> 18 
+dup --> 18 18 
++ --> 36 
+jlit --> 36 1 
+- --> 35 
+dup --> 35 35 
+drop --> 35 
+x x ?
+--> empty 
+
+Terminating...
+Skipping tty reset...
+Thanks for using picocom
+
+ script $ date ; sh ./picot.sh /dev/ttyACM0
+Fri 31 Dec 11:10:31 UTC 2021
+
+usual picocom signon messages here
+
+.
+.
+exit is        : no
+
+Terminal ready
+
+words   \ search on 'empty' to scroll to the end of the wordlist, in this text document.
+
+nxt 03AE 
+id 037D 
+lit256 0375 
+lit7f 036D 
+lit16 0365 
+lit3 0361 
+lit2 035D 
+lit1 0359 
+lit0 0351 
+jlit 034B 
+dlit 0347 
+wiggle 0340 
+said 0331 
+togpin 032C 
+kurtz 0316 
+test 02DD 
+interpret 02C7 
+.s 0281 
+= 026E 
+0= 0265 
+? 0261 
+' 025D 
+h# 0245 
+find 0225 
+match 0209 
+query 01E2 
+echo 01DE 
+tib! 01D2 
+words 01C4 
+dictionary 01BE 
+r 0199 
+d 018A 
+hc. 0178 
+hw. 0164 
+h. 014C 
+max 013F 
+BL 013A 
+true 0135 
+false 0130 
+. 012B 
+0< 011E 
+d. 0112 
+dabs 010D 
+u. 0107 
+ud. 0100 
+#s 00F4 
+# 00DB 
+hex 00D4 
+decimal 00CD 
+base 00CB 
+#> 00C2 
+<# 00BD 
+sign 00B4 
+hold 00AB 
+holder 00A9 
+*/ 00A5 
+*/mod 009F 
+ud/mod 0092 
+mod 008A 
+/ 0081 
+* 007D 
+type 0074 
+space 006E 
+count 0068 
+rot 0062 
+pad 0060 
+tib 005E 
+ptype 0054 
+1- 004E 
+1+ 0048 
+blink 0046 
+Keyboard.releaseAll 0045 
+Keyboard.release 0044 
+Keyboard.press 0043 
+Keyboard.begin 0042 
+rshift 0041 
+lshift 0040 
+@GPIO 003F 
+initGPIO 003E 
+@MCP23017 003D 
+initMCP23017 003C 
+nip 003B 
+dnegate 0039 
+w! 0038 
+w@ 0037 
+um/mod 0036 
+um* 0035 
+w@+ 0034 
+c@+ 0033 
+huh? 0032 
+execute 0031 
+depth 0030 
+!+ 002F 
+c!+ 002E 
+! 002D 
+c! 002C 
+@p 002B 
+w!+ 002A 
+p! 0029 
+p 0028 
+a! 0027 
+a 0026 
+@p+ 0025 
+@+ 0024 
+@ 0023 
+c@ 0022 
+2/ 0021 
+2* 0020 
+abs 001F 
+negate 001E 
+invert 001D 
+xor 001C 
+or 001B 
+and 001A 
+cr 0019 
+ms 0018 
+- 0017 
++ 0016 
+over 0015 
+swap 0014 
+drop 0013 
+dup 0012 
+timer 0011 
+counter 0010 
+d# 000F 
+.sh 000E 
+r@ 000D 
+r> 000C 
+>r 000B 
+key 0005 
+emit 0004 
+quit 0003 
+abort 0002 
+exit 0001 
+--> empty 
+
+dup --> 0 \ dup pads the stack with a single zero, when called on an empty stack
+
+1+ --> 1  \ this is one simple way to stuff the ballot box - add one to zero to get one.
+
+\ we'll get to the (very nice) h# word in a bit (see next logfile or check if it's been appended to this logfile) - skip to it if you want to find out how to enter an arbitrary literal at the prompt.
+
+.s --> 1 --> 1 
+dup --> 1 1 
+.s --> 1 1 --> 1 1 
++ --> 2 
+dup --> 2 2 
+* --> 4 
+dup --> 4 4 
+* --> 16 
+dup --> 16 16 
++ --> 32 
+
+jlit --> 32 1  \ jlit is a test word that was used before 'h#' was noticed as 'a thing'.
+\ all the *lit* type words are also in this same category - skilled use of this Forth makes them less central
+
++ --> 33 
+echo !--> 33 \ echo is a non-destructive emit - keeps TOS intact
+echo !--> 33 
+echo !--> 33 
+dup --> 33 33 
+.s --> 33 33 --> 33 33 
+.s --> 33 33 --> 33 33 
+emit !--> 33  \ emit behaves as expected
+.s --> 33 --> 33 
+.s --> 33 --> 33 
+nxt "--> 34 \ nxt is again a testing word that advances to the next integer and calls 'echo' to print it to the terminal
+
+nxt #--> 35 
+nxt $--> 36 
+nxt %--> 37 
+nxt &--> 38 
+drop --> empty 
+dup --> 0 
+
+\ d is the dump word (16 bytes).  In decimal, at the end of the line, is a stack report (as usual).
+
+d 0000  03B3 0001 0002 0003 0004 0005 0006 0007 --> 8 
+d 0008  0008 0009 000A 000B 000C 000D 000F 0010 --> 16 
+d 0010  0011 0012 0013 0014 0015 0016 0017 0018 --> 24 
+d 0018  0019 001A 001B 001C 001D 001E 001F 0020 --> 32 
+d 0020  0021 0022 0023 0024 0025 0026 0027 0028 --> 40 
+d 0028  0029 002A 002B 002C 002D 002E 002F 0030 --> 48 
+d 0030  0031 0032 0033 0034 0035 0036 0037 0038 --> 56 
+d 0038  0039 003A 003B 003C 003D 003E 003F 0040 --> 64 
+.s --> 64 --> 64 
+drop --> empty 
+lit256 --> 256 \ lit256 was an attempt to quickly get to larger values for literals - h# is the better mechanism.
+dup --> 256 256 
+dup --> 256 256 256 
++ --> 256 512 
++ --> 768 
+d 0300  0032 0030 0032 0031 0020 0061 0074 0020 --> 776 
+d 0308  0031 0033 003A 0032 0039 003A 0035 0035 --> 784 
+d 0310  0020 0055 0054 0043 0054 0001 0000 0019 --> 792 
+d 0318  0006 0001 0000 0006 0002 0000 0006 0003 --> 800 
+lit256 --> 800 256 
+swap --> 256 800 
+drop --> 256 
+dup --> 256 256 
+dup --> 256 256 256 
+dup --> 256 256 256 256 
++ --> 256 256 512 
++ --> 256 768 
++ --> 1024 
+dup --> 1024 1024 
+d 0400  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 1032 
+d 0408  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 1040 
+d 0410  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 1048 
+d 0418  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 1056 
+drop --> 1024 
+dup --> 1024 1024 
+lit256 --> 1024 1024 256 
+- --> 1024 768 
+over --> 1024 768 1024 
+over --> 1024 768 1024 768 
+d 0300  0032 0030 0032 0031 0020 0061 0074 0020 --> 1024 768 1024 776 
+d 0308  0031 0033 003A 0032 0039 003A 0035 0035 --> 1024 768 1024 784 
+d 0310  0020 0055 0054 0043 0054 0001 0000 0019 --> 1024 768 1024 792 
+d 0318  0006 0001 0000 0006 0002 0000 0006 0003 --> 1024 768 1024 800 
+d 0320  0000 0006 FF9D FFFF 0006 FF9E FFFF 0006 --> 1024 768 1024 808 
+d 0328  FF9F FFFF 0281 0001 0000 0006 000D 0000 --> 1024 768 1024 816 
+d 0330  0001 0000 0006 002B 0000 0004 0006 0020 --> 1024 768 1024 824 
+d 0338  0000 0004 0006 002B 0000 0004 0019 0001 --> 1024 768 1024 832 
+d 0340  0000 0046 0046 0046 0046 0046 0001 0000 --> 1024 768 1024 840 
+d 0348  0012 0048 0001 0000 0347 0347 0014 0017 --> 1024 768 1024 848 
+d 0350  0001 0000 0012 0006 0000 0000 0014 0013 --> 1024 768 1024 856 
+d 0358  0001 0000 0351 0048 0001 0000 0359 0048 --> 1024 768 1024 864 
+d 0360  0001 0000 035D 0048 0001 0000 0012 0006 --> 1024 768 1024 872 
+d 0368  0010 0000 0014 0013 0001 0000 0012 0006 --> 1024 768 1024 880 
+d 0370  007F 0000 0014 0013 0001 0000 0012 0006 --> 1024 768 1024 888 
+d 0378  0100 0000 0014 0013 0001 0000 003A 002B --> 1024 768 1024 896 
+d 0380  0054 0045 0053 0054 0020 004E 004F 0020 --> 1024 768 1024 904 
+d 0388  004C 005A 0020 0054 0045 0053 0054 0020 --> 1024 768 1024 912 
+d 0390  0054 0045 0053 0054 0020 0033 0031 0020 --> 1024 768 1024 920 
+d 0398  0044 0065 0063 0020 0046 0072 0069 0064 --> 1024 768 1024 928 
+d 03A0  0061 0079 0020 0020 0020 0031 0030 003A --> 1024 768 1024 936 
+d 03A8  0035 0037 007A 0054 0019 0001 0000 034B --> 1024 768 1024 944 
+d 03B0  0016 01DE 0001 00CD 02C7 FFFF FFFF FFFF --> 1024 768 1024 952 
+d 03B8  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 960 
+d 03C0  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 968 
+d 03C8  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 976 
+d 03D0  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 984 
+d 03D8  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 992 
+d 03E0  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 1000 
+d 03E8  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 1008 
+d 03F0  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 1016 
+d 03F8  FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF --> 1024 768 1024 1024 
+jlit --> 1024 768 1024 1024 1 
+1+ --> 1024 768 1024 1024 2 
+dup --> 1024 768 1024 1024 2 2 
+* --> 1024 768 1024 1024 4 
+dup --> 1024 768 1024 1024 4 4 
+* --> 1024 768 1024 1024 16 
+dup --> 1024 768 1024 1024 16 16 
++ --> 1024 768 1024 1024 32 
+1+ --> 1024 768 1024 1024 33 
+echo !--> 1024 768 1024 1024 33 
+echo !--> 1024 768 1024 1024 33 
+nxt "--> 1024 768 1024 1024 34 
+nxt #--> 1024 768 1024 1024 35 
+nxt $--> 1024 768 1024 1024 36 
+nxt %--> 1024 768 1024 1024 37 
+nxt &--> 1024 768 1024 1024 38 
+nxt '--> 1024 768 1024 1024 39 
+nxt (--> 1024 768 1024 1024 40 
+nxt )--> 1024 768 1024 1024 41 
+nxt *--> 1024 768 1024 1024 42 
+nxt +--> 1024 768 1024 1024 43 
+nxt ,--> 1024 768 1024 1024 44 
+nxt ---> 1024 768 1024 1024 45 
+nxt .--> 1024 768 1024 1024 46 
+nxt /--> 1024 768 1024 1024 47 
+nxt 0--> 1024 768 1024 1024 48 
+nxt 1--> 1024 768 1024 1024 49 
+nxt 2--> 1024 768 1024 1024 50 
+nxt 3--> 1024 768 1024 1024 51 
+nxt 4--> 1024 768 1024 1024 52 
+nxt 5--> 1024 768 1024 1024 53 
+nxt 6--> 1024 768 1024 1024 54 
+nxt 7--> 1024 768 1024 1024 55 
+nxt 8--> 1024 768 1024 1024 56 
+nxt 9--> 1024 768 1024 1024 57 
+nxt :--> 1024 768 1024 1024 58 
+nxt ;--> 1024 768 1024 1024 59 
+nxt <--> 1024 768 1024 1024 60 
+nxt =--> 1024 768 1024 1024 61 
+nxt >--> 1024 768 1024 1024 62 
+nxt ?--> 1024 768 1024 1024 63 
+nxt @--> 1024 768 1024 1024 64 
+nxt A--> 1024 768 1024 1024 65 
+nxt B--> 1024 768 1024 1024 66 
+nxt C--> 1024 768 1024 1024 67 
+nxt D--> 1024 768 1024 1024 68 
+nxt E--> 1024 768 1024 1024 69 
+nxt F--> 1024 768 1024 1024 70 
+
+#bookmark
+
+uncommented after this line.
+
+words 
+nxt 03AE 
+id 037D 
+lit256 0375 
+lit7f 036D 
+lit16 0365 
+lit3 0361 
+lit2 035D 
+lit1 0359 
+lit0 0351 
+jlit 034B 
+dlit 0347 
+wiggle 0340 
+said 0331 
+togpin 032C 
+kurtz 0316 
+test 02DD 
+interpret 02C7 
+.s 0281 
+= 026E 
+0= 0265 
+? 0261 
+' 025D 
+h# 0245 
+find 0225 
+match 0209 
+query 01E2 
+echo 01DE 
+tib! 01D2 
+words 01C4 
+dictionary 01BE 
+r 0199 
+d 018A 
+hc. 0178 
+hw. 0164 
+h. 014C 
+max 013F 
+BL 013A 
+true 0135 
+false 0130 
+. 012B 
+0< 011E 
+d. 0112 
+dabs 010D 
+u. 0107 
+ud. 0100 
+#s 00F4 
+# 00DB 
+hex 00D4 
+decimal 00CD 
+base 00CB 
+#> 00C2 
+<# 00BD 
+sign 00B4 
+hold 00AB 
+holder 00A9 
+*/ 00A5 
+*/mod 009F 
+ud/mod 0092 
+mod 008A 
+/ 0081 
+* 007D 
+type 0074 
+space 006E 
+count 0068 
+rot 0062 
+pad 0060 
+tib 005E 
+ptype 0054 
+1- 004E 
+1+ 0048 
+blink 0046 
+Keyboard.releaseAll 0045 
+Keyboard.release 0044 
+Keyboard.press 0043 
+Keyboard.begin 0042 
+rshift 0041 
+lshift 0040 
+@GPIO 003F 
+initGPIO 003E 
+@MCP23017 003D 
+initMCP23017 003C 
+nip 003B 
+dnegate 0039 
+w! 0038 
+w@ 0037 
+um/mod 0036 
+um* 0035 
+w@+ 0034 
+c@+ 0033 
+huh? 0032 
+execute 0031 
+depth 0030 
+!+ 002F 
+c!+ 002E 
+! 002D 
+c! 002C 
+@p 002B 
+w!+ 002A 
+p! 0029 
+p 0028 
+a! 0027 
+a 0026 
+@p+ 0025 
+@+ 0024 
+@ 0023 
+c@ 0022 
+2/ 0021 
+2* 0020 
+abs 001F 
+negate 001E 
+invert 001D 
+xor 001C 
+or 001B 
+and 001A 
+cr 0019 
+ms 0018 
+- 0017 
++ 0016 
+over 0015 
+swap 0014 
+drop 0013 
+dup 0012 
+timer 0011 
+counter 0010 
+d# 000F 
+.sh 000E 
+r@ 000D 
+r> 000C 
+>r 000B 
+key 0005 
+emit 0004 
+quit 0003 
+abort 0002 
+exit 0001 
+--> 1024 768 1024 1024 70 
+cr 
+--> 1024 768 1024 1024 70 
+cr 
+--> 1024 768 1024 1024 70 
+22 22 ?
+--> empty 
+22 22 ?
+--> empty 
+cant_enter_literals_directly_here cant_enter_literals_directly_here ?
+--> empty 
+
+Terminating...
+Skipping tty reset...
+Thanks for using picocom
+
+Script done on 2021-12-31 11:17:29 UTC

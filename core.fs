@@ -261,6 +261,19 @@ here [ 4 + constant dict ]
     depth 1 #, = if drop dup ." --> " ?. exit then drop
     ." --> " depth dup a! begin swap >r 1- while repeat drop
     a begin r@ ?. r> swap 1- while repeat drop ;
+: \ESC 43 #, ;
+: \\ 0 #,
+    begin
+        1+ key
+        dup \ESC drop drop
+        dup \ESC = drop
+        dup \ESC =        -if 32 #, emit then drop
+        dup \ESC = invert -if over emit then drop
+        dup BL max \ESC xor while
+        drop drop
+    repeat
+    drop drop 1- drop
+    ;
 : interpret
     begin .s cr query space find while \ populate tib and dictionary lookup
         execute depth -if huh? then drop

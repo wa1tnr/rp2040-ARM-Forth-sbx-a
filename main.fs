@@ -16,8 +16,9 @@ turnkey
 : dlit dup 1+ ; \ simple and does what's wanted
 : jlit dlit dlit swap - ; \ always exactly '1'
 
-: id ." rp2040  31 Dec Friday   22:48z" cr ;
+: id ." rp2040  31 Dec Friday   22:48z" cr
+     ." rp2040-ARM-Forth-sbx-a.ino" cr ;
 
 : nxt jlit + echo ; \ show next char
 
-turnkey decimal interpret
+turnkey decimal initGPIO interpret

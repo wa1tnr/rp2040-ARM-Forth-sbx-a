@@ -209,6 +209,6 @@ wiggle	main.fs	+12
 dlit	main.fs	+16
 jlit	main.fs	+17
 id	main.fs	+19
-nxt	main.fs	+21
+nxt	main.fs	+22
 .stack	job.fs	+56
 check	job.fs	+57

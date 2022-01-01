@@ -1,9 +1,11 @@
 // ARM-Forth-sbx-a.ino
-// Fri 31 Dec 18:22:42 UTC 2021
+// Sat  1 Jan 20:44:55 UTC 2022
+
+#warning sketch.cpp seen
 
 #include <Arduino.h>
-#include "program.h"
 #include "memory.h"
+#include "program.h"
 #include <Wire.h>
 #include <Keyboard.h>
 
@@ -37,40 +39,11 @@ uint8_t ram[RAMSIZE];
 
 // arduino initialization
 void setup(){
-    delay(999);
     Serial.begin(9600);
-    delay(2000);
+    delay(3000);
 }
 
 // Forth code words
-
-#define BLINK_TIME 80
-#define DELTA_TIME 700
-
-void quickly(void) {
-    int elapsed=millis();
-    do {
-        for (volatile int slow = 3; slow > 0; slow--) { }
-    } while ((millis() - elapsed) < BLINK_TIME);
-}
-
-void slowly(void) {
-    int elapsed=millis();
-    do {
-        for (volatile int slow = 3; slow > 0; slow--) { }
-    } while ((millis() - elapsed) < (BLINK_TIME + DELTA_TIME));
-}
-
-void _reflashing(void) {
-    reflash_firmware();
-}
-
-void _blink_led(void) {
-    digitalWrite(LED_BUILTIN, 1);
-    quickly();
-    digitalWrite(LED_BUILTIN, 0);
-    slowly();
-}
 
 void _emit(){
     Serial.write(T);
@@ -390,7 +363,6 @@ void _depth(){
 
 void _huh(){
     Serial.write(" ?\n");
-    // Serial.println("DEBUG: huh ");
     _abort();
 }
 
@@ -466,11 +438,37 @@ void _fetchMCP23017(){
     T&=0xffff;
 }
 
+#ifdef RP2040_VARIANT
 // all the I/O pins needed for the steno keyboard
 void _initGPIO(){
-    pinMode(LED_BUILTIN, OUTPUT); // tnr 27 dec
-    digitalWrite(LED_BUILTIN, 0);
-/*
+    pinMode(9, INPUT_PULLUP);
+    pinMode(10, INPUT_PULLUP);
+    pinMode(11, INPUT_PULLUP);
+    pinMode(12, INPUT_PULLUP);
+    pinMode(A1, INPUT_PULLUP);
+    pinMode(A2, INPUT_PULLUP);
+    pinMode(A3, INPUT_PULLUP);
+ // pinMode(A4, INPUT_PULLUP); // is4fse
+ // pinMode(A5, INPUT_PULLUP);
+}
+
+void _fetchGPIO(){
+    DUP;
+    T=digitalRead(9);
+    T|=digitalRead(10)<<1;
+    T|=digitalRead(11)<<2;
+    T|=digitalRead(12)<<3;
+    T|=digitalRead(A1)<<4;
+    T|=digitalRead(A2)<<5;
+    T|=digitalRead(A3)<<6;
+ // T|=digitalRead(A4)<<7;
+ // T|=digitalRead(A5)<<8;
+    T^=0x01ff;
+}
+#endif // #ifdef RP2040_VARIANT
+
+#ifndef RP2040_VARIANT
+void _initGPIO(){
     pinMode(9, INPUT_PULLUP);
     pinMode(10, INPUT_PULLUP);
     pinMode(11, INPUT_PULLUP);
@@ -480,7 +478,6 @@ void _initGPIO(){
     pinMode(A3, INPUT_PULLUP);
     pinMode(A4, INPUT_PULLUP);
     pinMode(A5, INPUT_PULLUP);
-*/
 }
 
 void _fetchGPIO(){
@@ -489,17 +486,14 @@ void _fetchGPIO(){
     T|=digitalRead(10)<<1;
     T|=digitalRead(11)<<2;
     T|=digitalRead(12)<<3;
-/*
     T|=digitalRead(A1)<<4;
     T|=digitalRead(A2)<<5;
     T|=digitalRead(A3)<<6;
     T|=digitalRead(A4)<<7;
     T|=digitalRead(A5)<<8;
-*/
     T^=0x01ff;
 }
-
-// void _fetchGPIO(){ }
+#endif // #ifndef RP2040_VARIANT
 
 void _lshift(){
     W=T;
@@ -557,9 +551,7 @@ void (*function[])()={
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 66
     _Keyboard_begin , _Keyboard_press , // 68
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
-    _blink_led , // 72 simple integer count
-    _reflashing , // 73
-    _dropzbranch , // 74
+    _dropzbranch , // 72
 };
 
 void _execute(){

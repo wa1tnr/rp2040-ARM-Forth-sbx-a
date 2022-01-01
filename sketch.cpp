@@ -5,10 +5,10 @@
 
 #include <Arduino.h>
 #include "memory.h"
-// #include "program.h"
 #include "compatibility.h"
 #include <Wire.h>
 #include <Keyboard.h>
+#include "rp2040.h" // rp2040.cpp has routines that belong in main .ino file
 
 // Forth registers
 uint32_t T=0; // cached top of data stack
@@ -533,8 +533,6 @@ void _Keyboard_end(){
 }
 
 void _execute();
-
-#include "rp2040.h" // rp2040.cpp has routines that belong in main .ino file
 
 void (*function[])()={
     _enter , _exit , _abort , _quit , // 3

@@ -5,7 +5,8 @@
 
 #include <Arduino.h>
 #include "memory.h"
-#include "program.h"
+// #include "program.h"
+#include "compatibility.h"
 #include <Wire.h>
 #include <Keyboard.h>
 
@@ -441,6 +442,7 @@ void _fetchMCP23017(){
 #ifdef RP2040_VARIANT
 // all the I/O pins needed for the steno keyboard
 void _initGPIO(){
+    pinMode(LED_BUILTIN, OUTPUT);
     pinMode(9, INPUT_PULLUP);
     pinMode(10, INPUT_PULLUP);
     pinMode(11, INPUT_PULLUP);
@@ -469,6 +471,7 @@ void _fetchGPIO(){
 
 #ifndef RP2040_VARIANT
 void _initGPIO(){
+    pinMode(LED_BUILTIN, OUTPUT);
     pinMode(9, INPUT_PULLUP);
     pinMode(10, INPUT_PULLUP);
     pinMode(11, INPUT_PULLUP);
@@ -531,6 +534,8 @@ void _Keyboard_end(){
 
 void _execute();
 
+#include "rp2040.h" // rp2040.cpp has routines that belong in main .ino file
+
 void (*function[])()={
     _enter , _exit , _abort , _quit , // 3
     _emit , _key , _lit , // 6
@@ -551,7 +556,9 @@ void (*function[])()={
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 66
     _Keyboard_begin , _Keyboard_press , // 68
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
-    _dropzbranch , // 72
+    _blink_led , // 72 simple integer count
+    _reflashing , // 73
+    _dropzbranch , // 74
 };
 
 void _execute(){

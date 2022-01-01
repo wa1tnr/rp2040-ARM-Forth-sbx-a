@@ -105,15 +105,12 @@ code Keyboard.press  68 ,
 code Keyboard.release  69 ,
 code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
-code blink 72 ,
-code reflash 73 ,
--code /branch  74 ,
+-code /branch  72 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;
 \ 0branch and +branch don't drop the stack
 :m until ( a)  0branch [ 2/ ] , m;
-\ this macro creates the +branch instruction. 30 Dec 16:32z
 :m -until ( a)  +branch [ 2/ ] , m;
 :m /until ( a)  /branch [ 2/ ] , m;
 :m then ( a)  here [ 2/ swap ] !-t ;
@@ -132,12 +129,6 @@ code reflash 73 ,
 :m cvariable  code 14 , ramHERE , 1 ramALLOT m;
 :m wvariable  code 14 , ramHERE , 2 ramALLOT m;
 :m variable  code 14 , ramHERE , 4 ramALLOT m;
-
-\ // read 32 bits inline
-\ void _lit(){
-\     DUP;
-\     T=memory[I++]+(memory[I++]<<16);
-\ }
 
 \ think of #, as a literal instruction in an assembler
 :m #,  lit [ dup $ffff and ] , [ $10000 / $ffff and ] , m;
@@ -219,7 +210,7 @@ cvariable base
 : hc. ( c - )  base c@ >r hex 0 #,
     <# # # #> type space r> base c! ;
 \ dump memory, program and ram, in hex
-: d ( a - a')  dup hw. p! space 7 #, for @p+ hw. next p ; \ maybe the dump sought?
+: d ( a - a')  dup hw. p! space 7 #, for @p+ hw. next p ;
 : r ( a - a')  dup hw. a! space 15 #, for c@+ hc. next a ;
 -: .word  pad a!
     p @p $ff #, and 2/ for @p+ w!+ next
@@ -229,14 +220,14 @@ cvariable base
 here [ 4 + constant dict ]
 : dictionary  $a5 #, p! ;
 : words  cr dictionary begin p @p while drop .word cr repeat drop ;
-: tib! ( c) \ accrete tib char by char?
+: tib! ( c)
     tib dup c@ 1+ over c! dup c@ + c! ;
-: echo ( c - c)  dup emit ; \ does exactly what it looks like (non-destructive emit)
+: echo ( c - c)  dup emit ;
 : query
-    false tib ! false \ strip tib of prior content?
+    false tib ! false
     begin drop key BL max BL xor until BL xor echo tib!
-    begin key BL max BL xor while BL xor echo tib! repeat \ assemble new tib?
-    drop BL tib dup c@ + 1+ c! ; \ store accretion back into tib?
+    begin key BL max BL xor while BL xor echo tib! repeat
+    drop BL tib dup c@ + 1+ c! ;
 : match (  - 0|n)  \ P has been loaded
     tib a! false
     p @p $ff #, and 2/ for w@+ @p+ - or next
@@ -257,25 +248,12 @@ here [ 4 + constant dict ]
     drop true ;
 : =  ( n1 n2 - flag)  - 0= ;
 -: ?.  base c@ $10 #, - if drop . exit then drop u. ;
-\ : .s  depth 0= if drop ." --> empty" exit then drop
 : .s  depth 0= if drop ." --> empty " exit then drop
     depth 1 #, = if drop dup ." --> " ?. exit then drop
     ." --> " depth dup a! begin swap >r 1- while repeat drop
     a begin r@ ?. r> swap 1- while repeat drop ;
-: \ESC 43 #, ;
-: \\ 0 #,
-    begin
-        1+ key
-        dup \ESC drop drop
-        dup \ESC = drop
-        dup \ESC =        -if 32 #, emit then drop
-        dup \ESC = invert -if over emit then drop
-        dup BL max \ESC xor while
-        drop drop
-    repeat
-    drop drop 1- drop
-    ;
 : interpret
-    begin .s cr query space find while \ populate tib and dictionary lookup
+    begin .s cr query space find while
         execute depth -if huh? then drop
     repeat tib count type huh?
+

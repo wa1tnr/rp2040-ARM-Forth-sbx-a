@@ -105,7 +105,9 @@ code Keyboard.press  68 ,
 code Keyboard.release  69 ,
 code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
--code /branch  72 ,
+code blink 72 ,
+code reflash 73 ,
+-code /branch  74 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;

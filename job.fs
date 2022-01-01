@@ -48,6 +48,7 @@ $2000 constant target-size
 
 include ./compiler.fs
 include ./core.fs  \ core Forth words
+include ./libtnr.fs \ local library
 include ./main.fs  \ application code
 
 \ headers \ tuck headers into end of dictionary

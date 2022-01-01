@@ -16,7 +16,7 @@ turnkey
 : dlit dup 1+ ; \ simple and does what's wanted
 : jlit dlit dlit swap - ; \ always exactly '1'
 
-: id ."  1 Jan Saturday 22:48z" cr ;
+: id ."  1 Jan Saturday 23:31z" cr ;
 
 : nxt jlit + echo ; \ show next char
 

@@ -2,7 +2,6 @@
 
 #include <Arduino.h>
 #include "program.h"
-// #include "pico/stdlib.h" // LED_BUILTIN oriented stuff may need this one
 
 // Forth code words
 

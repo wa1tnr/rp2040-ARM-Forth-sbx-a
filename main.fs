@@ -1,5 +1,5 @@
 \ main.fs
-\ Sun Jan  2 14:54:31 UTC 2022
+\ Sun  2 Jan 17:11:50 UTC 2022
 
 target
 turnkey
@@ -23,6 +23,7 @@ turnkey
 : blinks ( n -- )
   1- for blik next ." ok " ;
 
-: id ."  2 Jan Sunday   14:54z" cr ;
+: id ."  2 Jan Sunday   17:11z" cr
+     ." rp2040-dvlp-dd-multc-a"cr ;
 
 turnkey decimal initGPIO interpret

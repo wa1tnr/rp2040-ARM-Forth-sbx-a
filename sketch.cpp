@@ -1,5 +1,5 @@
 // ARM-Forth-sbx-a.ino
-// Sat  1 Jan 20:44:55 UTC 2022
+// Sun  2 Jan 17:11:50 UTC 2022
 
 #warning sketch.cpp seen
 
@@ -37,12 +37,6 @@ uint32_t rstack[RSTKSIZE];
 // RAM
 #define RAMSIZE 2048
 uint8_t ram[RAMSIZE];
-
-// arduino initialization
-void setup(){
-    Serial.begin(9600);
-    delay(3000);
-}
 
 // Forth code words
 
@@ -579,6 +573,60 @@ void _execute(){
     (*function[memory[W++]])();
 }
 
+void cpl(int ledpin) {
+    bool state = digitalRead(ledpin);
+    state = !state;
+    digitalWrite(ledpin, state);
+}
+
+#define PRE_LAUNCH_T 27000
+void blink_core_1(void) {
+    if(
+        (millis() >= PRE_LAUNCH_T) // initial system delay
+      ) {
+        if ((millis() - elapsed) > 1000) {
+            cpl(LED_BUILTIN);
+            elapsed = millis();
+        }
+    }
+}
+
+void noop(void) { }
+
+void time_out_blinker(void) {
+    for (volatile uint32_t sh_t = // 7732144;
+
+    // 7732144;
+    1732144;
+
+    sh_t > 0; sh_t--) {
+        noop();
+    }
+}
+
+// arduino initialization
+void setup(){
+    Serial.begin(9600);
+    delay(800);
+    pinMode(LED_BUILTIN, 1);
+    digitalWrite(LED_BUILTIN, LOW); // inverted
+}
+
+void setup1(){
+    // Serial.begin(9600);
+    delay(1);
+    for (volatile int pq = (3 + 2);  pq > 0; pq--) {
+        cpl(LED_BUILTIN);
+        time_out_blinker();
+        cpl(LED_BUILTIN); // and off
+        time_out_blinker();
+        time_out_blinker();
+        time_out_blinker();
+    }
+    digitalWrite(LED_BUILTIN, LOW);
+    time_out_blinker();
+}
+
 // arduino main loop
 void loop(){
 abort:
@@ -590,4 +638,20 @@ next:
     W=memory[I++];
     (*function[memory[W++]])();
     goto next;
+}
+
+// second core
+
+#define INHIBIT 172700
+
+void inhibit_blink_awhile(void) {
+    if ((millis() - elapsed) > INHIBIT) {
+        elapsed = millis();
+    }
+}
+
+void loop1(){
+    // inhibit_blink_awhile();
+    blink_core_1();
+    // blink_core_1();
 }

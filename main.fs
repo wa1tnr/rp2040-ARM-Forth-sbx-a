@@ -1,6 +1,5 @@
 \ main.fs
-\ commit 70276f2
-\ Sat Jan  1 22:24:18 UTC 2022
+\ Sun Jan  2 14:54:31 UTC 2022
 
 target
 turnkey
@@ -16,8 +15,6 @@ turnkey
 : dlit dup 1+ ; \ simple and does what's wanted
 : jlit dlit dlit swap - ; \ always exactly '1'
 
-: id ."  1 Jan Saturday 23:31z" cr ;
-
 : nxt jlit + echo ; \ show next char
 : led 25 #, ;
 
@@ -25,5 +22,7 @@ turnkey
 
 : blinks ( n -- )
   1- for blik next ." ok " ;
+
+: id ."  2 Jan Sunday   14:54z" cr ;
 
 turnkey decimal initGPIO interpret

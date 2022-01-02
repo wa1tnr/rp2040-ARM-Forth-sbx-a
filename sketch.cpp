@@ -21,6 +21,7 @@ uint16_t P=0; // program memory pointer
 uint16_t A=0; // RAM pointer
 unsigned long elapsed=0; // for counter timer
 uint64_t D=0; // for double result of multiplication
+uint8_t FL=0; // flags
 
 // data stack
 #define STKSIZE 16
@@ -538,6 +539,16 @@ void _Keyboard_end(){
     Keyboard.end();
 }
 
+void _flstore(){
+    FL=T;
+    DROP;
+}
+
+void _flfetch(){
+    DUP;
+    T=FL;
+}
+
 void _execute();
 
 void (*function[])()={
@@ -562,9 +573,13 @@ void (*function[])()={
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
     _blink_led , // 72 simple integer count
     _reflashing , // 73
+
     _on , // 74
     _off , // 75
-    _dropzbranch , // 76
+    _flfetch, // 76
+    _flstore, // 77
+    _dropzbranch , // 78
+
 };
 
 void _execute(){
@@ -613,7 +628,6 @@ void setup(){
 }
 
 void setup1(){
-    // Serial.begin(9600);
     delay(1);
     for (volatile int pq = (3 + 2);  pq > 0; pq--) {
         cpl(LED_BUILTIN);
@@ -642,6 +656,7 @@ next:
 
 // second core
 
+/*
 #define INHIBIT 172700
 
 void inhibit_blink_awhile(void) {
@@ -649,9 +664,10 @@ void inhibit_blink_awhile(void) {
         elapsed = millis();
     }
 }
+*/
 
 void loop1(){
-    // inhibit_blink_awhile();
-    blink_core_1();
-    // blink_core_1();
+    if (FL != 179) { // stop blinking
+        blink_core_1();
+    }
 }

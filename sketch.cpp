@@ -618,12 +618,15 @@ void time_out_blinker(void) {
     }
 }
 
+extern void setup_sr(void);
+
 // arduino initialization
 void setup(){
     Serial.begin(9600);
     delay(800);
     pinMode(LED_BUILTIN, 1);
     digitalWrite(LED_BUILTIN, LOW); // inverted
+    setup_sr();
 }
 
 void setup1(){
@@ -641,7 +644,7 @@ void setup1(){
 }
 
 // arduino main loop
-void loop(){
+void loop_forth(){
 abort:
     S=0;
 quit:
@@ -653,6 +656,12 @@ next:
     goto next;
 }
 
+extern void loop_sr(void);
+
+void loop() {
+    loop_forth();
+    loop_sr();
+}
 // second core
 
 /*

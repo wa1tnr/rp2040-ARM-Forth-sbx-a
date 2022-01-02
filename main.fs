@@ -1,5 +1,5 @@
 \ main.fs
-\  Sun  2 Jan 23:17:37 UTC 2022
+\  Sun  2 Jan 23:24:31 UTC 2022
 
 target
 turnkey
@@ -20,8 +20,8 @@ turnkey
 
 \ parent branch was rp2040-dvlp-dd-multc-a
 
-: id ." Sun  2 Jan 23:16:35" cr
+: id ." Sun  2 Jan 23:24:31 UTC 2022" cr
      ." has hidden shift register stuff" cr
-     ." rp2040-multicore-b"  cr ;
+     ." rp2040-multicore-c"  cr ;
 
 turnkey decimal initGPIO interpret

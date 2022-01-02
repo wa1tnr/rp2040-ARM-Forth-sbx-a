@@ -107,7 +107,9 @@ code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
 code blink 72 ,
 code reflash 73 ,
--code /branch  74 ,
+code on 74 ,
+code off 75 ,
+-code /branch  76 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;
@@ -241,9 +243,11 @@ here [ 4 + constant dict ]
     repeat ;
 -: digit ( n1 - n2)  $3a #, - -if 10 #, + exit then 29 #, - ; 
 : h# (  - n)  0 #, \ interpret only
-    begin key BL max BL xor while
+    begin key echo BL max BL xor while
         BL xor digit swap 2* 2* 2* 2* or
-    repeat drop ; 
+    repeat drop
+    \ dup .
+    ;
 : ' (  - a)  query find ; \ interpret only
 : ? @ h. ;
 : 0= ( n - flag)  if drop false exit then
@@ -251,11 +255,12 @@ here [ 4 + constant dict ]
 : =  ( n1 n2 - flag)  - 0= ;
 -: ?.  base c@ $10 #, - if drop . exit then drop u. ;
 : .s  depth 0= if drop ." --> empty " exit then drop
-    depth 1 #, = if drop dup ." --> " ?. exit then drop
+    depth 1 #, = if drop dup ." --> " ?. space exit then drop
     ." --> " depth dup a! begin swap >r 1- while repeat drop
-    a begin r@ ?. r> swap 1- while repeat drop ;
+    a begin r@ ?. r> swap 1- while repeat drop space ;
 : interpret
-    begin .s cr query space find while
+    begin \ .s \ space \ cr
+        query space find while
         execute depth -if huh? then drop
     repeat tib count type huh?
 

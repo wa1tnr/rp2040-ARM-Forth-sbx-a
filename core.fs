@@ -109,7 +109,9 @@ code blink 72 ,
 code reflash 73 ,
 code on 74 ,
 code off 75 ,
--code /branch  76 ,
+code fl@ 76 ,
+code fl! 77 ,
+-code /branch  78 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;

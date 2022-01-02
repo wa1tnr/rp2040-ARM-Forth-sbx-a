@@ -11,3 +11,6 @@
     repeat
     drop drop 1- drop
     ;
+
+: stop -77 #, fl! ;
+: start -22 #, fl! ;

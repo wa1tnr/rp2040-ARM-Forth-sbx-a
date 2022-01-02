@@ -12,5 +12,20 @@
     drop drop 1- drop
     ;
 
-: stop -77 #, fl! ;
-: start -22 #, fl! ;
+: wiggle blink blink blink blink blink ;
+
+\ literals
+
+: dlit dup 1+ ; \ simple and does what's wanted
+: jlit dlit dlit swap - ; \ always exactly '1'
+
+: nxt jlit + echo ; \ show next char
+: led 25 #, ;
+
+: blik led on 100 #, ms led off 800 #, ms ;
+
+: blinks ( n -- )
+  1- for blik next ." ok " ;
+
+: stop -77 #, fl!  ." blinking " led off ;
+: start -22 #, fl! ." blinking " ;

@@ -219,7 +219,7 @@ blinks	libtnr.fs	+27
 stop	libtnr.fs	+30
 start	libtnr.fs	+31
 test	main.fs	+9
-id	main.fs	+11
-demob	main.fs	+14
+demob	main.fs	+11
+id	main.fs	+23
 .stack	job.fs	+57
 check	job.fs	+58

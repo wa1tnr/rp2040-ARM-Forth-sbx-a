@@ -28,4 +28,4 @@
   1- for blik next ." ok " ;
 
 : stop -77 #, fl!  ." blinking " led off ;
-: start -22 #, fl! ." blinking " ;
+: start -22 #, fl! 2 #, ms ." blinking " ;

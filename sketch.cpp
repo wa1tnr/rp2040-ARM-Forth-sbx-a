@@ -549,6 +549,12 @@ void _flfetch(){
     T=FL;
 }
 
+void _cpl() {
+    bool state = digitalRead(T);
+    state = !state;
+    digitalWrite(T, state);
+}
+
 void _execute();
 
 void (*function[])()={
@@ -573,13 +579,12 @@ void (*function[])()={
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
     _blink_led , // 72 simple integer count
     _reflashing , // 73
-
     _on , // 74
     _off , // 75
     _flfetch, // 76
     _flstore, // 77
-    _dropzbranch , // 78
-
+    _cpl, // 78
+    _dropzbranch , // 79
 };
 
 void _execute(){
@@ -588,19 +593,13 @@ void _execute(){
     (*function[memory[W++]])();
 }
 
-void cpl(int ledpin) {
-    bool state = digitalRead(ledpin);
-    state = !state;
-    digitalWrite(ledpin, state);
-}
-
 #define PRE_LAUNCH_T 27000
 void blink_core_1(void) {
     if(
         (millis() >= PRE_LAUNCH_T) // initial system delay
       ) {
         if ((millis() - elapsed) > 1000) {
-            cpl(LED_BUILTIN);
+            DUP ; T=LED_BUILTIN ; _cpl(); DROP ;
             elapsed = millis();
         }
     }
@@ -630,9 +629,9 @@ void setup(){
 void setup1(){
     delay(1);
     for (volatile int pq = (3 + 2);  pq > 0; pq--) {
-        cpl(LED_BUILTIN);
+        DUP ; T=LED_BUILTIN ; _cpl(); DROP ;
         time_out_blinker();
-        cpl(LED_BUILTIN); // and off
+        DUP ; T=LED_BUILTIN ; _cpl(); DROP ;
         time_out_blinker();
         time_out_blinker();
         time_out_blinker();

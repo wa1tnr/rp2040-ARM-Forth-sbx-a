@@ -11,4 +11,14 @@ turnkey
 : id ."  2 Jan Sunday   17:11z" cr
      ." rp2040-dvlp-dd-multc-a"cr ;
 
+: demob stop 8000 #, ms
+       start 2000 #, ms
+        stop 8000 #, ms
+       start 2000 #, ms
+        stop 8000 #, ms
+       start 2000 #, ms
+       stop
+       ." demo complete. "
+;
+
 turnkey decimal initGPIO interpret

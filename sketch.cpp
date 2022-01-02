@@ -659,8 +659,8 @@ next:
 extern void loop_sr(void);
 
 void loop() {
-    loop_forth();
     loop_sr();
+    loop_forth();
 }
 // second core
 

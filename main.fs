@@ -19,5 +19,11 @@ turnkey
 : id ."  1 Jan Saturday 23:31z" cr ;
 
 : nxt jlit + echo ; \ show next char
+: led 25 #, ;
+
+: blik led on 100 #, ms led off 800 #, ms ;
+
+: blinks ( n -- )
+  1- for blik next ." ok " ;
 
 turnkey decimal initGPIO interpret

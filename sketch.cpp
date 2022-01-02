@@ -46,6 +46,18 @@ void setup(){
 
 // Forth code words
 
+void _off(){
+    int pin = T;
+    digitalWrite(pin, LOW);
+    DROP;
+}
+
+void _on(){
+    int pin = T;
+    digitalWrite(pin, HIGH);
+    DROP;
+}
+
 void _emit(){
     Serial.write(T);
     DROP;
@@ -556,7 +568,9 @@ void (*function[])()={
     _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
     _blink_led , // 72 simple integer count
     _reflashing , // 73
-    _dropzbranch , // 74
+    _on , // 74
+    _off , // 75
+    _dropzbranch , // 76
 };
 
 void _execute(){

@@ -1,29 +1,9 @@
-// good solid define structures 02z 19 Dec
-
-// Sun 19 Dec 02:19:51 UTC 2021  ONLINE edits
-
-// for:
-//  [ https://wokwi.com/arduino/new?template=pi-pico ]
-
-// added bank selection code - works well 19 Dec 02z
-
-// PERSISTENCE OF VISION technology demonstration.
-
-// swap these two cpp directives as required:
-#define EXPOSED_DIGITS
+#include <Arduino.h>
 #undef  EXPOSED_DIGITS
+#define EXPOSED_DIGITS
 
-// swap as required:
-#define ULTRA_SLOW_ENABLED
 #undef ULTRA_SLOW_ENABLED
-
-// common anode 7 seg display:
-
-// DIGIT goes to Vcc
-// COMMON goes to Vcc
-// segments go to ground.
-
-// common cathode is also available in this simulator.
+#define ULTRA_SLOW_ENABLED
 
 const int latchPin = 2; /* STCP */
 const int clockPin = 3; /* SHCP */
@@ -32,11 +12,20 @@ const int dataPin = 4; /* DS */
 byte leds = 0;
 byte uleds = 0;
 byte pos = 15; // rightmost wrong value tho
+               // zero 15   one 22   two 27   three 29  03 Jan 2022
 byte bank = 0;
 
 byte slew = 5;
 
 uint8_t ledval = 0;
+
+#define BLANKING 8700
+
+#define TICKED 22000
+
+void timing_slowed(void) {
+    for (volatile unsigned long t_slo = TICKED; t_slo > 0; t_slo--) { }
+}
 
 void _bankSelect(void) {
     if (bank == 1) {
@@ -67,19 +56,25 @@ void _digitSelect(void) {
 
 void updateShiftRegister(void) {
     digitalWrite(latchPin, LOW);
-    if (ULTRA_SLOW) delay(800); // new 19 Dec 02:15z - decent effect
 
-//    _bankSelect(); // highest shift register bits 0 and 1 (Q0, Q1)
+/*
     if (bank == 0) {
         uleds = 0;
         shiftOut(dataPin, clockPin, MSBFIRST, uleds);
     }
+*/
+    timing_slowed();
+    timing_slowed();
+    timing_slowed();
+    timing_slowed();
     _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
 
+/*
     if (bank == 1) {
         uleds = 0;
         shiftOut(dataPin, clockPin, MSBFIRST, uleds);
     }
+*/
 
     uleds = leds; // A-F 0-9 and a few other glyphs
     shiftOut(dataPin, clockPin, MSBFIRST, uleds); // paint the character's glyph!
@@ -101,7 +96,8 @@ void updateShiftRegister(void) {
 #endif
 
 void blankleds(void) {
-    leds = 255;
+    // leds = 255;
+    leds = 0;
     updateShiftRegister();
 }
 
@@ -109,50 +105,87 @@ void setleds(void) {
     leds = ledval;
     updateShiftRegister();
     if (!EXPOSE_DIGIT_PAINTING) {
-        delay(1); // CRITICAL - must be a finite, non-zero delay here
+        // delay(1); // CRITICAL - must be a finite, non-zero delay here
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
     }
     else {
-        delay(1); // bright duration wokwi 14 dec
+        timing_slowed();
+        // delay(1); // bright duration wokwi 14 dec
     }
 }
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
-        delay(1);
         if (SLOW_POV_DEMO) {
             // Serial1.print("debug - slow pov");
-            delay(297);
         }
     }
     setleds();
 
     if (EXPOSE_DIGIT_PAINTING) {
-        delay(200);
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
     }
 
     blankleds(); // waste no time in doing so!
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+    for (volatile unsigned long bl = BLANKING; bl > 0; bl--) { }
 }
 
 void proc_encoding(void) {
     uint8_t ledcpy;
-    ledcpy = ledval ^ 0xff; // this seems very good
-    //  XOR with 0xff seems to flip bits no problem.
-    // this seems to be the only caveat when working
-    // with common-OPPOSITE display (anode, cathode)
+    // ledcpy = ledval ^ 0xff; // this seems very good
+    ledcpy = ledval;
     ledval = ledcpy;
-//  in_column_zero(); delay(4);
 }
-
-// pinout pins 1-6 L to R bottom  7 to 12 r to L
-// digit 1 on the left (in sim is default and lights with no connection)
-
-// drawing shows 1 thru 6 and 7 thru 12 but acknowledges more pins.
-// probably a physical registration matter, only.
 
 void in_column_zero(void) {
     proc_encoding();
     for (int i = REPETITIONS; i > 0; i--) {
-        pos = 16; // neg 240 pos 15
+        pos = 15;
         flash_digit();
     }
 }
@@ -160,7 +193,7 @@ void in_column_zero(void) {
 void in_column_one(void) { // DIGIT 2
     proc_encoding();
     for (int i = REPETITIONS; i > 0; i--) {
-        pos = 32; // neg 233 pos 22
+        pos = 22;
         flash_digit();
     }
 }
@@ -168,7 +201,7 @@ void in_column_one(void) { // DIGIT 2
 void in_column_two(void) {
     proc_encoding();
     for (int i = REPETITIONS; i > 0; i--) {
-        pos = 64; // neg 228 pos 27
+        pos = 27;
         flash_digit();
     }
 }
@@ -176,7 +209,7 @@ void in_column_two(void) {
 void in_column_three(void) {
     proc_encoding();
     for (int i = REPETITIONS; i > 0; i--) {
-        pos = 128; // neg 226 pos 29
+        pos = 29;
         flash_digit();
     }
 }
@@ -225,8 +258,6 @@ void encode_bitpattern_bb(void) { // high nybble
 void msg_tttt(void) { // message: '3223'
     for (int j = 2; j > 0; j--) {
         for (int k = DURATION; k > 0; k--) {
-            //  columns 3 2 1 0  -- painted right to left!
-//          encode_three();  in_column_zero();   // print '3' in column '0'
             encode_hw_testing();
             in_column_zero();
             encode_hw_testing();
@@ -237,7 +268,6 @@ void msg_tttt(void) { // message: '3223'
             in_column_zero();
         }
     }
-    delay(1000);
 }
 
 int count = -1;
@@ -329,7 +359,6 @@ void msg_le(void) { // message:  'LE  '
             in_column_three();
         }
     }
-    delay(1500);
 }
 
 void msg_bef0(void) { // message: 'bEF0'
@@ -345,7 +374,6 @@ void msg_bef0(void) { // message: 'bEF0'
             in_column_three();
         }
     }
-    delay(1500);
 }
 
 void msg_foca(void) { // message: 'F0CA'
@@ -361,7 +389,6 @@ void msg_foca(void) { // message: 'F0CA'
             in_column_three();
         }
     }
-    delay(1500);
 }
 
 void msg_cafe(void) { // message: 'CAFE'
@@ -377,7 +404,6 @@ void msg_cafe(void) { // message: 'CAFE'
             in_column_three();
         }
     }
-    delay(1500);
 }
 
 void letter_test(void) {
@@ -399,7 +425,6 @@ void letter_test(void) {
             in_column_seven();
         }
     }
-    delay(1500);
 }
 
 void lfc_test(void) {
@@ -430,12 +455,10 @@ void msg_full_house(void) { // message: '01234567'
             in_column_seven();
         }
     }
-    delay(1500);
 }
 
-void setup() {
+void setup_sr(void) {
     Serial1.begin(115200);
-    // annoying // Serial1.println("Begin.");
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, OUTPUT);
@@ -446,30 +469,38 @@ void setup() {
 #endif
 
 #ifndef EXPOSED_DIGITS
-#define REPS 123
+// #define REPS 123
+#define REPS 1230
 #endif
 
-void loop(void) {
+void loop_sr(void) {
 
     blankleds();
-    delay(400);
-/*
-    lfc_test();
-    delay(4000);
-    letter_test();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
+        timing_slowed();
 
-    delay(400);
-  
-  */
-
-    for (int count = REPS; count > 0; count--) {
+    for (unsigned long count = REPS; count > 0; count--) {
         bank = 0;
+/*
         encode_seven();
         in_column_zero();
+
         encode_six();
         in_column_one();
+
+*/
         encode_five();
         in_column_two();
+/*
+
         encode_four();
         in_column_three();
 
@@ -481,7 +512,10 @@ void loop(void) {
         in_column_six();
         encode_zero();
         in_column_seven();
+*/
     }
+
+/*
 
     for (int count = REPS; count > 0; count--) {
 
@@ -504,68 +538,7 @@ void loop(void) {
         encode_ltr_blank();
         in_column_seven();
     }
-
-/*
-
-    bank = 0;
-    msg_full_house();
-    delay(2000);
-    blankleds();
-    delay(2000);
-
-    bank = 1;
-    msg_full_house();
-    delay(2000);
-    blankleds();
-    delay(2000);
 */
-
 }
 
-/**********   d o c u m e n t a t i o n   **********/
-#if 0
-
-Functional program and wiring.  (15 Dec 2021, 05:49z)
-
-The program operates through persistence of vision.
-
-The display shows information quite briefly, then blanks,
-then shows something else.
-
-Due to the way people experience rapidly flashing information
-(digital signs) the effect is similar to as if the light source
-was on constantly.
-
-The program has adjustments built-in to expose the use of
-persistence of vision techniques.  The technique has power-
-savings features - there are never more than eight segments
-lit at any one instant in time, limiting the maximum
-current the hardware might draw.
-
-#endif
-#if 0
-
- [ http://www.cplusplus.com/reference/cstdio/snprintf/]
-
-int snprintf ( char * s, size_t n, const char * format, ... );
-
-Write formatted output to sized buffer composes a string with
-the same text that would be printed if format was used on printf,
-but instead of be printed, the content is stored as a C string in
-the buffer pointed by s (taking n as the maxium buffer capacity
-to fill).
-
-#endif
-
-#if 0
-3V3 is the main 3.3V supply to RP2040 and its I/O, generated by
-the on-board SMPS.
-
-This pin can be used to power external circuitry (maximum
-output current will depend on RP2040 load and VSYS voltage,
-it is recommended to keep the load on this pin less than 300mA).
-
-Tue 14 Dec 20:09:25 UTC 2021
-
-#endif
 // END.

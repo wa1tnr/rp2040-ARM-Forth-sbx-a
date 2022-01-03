@@ -27,5 +27,6 @@
 : blinks ( n -- )
   1- for blik next ." ok " ;
 
-: stop -77 #, fl!  ." blinking " led off ;
-: start -22 #, fl! 2 #, ms ." blinking " ;
+\ arbitrary flag values -77 and -22 - systematic choices are a TODO item.
+: stop -77 #, fl!  ." core_1 (loop1) " led off ;
+: start -22 #, fl! 2 #, ms ." core_1 (loop1) " ;

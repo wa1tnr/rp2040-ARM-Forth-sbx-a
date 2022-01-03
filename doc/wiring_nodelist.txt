@@ -1,0 +1,18 @@
+Mon  3 Jan 23:02:58 UTC 2022
+
+Just the comms shiftOut(foo):
+
+orange 4  RST,  3, [4], GND, BAT L to R
+yellow 3  RST, [3], 4,  GND, BAT and opposite pin 2
+blue   2  3.3, [2], 1,    0, USB and next to the 3.3V pin
+3.3V     [3.3], 2,  1,    0, USB and Lower Left
+
+03 Jan 2022 breadboard 2x shift regs 74HC595
+
+rework of Trinket M0 board (minor changes; new
+wire colors in selected lines).
+
+The above nodelist is for Trinket M0, though the
+current work is for RP2040 (RPi Pico RP2040).
+
+END.

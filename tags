@@ -216,8 +216,8 @@ nxt	libtnr.fs	+22
 led	libtnr.fs	+23
 blik	libtnr.fs	+25
 blinks	libtnr.fs	+27
-stop	libtnr.fs	+30
-start	libtnr.fs	+31
+stop	libtnr.fs	+31
+start	libtnr.fs	+32
 test	main.fs	+9
 demob	main.fs	+11
 id	main.fs	+23

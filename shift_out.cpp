@@ -5,14 +5,16 @@
 #define ULTRA_SLOW_ENABLED
 #undef ULTRA_SLOW_ENABLED
 
-const int latchPin = 2; /* STCP */
-const int clockPin = 3; /* SHCP */
-const int dataPin = 4; /* DS */
+const int latchPin = 2; /* STCP wokwi */
+const int clockPin = 3; /* SHCP wokwi */
+const int dataPin  = 4; /* DS   wokwi */
 
-byte leds = 0;
+byte leds  = 0;
 byte uleds = 0;
-byte pos = 15; // rightmost wrong value tho
+byte pos  = 15;
+               // this hardware uses pos values of
                // zero 15   one 22   two 27   three 29  03 Jan 2022
+               // due to wiring and only 2 shift registers (16 bits)
 byte bank = 0;
 
 byte slew = 5;

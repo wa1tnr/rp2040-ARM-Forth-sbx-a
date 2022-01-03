@@ -659,7 +659,7 @@ next:
 extern void loop_sr(void);
 
 void loop() {
-    loop_sr();
+//  loop_sr();
     loop_forth();
 }
 // second core
@@ -676,6 +676,7 @@ void inhibit_blink_awhile(void) {
 
 void loop1(){
     if (FL != 179) { // stop blinking
-        blink_core_1();
+        loop_sr();
+        // blink_core_1();
     }
 }

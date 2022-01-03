@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#undef  EXPOSED_DIGITS
 #define EXPOSED_DIGITS
+#undef  EXPOSED_DIGITS
 
-#undef ULTRA_SLOW_ENABLED
 #define ULTRA_SLOW_ENABLED
+#undef ULTRA_SLOW_ENABLED
 
 const int latchPin = 2; /* STCP */
 const int clockPin = 3; /* SHCP */
@@ -19,9 +19,10 @@ byte slew = 5;
 
 uint8_t ledval = 0;
 
-#define BLANKING 8700
+#define BLANKING 870
 
 #define TICKED 22000
+
 
 void timing_slowed(void) {
     for (volatile unsigned long t_slo = TICKED; t_slo > 0; t_slo--) { }
@@ -63,10 +64,7 @@ void updateShiftRegister(void) {
         shiftOut(dataPin, clockPin, MSBFIRST, uleds);
     }
 */
-    timing_slowed();
-    timing_slowed();
-    timing_slowed();
-    timing_slowed();
+    // (near?) LAST artificial slowing 14:54z 03 Jan 2022: // timing_slowed();
     _digitSelect(); // digit 0 1 2 3 4 5 6 or 7 using 'pos' as the index
 
 /*
@@ -101,27 +99,26 @@ void blankleds(void) {
     updateShiftRegister();
 }
 
+#define MIN_BLANKING 1700
+#define MIN_SHOWING 444
+
 void setleds(void) {
     leds = ledval;
     updateShiftRegister();
     if (!EXPOSE_DIGIT_PAINTING) {
+        for (volatile unsigned long t_min = MIN_BLANKING; t_min > 0; t_min--) { }
         // delay(1); // CRITICAL - must be a finite, non-zero delay here
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
     }
     else {
-        timing_slowed();
+        // timing_slowed();
+        for (volatile unsigned long t_set = MIN_SHOWING; t_set > 0; t_set--) { }
         // delay(1); // bright duration wokwi 14 dec
     }
 }
+
+// #define MIN_ON_TIME 17000000 // 17 million great for slow demo
+// #define MIN_ON_TIME 170000 
+#define MIN_ON_TIME 1700
 
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
@@ -132,47 +129,15 @@ void flash_digit(void) { // paint a single digit brightly, then immediately blan
     setleds();
 
     if (EXPOSE_DIGIT_PAINTING) {
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
+        // timing_slowed();
     }
 
+    // targetting
+    for (volatile unsigned long t_min_on = MIN_ON_TIME; t_min_on > 0; t_min_on--) { }
+
     blankleds(); // waste no time in doing so!
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-    for (volatile unsigned long bl = BLANKING; bl > 0; bl--) { }
+    // timing_slowed();
+    // for (volatile unsigned long bl = BLANKING; bl > 0; bl--) { }
 }
 
 void proc_encoding(void) {
@@ -470,49 +435,69 @@ void setup_sr(void) {
 
 #ifndef EXPOSED_DIGITS
 // #define REPS 123
-#define REPS 1230
+// #define REPS 128
+// #define REPS 32
+#define REPS 960
 #endif
+
+
+void t_btwn_msgs(void) {
+// 22000 x 256 = 5632000
+
+// for (volatile int idx = 256; idx > 0; idx --) {
+// for (volatile int idx = (256 * 256) ; idx > 0; idx --) {
+// ##bookmark
+for (volatile unsigned long idx = (32 * 2) ; idx > 0; idx --) {
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+    }
+}
 
 void loop_sr(void) {
 
     blankleds();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
-        timing_slowed();
+        // timing_slowed();
 
+// 32 bit 0 to 4.2 billion
     for (unsigned long count = REPS; count > 0; count--) {
         bank = 0;
-/*
+
         encode_seven();
         in_column_zero();
 
         encode_six();
         in_column_one();
 
-*/
         encode_five();
         in_column_two();
-/*
 
         encode_four();
         in_column_three();
+    }
 
+    t_btwn_msgs();
+
+    blankleds();
+
+    for (unsigned long count = REPS; count > 0; count--) {
         encode_three();
-        in_column_four();
+        in_column_zero();
+
         encode_two();
-        in_column_five();
+        in_column_one();
+
         encode_one();
-        in_column_six();
+        in_column_two();
+
         encode_zero();
-        in_column_seven();
-*/
+        in_column_three();
     }
 
 /*

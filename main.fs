@@ -20,7 +20,7 @@ turnkey
 
 \ parent branch was rp2040-dvlp-dd-multc-a
 
-: id ." Mon  3 Jan 22:58:20 UTC 2022" cr
+: id ." Tue  4 Jan 00:22:45 UTC 2022" cr
      ." has active shift register stuff" cr
      ." kelnica        " cr
      ." rp2040-multic-seven_seg-a-chekme " cr
@@ -28,3 +28,5 @@ turnkey
      ." rp2040-multicore-c"  cr ;
 
 turnkey decimal initGPIO interpret
+
+\ END.

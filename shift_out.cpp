@@ -90,7 +90,7 @@ void updateShiftRegister(void) {
 
 #ifndef EXPOSED_DIGITS
 #define SLOW_POV_DEMO 0
-#define DURATION 1 // was '2' for exposed mode
+#define DURATION 480 // was '2' for exposed mode
 #define REPETITIONS 2 // was '1'
 #define EXPOSE_DIGIT_PAINTING 0
 #endif
@@ -125,7 +125,6 @@ void setleds(void) {
 void flash_digit(void) { // paint a single digit brightly, then immediately blank all LEDs
     if (EXPOSE_DIGIT_PAINTING) {
         if (SLOW_POV_DEMO) {
-            // Serial1.print("debug - slow pov");
         }
     }
     setleds();
@@ -394,12 +393,6 @@ void letter_test(void) {
     }
 }
 
-void lfc_test(void) {
-    msg_le();
-    msg_foca();
-    msg_cafe();
-}
-
 void msg_full_house(void) { // message: '01234567'
     for (int j = 2; j > 0; j--) {
         for (int k = DURATION; k > 0; k--) {
@@ -425,7 +418,6 @@ void msg_full_house(void) { // message: '01234567'
 }
 
 void setup_sr(void) {
-    Serial1.begin(115200);
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, OUTPUT);
@@ -449,8 +441,8 @@ void t_btwn_msgs(void) {
 // for (volatile int idx = 256; idx > 0; idx --) {
 // for (volatile int idx = (256 * 256) ; idx > 0; idx --) {
 // ##bookmark
-for (volatile unsigned long idx = (32 * 2) ; idx > 0; idx --) {
-        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+for (volatile unsigned long idx = (32 * 32 * 2) ; idx > 0; idx --) {
+        timing_slowed(); /*  timing_slowed(); timing_slowed(); timing_slowed();
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
@@ -458,16 +450,33 @@ for (volatile unsigned long idx = (32 * 2) ; idx > 0; idx --) {
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
         timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
-        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed();
+        timing_slowed(); timing_slowed(); timing_slowed(); timing_slowed(); */
+    }
+}
+
+
+extern uint8_t FL; // =0; // flags
+
+void lfc_test(void) {
+    blankleds();
+    if (FL != 179) { // stop blinking
+        msg_le(); t_btwn_msgs();
+    }
+    if (FL != 179) {
+        msg_foca(); t_btwn_msgs();
+    }
+    if (FL != 179) {
+        msg_cafe(); t_btwn_msgs();
     }
 }
 
 void loop_sr(void) {
+    lfc_test();
+
+/*
 
     blankleds();
-        // timing_slowed();
 
-// 32 bit 0 to 4.2 billion
     for (unsigned long count = REPS; count > 0; count--) {
         bank = 0;
 
@@ -484,9 +493,7 @@ void loop_sr(void) {
         in_column_three();
     }
 
-    t_btwn_msgs();
-
-    blankleds();
+    t_btwn_msgs(); blankleds();
 
     for (unsigned long count = REPS; count > 0; count--) {
         encode_three();
@@ -502,11 +509,11 @@ void loop_sr(void) {
         in_column_three();
     }
 
-/*
+    t_btwn_msgs(); blankleds();
 
     for (int count = REPS; count > 0; count--) {
 
-        bank = 1;
+//      bank = 1;
         encode_ltr_blank();
         in_column_zero();
         encode_ltr_e();
@@ -515,16 +522,21 @@ void loop_sr(void) {
         in_column_two();
         encode_ltr_f();
         in_column_three();
-
-        encode_ltr_f();
-        in_column_four();
-        encode_zero();
-        in_column_five();
-        encode_ltr_c();
-        in_column_six();
-        encode_ltr_blank();
-        in_column_seven();
     }
+
+    t_btwn_msgs(); blankleds();
+
+    for (unsigned long count = REPS; count > 0; count--) {
+        encode_ltr_f();
+        in_column_zero();
+        encode_zero();
+        in_column_one();
+        encode_ltr_c();
+        in_column_two();
+        encode_ltr_blank();
+        in_column_three();
+    }
+    t_btwn_msgs(); // mating blankleds() begins loop_sr()
 */
 }
 

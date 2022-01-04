@@ -9,6 +9,7 @@
 #include <Wire.h>
 #include <Keyboard.h>
 #include "rp2040.h" // rp2040.cpp has routines that belong in main .ino file
+#include "forth_defines.h" // textual tags
 
 // Forth registers
 uint32_t T=0; // cached top of data stack
@@ -423,6 +424,7 @@ void _nip(){
     S-=1;
 }
 
+/*
 void _initMCP23017(){
     Wire.begin();
     Wire.beginTransmission(0x20);
@@ -445,6 +447,8 @@ void _fetchMCP23017(){
     T^=0xffff;
     T&=0xffff;
 }
+
+*/
 
 #ifdef RP2040_VARIANT
 // all the I/O pins needed for the steno keyboard
@@ -573,18 +577,18 @@ void (*function[])()={
     _depth , _execute , _huh , _cfetchplus , // 52
     _wfetchplus , _umstar , _umslashmod , // 55
     _wfetch , _wstore , _dnegate , // 58
-    _squote , _nip , _initMCP23017 , _fetchMCP23017 , // 62
-    _initGPIO , _fetchGPIO , _lshift , _rshift , // 66
-    _Keyboard_begin , _Keyboard_press , // 68
-    _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end , // 71
-    _blink_led , // 72 simple integer count
-    _reflashing , // 73
-    _on , // 74
-    _off , // 75
-    _flfetch, // 76
-    _flstore, // 77
-    _cpl, // 78
-    _dropzbranch , // 79
+    _squote , _nip , //  _initMCP23017 , _fetchMCP23017 , // 62
+    _initGPIO , _fetchGPIO , _lshift , _rshift , // 64
+    // _Keyboard_begin , _Keyboard_press ,
+    // _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end ,
+    _blink_led , // 65 simple integer count
+    _reflashing , // 66
+    _on , // 67
+    _off , // 68
+    _flfetch, // 69
+    _flstore, // 70
+    _cpl, // 71
+    _dropzbranch , // 72
 };
 
 void _execute(){
@@ -608,14 +612,34 @@ void blink_core_1(void) {
 void noop(void) { }
 
 void time_out_blinker(void) {
-    for (volatile uint32_t sh_t = // 7732144;
-
-    // 7732144;
-    1732144;
-
-    sh_t > 0; sh_t--) {
+    for (volatile uint32_t sh_t = 1732144; sh_t > 0; sh_t--) {
         noop();
     }
+}
+
+void login_msgs(void) {
+    Serial.println(RECENT_STAMP); // RECENT_STAMP      "Mon  3 Jan 23:34:21 UTC 2022"
+    Serial.println(PROGRAM_NAME);
+    Serial.println(IP_NOTICE);
+    Serial.println(LOCAL_CONTRIB);
+    Serial.println("");
+    // PROGRAM_NAME IP_NOTICE LOCAL_CONTRIB
+    // COMMIT_TIME_STAMP "Mon Jan  3 23:05:41 UTC 2022"
+    // BRANCH_STAMP      "rp2040-2core-7seg-shiftreg-bb   0.1.0-pre-alpha"
+    // COMMIT_STAMP      "a09c255"
+    Serial.println(FEATURE_STAMP); // FEATURE_STAMP     "+2core +7seg +2shfreg +stopstart     "
+}
+
+void loop_forth(){
+abort:
+    S=0;
+quit:
+    R=0;
+    I=memory[0];
+next:
+    W=memory[I++];
+    (*function[memory[W++]])();
+    goto next;
 }
 
 extern void setup_sr(void);
@@ -624,9 +648,15 @@ extern void setup_sr(void);
 void setup(){
     Serial.begin(9600);
     delay(800);
+
     pinMode(LED_BUILTIN, 1);
     digitalWrite(LED_BUILTIN, LOW); // inverted
     setup_sr();
+
+    delay(2800); // testing only
+    if(Serial) {
+        login_msgs();
+    }
 }
 
 void setup1(){
@@ -644,39 +674,17 @@ void setup1(){
 }
 
 // arduino main loop
-void loop_forth(){
-abort:
-    S=0;
-quit:
-    R=0;
-    I=memory[0];
-next:
-    W=memory[I++];
-    (*function[memory[W++]])();
-    goto next;
+void loop() {
+    loop_forth();
 }
 
 extern void loop_sr(void);
 
-void loop() {
-//  loop_sr();
-    loop_forth();
-}
 // second core
-
-/*
-#define INHIBIT 172700
-
-void inhibit_blink_awhile(void) {
-    if ((millis() - elapsed) > INHIBIT) {
-        elapsed = millis();
-    }
-}
-*/
-
 void loop1(){
     if (FL != 179) { // stop blinking
         loop_sr();
         // blink_core_1();
     }
 }
+// END.

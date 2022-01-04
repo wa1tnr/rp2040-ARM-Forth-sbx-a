@@ -106,16 +106,10 @@ w!	core.fs	+93
 dnegate	core.fs	+94
 (s")	core.fs	+95
 nip	core.fs	+96
-initMCP23017	core.fs	+97
-@MCP23017	core.fs	+98
 initGPIO	core.fs	+99
 @GPIO	core.fs	+100
 lshift	core.fs	+101
 rshift	core.fs	+102
-Keyboard.begin	core.fs	+103
-Keyboard.press	core.fs	+104
-Keyboard.release	core.fs	+105
-Keyboard.releaseAll	core.fs	+106
 blink	core.fs	+108
 reflash	core.fs	+109
 on	core.fs	+110
